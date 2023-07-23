@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Academico\Programa;
 
+use App\Models\Modulo;
 use App\Models\Programa;
 use Livewire\Component;
 
@@ -15,7 +16,7 @@ class ShowPrograma extends Component
     public function mount(Programa $programa)
     {
         $this->programa = $programa;
-        $this->modulos = [];
+        $this->modulos = Modulo::GetModulosByPrograma($programa->id);
         $this->dataEstudiante = [
             [
                 "label" => "Nombre",

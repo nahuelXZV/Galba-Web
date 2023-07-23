@@ -90,9 +90,6 @@
                         Fecha de finalizacion
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Estado
-                    </th>
-                    <th scope="col" class="px-6 py-3">
 
                     </th>
                 </tr>
@@ -102,7 +99,7 @@
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
-                            {{ $programa->honorifico }}
+                            {{ $programa->codigo_programa }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $programa->nombre }}
@@ -115,9 +112,6 @@
                         </td>
                         <td class="px-6 py-4">
                             {{ $programa->fecha_finalizacion }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $programa->estado }}
                         </td>
                         <td class="px-6 py-4 text-right">
                             <a href="{{ route('programa.show', $programa->id) }}"

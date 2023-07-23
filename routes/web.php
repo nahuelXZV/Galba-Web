@@ -10,11 +10,16 @@ use App\Http\Livewire\Academico\Estudiante\ShowEstudiante;
 use App\Http\Livewire\Academico\Modulo\EditModulo;
 use App\Http\Livewire\Academico\Modulo\ListModulo;
 use App\Http\Livewire\Academico\Modulo\NewModulo;
+use App\Http\Livewire\Academico\Modulo\NewNota;
 use App\Http\Livewire\Academico\Modulo\ShowModulo;
 use App\Http\Livewire\Academico\Programa\EditPrograma;
 use App\Http\Livewire\Academico\Programa\ListPrograma;
+use App\Http\Livewire\Academico\Programa\NewInscripcion;
 use App\Http\Livewire\Academico\Programa\NewPrograma;
 use App\Http\Livewire\Academico\Programa\ShowPrograma;
+use App\Http\Livewire\Academico\Prospecto\EditProspecto;
+use App\Http\Livewire\Academico\Prospecto\ListProspecto;
+use App\Http\Livewire\Academico\Prospecto\NewProspecto;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Sistema\Rol\EditRol;
 use App\Http\Livewire\Sistema\Rol\ListRol;
@@ -69,6 +74,7 @@ Route::middleware([
         Route::get('/new', NewPrograma::class)->name('programa.new');
         Route::get('/edit/{programa}', EditPrograma::class)->name('programa.edit');
         Route::get('/show/{programa}', ShowPrograma::class)->name('programa.show');
+        Route::get('/inscribir/{programa}', NewInscripcion::class)->name('programa.inscribir');
     });
 
     Route::group(['prefix' => 'docente'], function () {
@@ -83,5 +89,12 @@ Route::middleware([
         Route::get('/new', NewModulo::class)->name('modulo.new');
         Route::get('/edit/{modulo}', EditModulo::class)->name('modulo.edit');
         Route::get('/show/{modulo}', ShowModulo::class)->name('modulo.show');
+        Route::get('/notas/{modulo}', NewNota::class)->name('modulo.nota');
+    });
+
+    Route::group(['prefix' => 'prospecto'], function () {
+        Route::get('/list', ListProspecto::class)->name('prospecto.list');
+        Route::get('/new', NewProspecto::class)->name('prospecto.new');
+        Route::get('/edit/{prospecto}', EditProspecto::class)->name('prospecto.edit');
     });
 });

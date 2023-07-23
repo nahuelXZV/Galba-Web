@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Academico\Estudiante;
 
 use App\Models\Estudiante;
+use App\Models\EstudiantePrograma;
 use Livewire\Component;
 
 class ShowEstudiante extends Component
@@ -15,7 +16,7 @@ class ShowEstudiante extends Component
     public function mount(Estudiante $estudiante)
     {
         $this->estudiante = $estudiante;
-        $this->programas = [];
+        $this->programas = EstudiantePrograma::GetProgramasByEstudiante($estudiante->id);
         $this->dataEstudiante = [
             [
                 "label" => "Nombre",

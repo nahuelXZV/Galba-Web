@@ -11,8 +11,8 @@
             <li>
                 <div class="flex items-center">
                     <x-iconos.flecha />
-                    <a href="{{ route('modulo.list') }}"
-                        class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Modulos</a>
+                    <a href="{{ route('prospecto.list') }}"
+                        class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Prospectos</a>
                 </div>
             </li>
             <li aria-current="page">
@@ -32,96 +32,83 @@
 
     <form class="grid grid-cols-3 gap-3" name="formulario">
         <div class="mb-6">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Codigo</label>
-            <input type="text" wire:model.defer="moduloArray.codigo_modulo" id="codigo_modulo" name="codigo_modulo"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Escriba el codigo" required>
-        </div>
-        <div class="mb-6">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
-            <input type="text" wire:model.defer="moduloArray.nombre" id="nombre" name="nombre"
+            <input type="text" wire:model.defer="prospectoArray.nombre" id="nombre" name="nombre"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Escriba el nombre" required>
         </div>
         <div class="mb-6">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sigla</label>
-            <input type="text" wire:model.defer="moduloArray.sigla" id="sigla" name="sigla"
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo</label>
+            <input type="email" wire:model.defer="prospectoArray.correo" id="correo" name="correo"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Escriba la sigla" required>
+                placeholder="Escriba el correo" required>
         </div>
         <div class="mb-6">
-            <label for="number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Edicion</label>
-            <input type="number" wire:model.defer="moduloArray.edicion" id="edicion" name="edicion"
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefono</label>
+            <input type="text" wire:model.defer="prospectoArray.telefono" id="telefono" name="telefono"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Escriba la edicion" required>
+                placeholder="Escriba el telefono" required>
         </div>
         <div class="mb-6">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Version</label>
-            <input type="number" wire:model.defer="moduloArray.version" id="version" name="version"
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Interes</label>
+            <input type="text" wire:model.defer="prospectoArray.interes" id="interes" name="interes"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Escriba la version" required>
+                placeholder="Escriba el interes" required>
         </div>
         <div class="mb-6">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha Inicio</label>
-            <input type="date" wire:model.defer="moduloArray.fecha_inicio" id="fecha_inicio" name="fecha_inicio"
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Carrera</label>
+            <input type="text" wire:model.defer="prospectoArray.carrera" id="carrera" name="carrera"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required>
+                placeholder="Escriba el carrera" required>
         </div>
         <div class="mb-6">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha Fin</label>
-            <input type="date" wire:model.defer="moduloArray.fecha_finalizacion" id="fecha_finalizacion"
-                name="fecha_finalizacion"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required>
-        </div>
-        <div class="mb-6">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona la modalidad</label>
-            <select wire:model.defer="moduloArray.modalidad" id="modalidad" name="modalidad" required
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona el estado</label>
+            <select wire:model.defer="prospectoArray.estado" id="estado" name="estado" required
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option selected>Selecciona la modalidad</option>
-                @foreach ($modalidades as $modalidades)
-                    <option value="{{ $modalidades }}">{{ $modalidades }}</option>
+                <option selected>Selecciona un estado</option>
+                @foreach ($estados as $estado)
+                    <option value="{{ $estado }}">{{ $estado }}</option>
                 @endforeach
             </select>
         </div>
+        <div class="mb-6 col-span-2">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Detalles</label>
+            <textarea wire:model.defer="prospectoArray.detalles" id="detalles" name="detalles" rows="3"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 resize-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Escriba los detalles"></textarea>
+        </div>
+
     </form>
 
     @push('scripts')
         <script>
             function validarFormulario() {
 
-                var codigo_modulo = document.forms["formulario"]["codigo_modulo"];
                 var nombre = document.forms["formulario"]["nombre"];
-                var sigla = document.forms["formulario"]["sigla"];
-                var edicion = document.forms["formulario"]["edicion"];
-                var version = document.forms["formulario"]["version"];
-                var modalidad = document.forms["formulario"]["modalidad"];
-                var fecha_finalizacion = document.forms["formulario"]["fecha_finalizacion"];
-                var fecha_inicio = document.forms["formulario"]["fecha_inicio"];
-                var modalidad = document.forms["formulario"]["modalidad"];
+                var telefono = document.forms["formulario"]["telefono"];
+                var correo = document.forms["formulario"]["correo"];
+                var interes = document.forms["formulario"]["interes"];
+                var carrera = document.forms["formulario"]["carrera"];
+                var detalles = document.forms["formulario"]["detalles"];
+                var estado = document.forms["formulario"]["estado"];
 
-                if (!validarCampo(codigo_modulo, "string", 0)) {
-                    return false;
-                }
+
                 if (!validarCampo(nombre, "string", 0)) {
                     return false;
                 }
-                if (!validarCampo(sigla, "string", 0)) {
+                if (!validarCampo(telefono, "number", 0)) {
                     return false;
                 }
-                if (!validarCampo(edicion, "number", 0)) {
+                if (!validarCampo(correo, "email", 0)) {
                     return false;
                 }
-                if (!validarCampo(version, "number", 0)) {
+                if (!validarCampo(interes, "string", 0)) {
                     return false;
                 }
-                if (!validarCampo(modalidad, "string", 0)) {
+                if (!validarCampo(carrera, "string", 0)) {
                     return false;
                 }
-                if (!validarCampo(fecha_finalizacion, "date", 0)) {
-                    return false;
-                }
-                if (!validarCampo(fecha_inicio, "date", 0)) {
+                if (!validarCampo(estado, "string", 0)) {
                     return false;
                 }
                 return true;

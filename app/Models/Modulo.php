@@ -55,6 +55,11 @@ class Modulo extends Model
         return Modulo::all();
     }
 
+    static public function GetModulosByPrograma($programa)
+    {
+        return Modulo::where('programa_id', $programa)->get();
+    }
+
     static public function GetAllSearch($attribute, $order = 'desc', $paginate)
     {
         $modulo = Modulo::orWhere('codigo_modulo', 'ILIKE', '%' . strtolower($attribute) . '%')
