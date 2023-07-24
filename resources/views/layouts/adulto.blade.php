@@ -25,7 +25,7 @@
         }
     </script>
     <script src="{{ asset('js/validaciones.js') }}"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->
@@ -176,10 +176,17 @@
                     </a>
                 </li>
                 <li>
-                    <a {{-- href="{{ route('rol.list') }}" --}}
+                    <a href="{{ route('calendario.show') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                         <x-iconos.calendar />
                         <span class="flex-1 ml-3 whitespace-nowrap">Calendario</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('evento.list') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <x-iconos.event />
+                        <span class="flex-1 ml-3 whitespace-nowrap">Eventos</span>
                     </a>
                 </li>
                 <li>
@@ -229,30 +236,21 @@
                     </ul>
                 </li>
                 <li>
-                    <a {{-- href="{{ route('rol.list') }}" --}}
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <x-iconos.event />
-                        <span class="flex-1 ml-3 whitespace-nowrap">Eventos</span>
-                    </a>
-                </li>
-                <li>
                     <a href="{{ route('prospecto.list') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                         <x-iconos.prospecto />
                         <span class="flex-1 ml-3 whitespace-nowrap">Prospectos</span>
                     </a>
                 </li>
-
-
                 <li>
-                    <a {{-- href="{{ route('rol.list') }}" --}}
+                    <a href="{{ route('activo.list') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                         <x-iconos.activos />
                         <span class="flex-1 ml-3 whitespace-nowrap">Activos</span>
                     </a>
                 </li>
                 <li>
-                    <a {{-- href="{{ route('rol.list') }}" --}}
+                    <a href="{{ route('inventario.list') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                         <x-iconos.inventario />
                         <span class="flex-1 ml-3 whitespace-nowrap">Inventario</span>

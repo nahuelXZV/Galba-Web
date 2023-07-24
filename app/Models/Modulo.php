@@ -30,6 +30,7 @@ class Modulo extends Model
     {
         $new = new Modulo($data);
         $new->save();
+        Modulo::NuevoEvento($new);
         return $new;
     }
 
@@ -73,5 +74,26 @@ class Modulo extends Model
             ->orderBy('modulo.id', $order)
             ->paginate($paginate);
         return $modulo;
+    }
+
+    static private function NuevoEvento(Modulo $new)
+    {
+        $docente = Docente::GetDocente($new->docente_id);
+        $nombreDocente = $docente->honorifico . ' ' .  $docente->nombre . ' ' . $docente->apellido;
+        $evento = [
+            "title" => $new->nombre,
+            "start" => $new->fecha_inicio,
+            "end" => $new->fecha_inicio,
+            "tipo" => "Modulo",
+            "tipo_fecha" => "Inicio",
+            "lugar" => $new->modalidad,
+            "hora" => "00:00",
+            "encargado" => $nombreDocente,
+        ];
+        Evento::CreateEvento($evento);
+        $evento['start'] = $new->fecha_finalizacion;
+        $evento['end'] = $new->fecha_finalizacion;
+        $evento['tipo_fecha'] = "Fin";
+        Evento::CreateEvento($evento);
     }
 }

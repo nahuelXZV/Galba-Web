@@ -149,14 +149,79 @@ return new class extends Migration
         });
         Schema::create('calendario_academico', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('nombre');
-            $table->string('fecha_finalizacion');
-            $table->string('fecha_inicio');
+            $table->string('title')->nullable();
+            $table->dateTime('start')->nullable();
+            $table->dateTime('end')->nullable();
             $table->string('tipo');
             $table->string('tipo_fecha');
             $table->string('lugar')->nullable();
             $table->string('hora')->nullable();
             $table->string('encargado')->nullable();
+            $table->timestamps();
+        });
+        Schema::create('activos', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->string('codigo');
+            $table->string('nombre');
+            $table->string('unidad');
+            $table->text('descripcion')->nullable();
+            $table->string('estado');
+            $table->string('tipo');
+            $table->string('dir');
+            $table->timestamps();
+        });
+        Schema::create('inventario', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->string('codigo');
+            $table->string('nombre');
+            $table->string('estado');
+            $table->string('unidad');
+            $table->text('descripcion')->nullable();
+            $table->integer('cantidad')->default(0);
+            $table->string('modelo');
+            $table->string('tipo');
+            $table->string('dir');
+            $table->timestamps();
+        });
+        Schema::create('unidad', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->string('nombre');
+            $table->timestamps();
+        });
+        Schema::create('recepcion', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->string('codigo');
+            $table->string('fecha');
+            $table->string('hora');
+            $table->text('descripcion')->nullable();
+            $table->unsignedBigInteger('usuario_id')->nullable();
+            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('unidad_id')->nullable();
+            $table->foreign('unidad_id')->references('id')->on('unidad')->onDelete('cascade');
+            $table->timestamps();
+        });
+        Schema::create('movimiento', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->string('codigo');
+            $table->string('fecha');
+            $table->string('hora');
+            $table->unsignedBigInteger('usuario_id')->nullable();
+            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('unidad_id')->nullable();
+            $table->foreign('unidad_id')->references('id')->on('unidad')->onDelete('cascade');
+            $table->unsignedBigInteger('recepcion_id')->nullable();
+            $table->foreign('recepcion_id')->references('id')->on('recepcion')->onDelete('cascade');
+            $table->timestamps();
+        });
+        Schema::create('documento', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->string('nombre');
+            $table->string('tipo');
+            $table->string('dir');
+            $table->unsignedBigInteger('movimiento_id')->nullable();
+            $table->foreign('movimiento_id')->references('id')->on('movimiento')->onDelete('cascade');
+            $table->unsignedBigInteger('recepcion_id')->nullable();
+            $table->foreign('recepcion_id')->references('id')->on('recepcion')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -177,6 +242,12 @@ return new class extends Migration
         Schema::dropIfExists('prospecto');
         Schema::dropIfExists('estudiante');
         Schema::dropIfExists('calendario_academico');
+        Schema::dropIfExists('activos');
+        Schema::dropIfExists('inventario');
+        Schema::dropIfExists('documento');
+        Schema::dropIfExists('movimiento');
+        Schema::dropIfExists('recepcion');
+        Schema::dropIfExists('unidad');
         // Schema::dropIfExists('usuario');
         // Schema::dropIfExists('rol');
     }

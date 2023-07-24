@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+
     <!-- Scripts -->
     <script>
         // Cambiar automáticamente el modo según la hora actual
@@ -33,7 +34,7 @@
 
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased dark:bg-gray-100">
 
     <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
@@ -175,10 +176,17 @@
                     </a>
                 </li>
                 <li>
-                    <a {{-- href="{{ route('rol.list') }}" --}}
+                    <a href="{{ route('calendario.show') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                         <x-iconos.calendar />
                         <span class="flex-1 ml-3 whitespace-nowrap">Calendario</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('evento.list') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <x-iconos.event />
+                        <span class="flex-1 ml-3 whitespace-nowrap">Eventos</span>
                     </a>
                 </li>
                 <li>
@@ -224,31 +232,25 @@
                             <a href="{{ route('programa.list') }}"
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Programas</a>
                         </li>
+
                     </ul>
                 </li>
                 <li>
-                    <a {{-- href="{{ route('rol.list') }}" --}}
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <x-iconos.event />
-                        <span class="flex-1 ml-3 whitespace-nowrap">Eventos</span>
-                    </a>
-                </li>
-                <li>
-                    <a {{-- href="{{ route('rol.list') }}" --}}
+                    <a href="{{ route('prospecto.list') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                         <x-iconos.prospecto />
                         <span class="flex-1 ml-3 whitespace-nowrap">Prospectos</span>
                     </a>
                 </li>
                 <li>
-                    <a {{-- href="{{ route('rol.list') }}" --}}
+                    <a href="{{ route('activo.list') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                         <x-iconos.activos />
                         <span class="flex-1 ml-3 whitespace-nowrap">Activos</span>
                     </a>
                 </li>
                 <li>
-                    <a {{-- href="{{ route('rol.list') }}" --}}
+                    <a href="{{ route('inventario.list') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                         <x-iconos.inventario />
                         <span class="flex-1 ml-3 whitespace-nowrap">Inventario</span>
@@ -258,8 +260,8 @@
         </div>
     </aside>
 
-    <div class="p-4 sm:ml-64">
-        <div class="p-4 mt-14">
+    <div class="p-4 sm:ml-64 ">
+        <div class="p-4 mt-14 ">
             {{ $slot }}
         </div>
     </div>
