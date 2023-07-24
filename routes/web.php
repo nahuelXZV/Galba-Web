@@ -7,6 +7,7 @@ use App\Http\Livewire\Academico\Contrato\NewContrato;
 use App\Http\Livewire\Academico\Docente\EditDocente;
 use App\Http\Livewire\Academico\Docente\ListDocente;
 use App\Http\Livewire\Academico\Docente\NewDocente;
+use App\Http\Livewire\Academico\Docente\ShowDocente;
 use App\Http\Livewire\Academico\Estudiante\EditEstudiante;
 use App\Http\Livewire\Academico\Estudiante\ListEstudiante;
 use App\Http\Livewire\Academico\Estudiante\NewEstudiante;
@@ -94,7 +95,7 @@ Route::middleware([
         Route::get('/list', ListDocente::class)->name('docente.list');
         Route::get('/new', NewDocente::class)->name('docente.new');
         Route::get('/edit/{docente}', EditDocente::class)->name('docente.edit');
-        Route::get('/show/{docente}', ShowPrograma::class)->name('docente.show');
+        Route::get('/show/{docente}', ShowDocente::class)->name('docente.show');
     });
 
     Route::group(['prefix' => 'modulo'], function () {
@@ -118,7 +119,7 @@ Route::middleware([
     });
 
     Route::group(['prefix' => 'contrato'], function () {
-        Route::get('/new', NewContrato::class)->name('contrato.new');
+        Route::get('/new/{docente}', NewContrato::class)->name('contrato.new');
         Route::get('/edit/{contrato}', EditContrato::class)->name('contrato.edit');
     });
 

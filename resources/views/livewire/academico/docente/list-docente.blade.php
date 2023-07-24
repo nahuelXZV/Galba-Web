@@ -71,6 +71,10 @@
                             {{ $docente->telefono }}
                         </td>
                         <td class="px-6 py-4 text-right">
+                            <a href="{{ route('docente.show', $docente->id) }}"
+                                class="text-white bg-green-500 hover:bg-green-600 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                <x-iconos.view />
+                            </a>
                             <a href="{{ route('docente.edit', $docente->id) }}"
                                 class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 <x-iconos.edit />

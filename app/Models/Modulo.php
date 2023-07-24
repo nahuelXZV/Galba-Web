@@ -61,10 +61,24 @@ class Modulo extends Model
         return Modulo::where('programa_id', $programa)->get();
     }
 
+    static public function GetModulosSinContratoDelDocente($docente)
+    {
+        return  Modulo::where('docente_id', $docente)
+            ->whereNotIn('id', function ($query) {
+                $query->select('modulo_id')
+                    ->from('contrato');
+            })->get();
+    }
+
+    static public function GetModulosByDocente(int $docente)
+    {
+        return Modulo::where('docente_id', $docente)->get();
+    }
+
     static public function GetAllSearch($attribute, $order = 'desc', $paginate)
     {
         $modulo = Modulo::orWhere('codigo_modulo', 'ILIKE', '%' . strtolower($attribute) . '%')
-            ->select('modulo.*', 'programa.nombre as programa')
+            ->select('modulo.*', 'programa.nombre as programa',)
             ->join('programa', 'programa.id', '=', 'modulo.programa_id')
             ->join('docente', 'docente.id', '=', 'modulo.docente_id')
             ->orWhere('modulo.nombre', 'ILIKE', '%' . strtolower($attribute) . '%')
