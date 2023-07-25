@@ -2,13 +2,12 @@ function validarCampo(campo, tipo, longitud) {
     var valor = campo.value.trim();
     // obtener el name del campo
     var name = campo.hasAttribute("name") ? campo.getAttribute("name") : "";
-    console.log("name: " + name);
 
     // Validar que el campo no esté vacío
-    if (valor === "") {
-        alert("El campo " + name + " no puede estar vacío");
-        return false;
-    }
+    // if (valor === "" ) {
+    //     alert("El campo " + name + " no puede estar vacío");
+    //     return false;
+    // }
 
     // Validar si el campo es obligatorio
     if (campo.hasAttribute("required") && !valor) {

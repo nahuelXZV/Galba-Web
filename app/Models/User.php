@@ -83,6 +83,12 @@ class User extends Authenticatable
         return $users;
     }
 
+    static public function GetAllUsuarios()
+    {
+        $users = User::all();
+        return $users;
+    }
+
     static public function GetUsuario($id)
     {
         $user = User::find($id);

@@ -41,6 +41,15 @@ use App\Http\Livewire\Sistema\Rol\NewRol;
 use App\Http\Livewire\Sistema\Usuario\EditUsuario;
 use App\Http\Livewire\Sistema\Usuario\ListUsuario;
 use App\Http\Livewire\Sistema\Usuario\NewUsuario;
+use App\Http\Livewire\Workflow\Movimiento\EditMovimiento;
+use App\Http\Livewire\Workflow\Movimiento\NewMovimiento;
+use App\Http\Livewire\Workflow\Recepcion\EditRecepcion;
+use App\Http\Livewire\Workflow\Recepcion\ListRecepcion;
+use App\Http\Livewire\Workflow\Recepcion\NewRecepcion;
+use App\Http\Livewire\Workflow\Recepcion\ShowRecepcion;
+use App\Http\Livewire\Workflow\Unidad\EditUnidad;
+use App\Http\Livewire\Workflow\Unidad\ListUnidad;
+use App\Http\Livewire\Workflow\Unidad\NewUnidad;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,6 +70,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/', Dashboard::class)->name('dashboard');
+    Route::get('/dashboard', Dashboard::class);
 
     // MODULO SISTEMA
     Route::group(['prefix' => 'usuario'], function () {
@@ -143,6 +153,21 @@ Route::middleware([
     });
 
     // MODULO WORFLOW
+    Route::group(['prefix' => 'unidad'], function () {
+        Route::get('/list', ListUnidad::class)->name('unidad.list');
+        Route::get('/new', NewUnidad::class)->name('unidad.new');
+        Route::get('/edit/{unidad}', EditUnidad::class)->name('unidad.edit');
+    });
 
+    Route::group(['prefix' => 'recepcion'], function () {
+        Route::get('/list', ListRecepcion::class)->name('recepcion.list');
+        Route::get('/new', NewRecepcion::class)->name('recepcion.new');
+        Route::get('/edit/{recepcion}', EditRecepcion::class)->name('recepcion.edit');
+        Route::get('/show/{recepcion}', ShowRecepcion::class)->name('recepcion.show');
+    });
 
+    Route::group(['prefix' => 'movimiento'], function () {
+        Route::get('/new/{recepcion}', NewMovimiento::class)->name('movimiento.new');
+        Route::get('/edit/{movimiento}', EditMovimiento::class)->name('movimiento.edit');
+    });
 });
