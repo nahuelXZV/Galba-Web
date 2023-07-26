@@ -28,6 +28,6 @@ class InicioSesiones extends Model
     {
         return InicioSesiones::join('users', 'users.id', '=', 'inicio_sesiones.usuario_id')
             ->select('inicio_sesiones.*', 'users.name as nombre')
-            ->orderBy('inicio_sesiones.fecha', 'desc')->limit(10)->get();
+            ->orderBy('inicio_sesiones.id', 'desc')->limit(10)->get();
     }
 }
