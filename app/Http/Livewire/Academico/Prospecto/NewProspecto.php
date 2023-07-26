@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Academico\Prospecto;
 
+use App\Models\Pagina;
 use App\Models\Prospecto;
 use Livewire\Component;
 
@@ -15,6 +16,7 @@ class NewProspecto extends Component
 
     public function mount()
     {
+        Pagina::UpdateVisita('prospecto.new');
         $this->prospectoArray = [
             'nombre',
             'telefono',
@@ -40,7 +42,7 @@ class NewProspecto extends Component
 
     public function render()
     {
-        return view('livewire.academico.prospecto.new-prospecto')
-            ->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('prospecto.new');
+        return view('livewire.academico.prospecto.new-prospecto', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

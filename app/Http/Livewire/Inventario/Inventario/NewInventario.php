@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Inventario\Inventario;
 
 use App\Models\Inventario;
+use App\Models\Pagina;
 use Illuminate\Support\Facades\Request;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -24,6 +25,7 @@ class NewInventario extends Component
 
     public function mount()
     {
+        Pagina::UpdateVisita('inventario.new');
         $this->inventarioArray = [
             'codigo',
             'nombre',
@@ -51,6 +53,7 @@ class NewInventario extends Component
 
     public function render()
     {
-        return view('livewire.inventario.inventario.new-inventario');
+        $visitas = Pagina::GetPagina('inventario.new');
+        return view('livewire.inventario.inventario.new-inventario', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

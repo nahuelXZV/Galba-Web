@@ -6,6 +6,7 @@ use App\Models\Estudiante;
 use App\Models\EstudianteNota;
 use App\Models\EstudiantePrograma;
 use App\Models\Modulo;
+use App\Models\Pagina;
 use Livewire\Component;
 
 class NewNota extends Component
@@ -21,6 +22,7 @@ class NewNota extends Component
 
     public function mount(Modulo $modulo)
     {
+        Pagina::UpdateVisita('modulo.nota');
         $this->modulo = $modulo;
         $this->inscritos = EstudiantePrograma::GetInscritosAndNotas($modulo->programa_id);
         foreach ($this->inscritos as $inscrito) {
@@ -64,7 +66,7 @@ class NewNota extends Component
 
     public function render()
     {
-        return view('livewire.academico.modulo.new-nota')
-            ->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('modulo.nota');
+        return view('livewire.academico.modulo.new-nota', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

@@ -111,4 +111,7 @@
             }), interval);
         });
     </script>
+        @push('visitas')
+        {{ $visitas }}
+    @endpush
 </div>

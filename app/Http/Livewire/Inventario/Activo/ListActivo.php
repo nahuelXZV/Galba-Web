@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Inventario\Activo;
 
 use App\Models\Activo;
+use App\Models\Pagina;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -13,6 +14,11 @@ class ListActivo extends Component
     public $notificacion = false;
     public $type = 'success';
     public $message = 'Creado correctamente';
+
+    public function mount()
+    {
+        Pagina::UpdateVisita('activo.list');
+    }
 
     public function toggleNotificacion()
     {
@@ -42,6 +48,7 @@ class ListActivo extends Component
     public function render()
     {
         $activos = Activo::GetAllSearch($this->search, 'DESC', 10);
-        return view('livewire.inventario.activo.list-activo', compact('activos'));
+        $visitas = Pagina::GetPagina('activo.list');
+        return view('livewire.inventario.activo.list-activo', compact('activos', 'visitas'))->layout(auth()->user()->tema);
     }
 }

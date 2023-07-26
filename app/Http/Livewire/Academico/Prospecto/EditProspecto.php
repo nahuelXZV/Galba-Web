@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Academico\Prospecto;
 
+use App\Models\Pagina;
 use App\Models\Prospecto;
 use Livewire\Component;
 
@@ -29,6 +30,7 @@ class EditProspecto extends Component
 
     public function mount(Prospecto $prospecto)
     {
+        Pagina::UpdateVisita('prospecto.edit');
         $this->prospecto = $prospecto;
         $this->prospectoArray = [
             'nombre' => $prospecto->nombre,
@@ -55,7 +57,8 @@ class EditProspecto extends Component
 
     public function render()
     {
-        return view('livewire.academico.prospecto.edit-prospecto')
-            ->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('prospecto.edit');
+        return view('livewire.academico.prospecto.edit-prospecto', compact('visitas'))
+            ->layout(auth()->user()->tema);
     }
 }

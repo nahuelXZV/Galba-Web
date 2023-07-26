@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Workflow\Recepcion;
 
 use App\Models\Documento;
 use App\Models\Movimiento;
+use App\Models\Pagina;
 use App\Models\Recepcion;
 use Livewire\Component;
 
@@ -17,6 +18,7 @@ class ShowRecepcion extends Component
 
     public function mount(Recepcion $recepcion)
     {
+        Pagina::UpdateVisita('recepcion.show');
         $this->recepcion = Recepcion::GetRecepcion($recepcion->id);
         $this->movimientos = Movimiento::GetMovimientoByRecepcion($recepcion->id);
         $this->documento = Documento::GetDocumentoByRecepcion($recepcion->id);
@@ -50,6 +52,7 @@ class ShowRecepcion extends Component
 
     public function render()
     {
-        return view('livewire.workflow.recepcion.show-recepcion')->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('recepcion.show');
+        return view('livewire.workflow.recepcion.show-recepcion', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Academico\Modulo;
 
 use App\Models\Modulo;
+use App\Models\Pagina;
 use Livewire\Component;
 
 class EditModulo extends Component
@@ -21,6 +22,7 @@ class EditModulo extends Component
 
     public function mount(Modulo $modulo)
     {
+        Pagina::UpdateVisita('modulo.edit');
         $this->modulo = $modulo;
         $this->moduloArray = [
             'codigo_modulo' => $this->modulo->codigo_modulo,
@@ -48,6 +50,7 @@ class EditModulo extends Component
 
     public function render()
     {
-        return view('livewire.academico.modulo.edit-modulo')->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('modulo.edit');
+        return view('livewire.academico.modulo.edit-modulo', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

@@ -10,8 +10,7 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -32,30 +31,36 @@
     @livewireScripts
     <style>
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f5f5f5;
+            font-family: 'Comic Neue', cursive;
         }
 
-        aside {
-            background-color: #333;
-            color: #fff;
+        div * {
+            font-size: 1.1rem;
         }
 
-        body,
-        div,
-        table,
-        nav,
-        aside,
-        form,
-        #formulario {
-            font-size: 1.0rem;
+        table * {
+            font-size: 1.1rem;
         }
 
-        /* Personalizar otros estilos según las preferencias de diseño para adolescentes */
+        nav * {
+            font-size: 1.1rem;
+        }
+
+        aside * {
+            font-size: 1.1rem;
+        }
+
+        form * {
+            font-size: 1.1rem;
+        }
+
+        #formulario * {
+            font-size: 1.1rem;
+        }
     </style>
 </head>
 
-<body class="font-montserrat antialiased">
+<body class="font-comic antialiased">
 
     <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
@@ -222,7 +227,7 @@
     </div>
     <div class="flex justify-end p-4 font-semibold text-sm">
         Visitas: @stack('visitas')
-    </div>
+     </div>
 
     @stack('modals')
     @stack('scripts')

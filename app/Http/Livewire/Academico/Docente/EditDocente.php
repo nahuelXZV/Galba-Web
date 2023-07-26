@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Academico\Docente;
 
 use App\Models\Docente;
+use App\Models\Pagina;
 use Livewire\Component;
 
 class EditDocente extends Component
@@ -22,6 +23,7 @@ class EditDocente extends Component
 
     public function mount(Docente $docente)
     {
+        Pagina::UpdateVisita('docente.edit');
         $this->docente = $docente;
         $this->docenteArray = [
             "honorifico" => $this->docente->honorifico,
@@ -49,6 +51,7 @@ class EditDocente extends Component
 
     public function render()
     {
-        return view('livewire.academico.docente.edit-docente')->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('docente.edit');
+        return view('livewire.academico.docente.edit-docente', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

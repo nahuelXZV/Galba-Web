@@ -25,6 +25,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'tema',
+        'area',
     ];
 
     protected $hidden = [
@@ -92,6 +94,14 @@ class User extends Authenticatable
     static public function GetUsuario($id)
     {
         $user = User::find($id);
+        return $user;
+    }
+
+    static public function cambiarTema(int $id, string $tema)
+    {
+        $user = User::find($id);
+        $user->tema = $tema;
+        $user->save();
         return $user;
     }
 }

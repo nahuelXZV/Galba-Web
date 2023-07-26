@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Workflow\Unidad;
 
+use App\Models\Pagina;
 use App\Models\Unidad;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -13,6 +14,11 @@ class ListUnidad extends Component
     public $notificacion = false;
     public $type = 'success';
     public $message = 'Creado correctamente';
+
+    public function mount()
+    {
+        Pagina::UpdateVisita('unidad.list');
+    }
 
     public function toggleNotificacion()
     {
@@ -42,6 +48,7 @@ class ListUnidad extends Component
     public function render()
     {
         $unidades = Unidad::GetAllSearch($this->search, 'DESC', 10);
-        return view('livewire.workflow.unidad.list-unidad', compact("unidades"))->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('unidad.list');
+        return view('livewire.workflow.unidad.list-unidad', compact("unidades", 'visitas'))->layout(auth()->user()->tema);
     }
 }

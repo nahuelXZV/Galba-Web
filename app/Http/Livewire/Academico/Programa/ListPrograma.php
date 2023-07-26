@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Academico\Programa;
 
+use App\Models\Pagina;
 use App\Models\Programa;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -13,6 +14,11 @@ class ListPrograma extends Component
     public $notificacion = false;
     public $type = 'success';
     public $message = 'Creado correctamente';
+
+    public function mount()
+    {
+        Pagina::UpdateVisita('programa.list');
+    }
 
     public function toggleNotificacion()
     {
@@ -42,6 +48,7 @@ class ListPrograma extends Component
     public function render()
     {
         $programas = Programa::GetAllSearch($this->search, 'DESC', 10);
-        return view('livewire.academico.programa.list-programa', compact('programas'))->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('programa.list');
+        return view('livewire.academico.programa.list-programa', compact('programas', 'visitas'))->layout(auth()->user()->tema);
     }
 }

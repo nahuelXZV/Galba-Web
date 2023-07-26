@@ -6,6 +6,7 @@ use App\Models\Docente;
 use App\Models\EstudianteNota;
 use App\Models\EstudiantePrograma;
 use App\Models\Modulo;
+use App\Models\Pagina;
 use App\Models\Programa;
 use Livewire\Component;
 
@@ -18,6 +19,7 @@ class ShowModulo extends Component
 
     public function mount(Modulo $modulo)
     {
+        Pagina::UpdateVisita('modulo.show');
         $this->modulo = $modulo;
         $this->estudiantes = EstudiantePrograma::GetInscritosAndNotas($modulo->programa_id);
         $docente = Docente::GetDocente($modulo->docente_id);
@@ -60,6 +62,7 @@ class ShowModulo extends Component
 
     public function render()
     {
-        return view('livewire.academico.modulo.show-modulo');
+        $visitas = Pagina::GetPagina('modulo.show');
+        return view('livewire.academico.modulo.show-modulo', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

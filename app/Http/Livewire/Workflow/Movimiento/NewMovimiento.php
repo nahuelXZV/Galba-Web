@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Workflow\Movimiento;
 
 use App\Models\Documento;
 use App\Models\Movimiento;
+use App\Models\Pagina;
 use App\Models\Recepcion;
 use App\Models\Unidad;
 use App\Models\User;
@@ -29,6 +30,7 @@ class NewMovimiento extends Component
 
     public function mount(Recepcion $recepcion)
     {
+        Pagina::UpdateVisita('movimiento.new');
         $this->recepcion = $recepcion;
         $this->unidades = Unidad::GetUnidades();
         $this->movimientoArray = [
@@ -65,6 +67,7 @@ class NewMovimiento extends Component
 
     public function render()
     {
-        return view('livewire.workflow.movimiento.new-movimiento');
+        $visitas = Pagina::GetPagina('movimiento.new');
+        return view('livewire.workflow.movimiento.new-movimiento', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

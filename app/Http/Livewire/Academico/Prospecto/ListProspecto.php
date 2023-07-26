@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Academico\Prospecto;
 
+use App\Models\Pagina;
 use App\Models\Prospecto;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -13,6 +14,11 @@ class ListProspecto extends Component
     public $notificacion = false;
     public $type = 'success';
     public $message = 'Creado correctamente';
+
+    public function mount()
+    {
+        Pagina::UpdateVisita('prospecto.list');
+    }
 
     public function toggleNotificacion()
     {
@@ -42,7 +48,8 @@ class ListProspecto extends Component
     public function render()
     {
         $prospectos = Prospecto::GetAllSearch($this->search, 'DESC', 10);
-        return view('livewire.academico.prospecto.list-prospecto', compact('prospectos'))
-            ->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('prospecto.list');
+        return view('livewire.academico.prospecto.list-prospecto', compact('prospectos', 'visitas'))
+            ->layout(auth()->user()->tema);
     }
 }

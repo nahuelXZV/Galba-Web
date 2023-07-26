@@ -15,7 +15,6 @@
 
     <!-- Scripts -->
     <script>
-        // Cambiar automáticamente el modo según la hora actual
         const now = new Date();
         const currentHour = now.getHours();
         if (currentHour < 6 || currentHour >= 18) {
@@ -31,7 +30,35 @@
     <!-- Styles -->
     @livewireStyles
     @livewireScripts
+    <style>
+        body {
+            font-family: 'Comic Neue', cursive;
+        }
 
+        div * {
+            font-size: 1.2rem;
+        }
+
+        table * {
+            font-size: 1.2rem;
+        }
+
+        nav * {
+            font-size: 1.2rem;
+        }
+
+        aside * {
+            font-size: 1.2rem;
+        }
+
+        form * {
+            font-size: 1.2rem;
+        }
+
+        #formulario * {
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 
 <body class="font-sans antialiased dark:bg-gray-100">
@@ -62,58 +89,7 @@
                     @livewire('search')
                 </div>
 
-
-                <div class="flex items-center">
-                    <div class="flex items-center ml-3">
-                        <div>
-                            <button type="button"
-                                class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                                aria-expanded="false" data-dropdown-toggle="dropdown-user">
-                                <span class="sr-only">Open user menu</span>
-                                <img class="w-8 h-8 rounded-full"
-                                    src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                                    alt="user photo">
-                            </button>
-
-                        </div>
-                        <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
-                            id="dropdown-user">
-                            <div class="px-4 py-3" role="none">
-                                <p class="text-sm text-gray-900 dark:text-white" role="none">
-                                    {{ Auth::user()->name }}
-                                </p>
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                    {{ Auth::user()->email }}
-                                </p>
-                            </div>
-                            <ul class="py-1" role="none">
-                                <li>
-                                    <a href="{{ route('dashboard') }}"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        role="menuitem">Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('profile.show') }}"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        role="menuitem">Perfil</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        role="menuitem">Tema</a>
-                                </li>
-                                <li>
-                                    <form method="POST" action="{{ route('logout') }}" x-data>
-                                        @csrf
-                                        <button type="submit"
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                            role="menuitem">Cerrar Sesion</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                @livewire('menu-user')
             </div>
         </div>
     </nav>
@@ -173,8 +149,8 @@
                         <span class="flex-1 ml-3 text-left whitespace-nowrap">Academico</span>
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m1 1 4 4 4-4" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
                         </svg>
                     </button>
                     <ul id="dropdown-example" class="hidden py-2 space-y-2">
@@ -250,7 +226,9 @@
             {{ $slot }}
         </div>
     </div>
-
+    <div class="flex justify-end p-4 font-semibold text-sm">
+        Visitas: @stack('visitas')
+    </div>
 
     @stack('modals')
     @stack('scripts')

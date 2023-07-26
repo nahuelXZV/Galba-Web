@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Academico\Contrato;
 use App\Models\Contrato;
 use App\Models\Docente;
 use App\Models\Modulo;
+use App\Models\Pagina;
 use Livewire\Component;
 
 class EditContrato extends Component
@@ -21,6 +22,7 @@ class EditContrato extends Component
 
     public function mount(Contrato $contrato)
     {
+        Pagina::UpdateVisita('contrato.edit');
         $this->contrato = $contrato;
         $modulo = Modulo::GetModulo($contrato->modulo_id);
         $this->docente = Docente::GetDocente($modulo->docente_id);
@@ -50,6 +52,7 @@ class EditContrato extends Component
 
     public function render()
     {
-        return view('livewire.academico.contrato.edit-contrato');
+        $visitas = Pagina::GetPagina('contrato.edit');
+        return view('livewire.academico.contrato.edit-contrato', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

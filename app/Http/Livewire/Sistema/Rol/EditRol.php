@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Sistema\Rol;
 
+use App\Models\Pagina;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -23,6 +24,7 @@ class EditRol extends Component
 
     public function mount($rol)
     {
+        Pagina::UpdateVisita('rol.edit');
         $this->rol = Role::find($rol);
         $this->name = $this->rol->name;
         $this->arrayPermisos = $this->rol->getAllPermissions()->pluck('id')->toArray();
@@ -46,6 +48,7 @@ class EditRol extends Component
     public function render()
     {
         $permisos = Permission::all();
-        return view('livewire.sistema.rol.edit-rol', compact('permisos'))->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('rol.edit');
+        return view('livewire.sistema.rol.edit-rol', compact('permisos', 'visitas'))->layout(auth()->user()->tema);
     }
 }

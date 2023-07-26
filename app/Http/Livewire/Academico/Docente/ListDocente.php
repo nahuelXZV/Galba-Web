@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Academico\Docente;
 
 use App\Models\Docente;
+use App\Models\Pagina;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -13,6 +14,11 @@ class ListDocente extends Component
     public $notificacion = false;
     public $type = 'success';
     public $message = 'Creado correctamente';
+
+    public function mount()
+    {
+        Pagina::UpdateVisita('docente.list');
+    }
 
     public function toggleNotificacion()
     {
@@ -42,6 +48,7 @@ class ListDocente extends Component
     public function render()
     {
         $docentes = Docente::GetAllSearch($this->search, 'DESC', 10);
-        return view('livewire.academico.docente.list-docente', compact('docentes'))->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('docente.list');
+        return view('livewire.academico.docente.list-docente', compact('docentes', 'visitas'))->layout(auth()->user()->tema);
     }
 }

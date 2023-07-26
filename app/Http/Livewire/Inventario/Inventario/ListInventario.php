@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Inventario\Inventario;
 
 use App\Models\Inventario;
+use App\Models\Pagina;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -13,6 +14,11 @@ class ListInventario extends Component
     public $notificacion = false;
     public $type = 'success';
     public $message = 'Creado correctamente';
+
+    public function mount()
+    {
+        Pagina::UpdateVisita('inventario.list');
+    }
 
     public function toggleNotificacion()
     {
@@ -42,6 +48,7 @@ class ListInventario extends Component
     public function render()
     {
         $inventarios = Inventario::GetAllSearch($this->search, 'DESC', 10);
-        return view('livewire.inventario.inventario.list-inventario', compact('inventarios'));
+        $visitas = Pagina::GetPagina('inventario.list');
+        return view('livewire.inventario.inventario.list-inventario', compact('inventarios', 'visitas'))->layout(auth()->user()->tema);
     }
 }

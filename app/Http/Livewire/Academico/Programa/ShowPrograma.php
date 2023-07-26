@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Academico\Programa;
 
 use App\Models\Modulo;
+use App\Models\Pagina;
 use App\Models\Programa;
 use Livewire\Component;
 
@@ -15,6 +16,7 @@ class ShowPrograma extends Component
 
     public function mount(Programa $programa)
     {
+        Pagina::UpdateVisita('programa.show');
         $this->programa = $programa;
         $this->modulos = Modulo::GetModulosByPrograma($programa->id);
         $this->dataEstudiante = [
@@ -59,6 +61,7 @@ class ShowPrograma extends Component
 
     public function render()
     {
-        return view('livewire.academico.programa.show-programa')->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('programa.show');
+        return view('livewire.academico.programa.show-programa', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

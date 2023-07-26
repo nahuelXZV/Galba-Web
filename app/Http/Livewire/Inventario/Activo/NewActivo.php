@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Inventario\Activo;
 
 use App\Models\Activo;
+use App\Models\Pagina;
 use Illuminate\Support\Facades\Request;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -24,6 +25,7 @@ class NewActivo extends Component
 
     public function mount()
     {
+        Pagina::UpdateVisita('activo.new');
         $this->activoArray = [
             'codigo',
             'nombre',
@@ -51,6 +53,7 @@ class NewActivo extends Component
 
     public function render()
     {
-        return view('livewire.inventario.activo.new-activo');
+        $visitas = Pagina::GetPagina('activo.new');
+        return view('livewire.inventario.activo.new-activo', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

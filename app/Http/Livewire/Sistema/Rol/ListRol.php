@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Sistema\Rol;
 
+use App\Models\Pagina;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Role;
@@ -13,6 +14,11 @@ class ListRol extends Component
     public $notificacion = false;
     public $type = 'success';
     public $message = 'Creado correctamente';
+
+    public function mount()
+    {
+        Pagina::UpdateVisita('rol.list');
+    }
 
     public function toggleNotificacion()
     {
@@ -43,6 +49,7 @@ class ListRol extends Component
         $roles = Role::where('name', 'ILIKE', '%' . $this->search . '%')
             ->orderBy('id', 'desc')
             ->paginate(20);
-        return view('livewire.sistema.rol.list-rol', compact('roles'))->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('rol.list');
+        return view('livewire.sistema.rol.list-rol', compact('roles', 'visitas'))->layout(auth()->user()->tema);
     }
 }

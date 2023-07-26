@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Workflow\Recepcion;
 
 use App\Models\Documento;
+use App\Models\Pagina;
 use App\Models\Recepcion;
 use App\Models\Unidad;
 use Illuminate\Support\Facades\Request;
@@ -26,6 +27,7 @@ class NewRecepcion extends Component
 
     public function mount()
     {
+        Pagina::UpdateVisita('recepcion.new');
         $this->unidades = Unidad::GetUnidades();
         $this->recepcionArray = [
             'codigo' => 'R-' . date('YmdHis'),
@@ -60,6 +62,7 @@ class NewRecepcion extends Component
 
     public function render()
     {
-        return view('livewire.workflow.recepcion.new-recepcion')->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('recepcion.new');
+        return view('livewire.workflow.recepcion.new-recepcion', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

@@ -55,4 +55,7 @@
 
         </div>
     </form>
+    @push('visitas')
+        {{ $visitas }}
+    @endpush
 </div>

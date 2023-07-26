@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Sistema\Rol;
 
+use App\Models\Pagina;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -23,6 +24,11 @@ class NewRol extends Component
         'permisosSeleccionados.min' => 'Debe seleccionar al menos un permiso'
     ];
 
+    public function mount()
+    {
+        Pagina::UpdateVisita('rol.new');
+    }
+
     public function save()
     {
         $this->validate($this->validate, $this->messages);
@@ -37,6 +43,7 @@ class NewRol extends Component
     public function render()
     {
         $permisos = Permission::all();
-        return view('livewire.sistema.rol.new-rol', compact('permisos'))->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('rol.new');
+        return view('livewire.sistema.rol.new-rol', compact('permisos', 'visitas'))->layout(auth()->user()->tema);
     }
 }

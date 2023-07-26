@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Academico\Programa;
 
 use App\Models\Estudiante;
 use App\Models\EstudiantePrograma;
+use App\Models\Pagina;
 use App\Models\Programa;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -22,6 +23,7 @@ class NewInscripcion extends Component
 
     public function mount(Programa $programa)
     {
+        Pagina::UpdateVisita('programa.inscripcion');
         $this->programa = $programa;
         $inscritos = EstudiantePrograma::GetInscritosByPrograma($programa->id);
         foreach ($inscritos as $inscrito) {
@@ -54,7 +56,8 @@ class NewInscripcion extends Component
     public function render()
     {
         $estudiantes = Estudiante::GetAllSearch($this->search, "desc", 10);
-        return view('livewire.academico.programa.new-inscripcion', compact('estudiantes'))
-            ->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('programa.inscripcion');
+        return view('livewire.academico.programa.new-inscripcion', compact('estudiantes', 'visitas'))
+            ->layout(auth()->user()->tema);
     }
 }

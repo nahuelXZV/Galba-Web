@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Workflow\Unidad;
 
+use App\Models\Pagina;
 use App\Models\Unidad;
 use Livewire\Component;
 
@@ -15,6 +16,7 @@ class NewUnidad extends Component
 
     public function mount()
     {
+        Pagina::UpdateVisita('unidad.new');
         $this->unidadArray = [
             'nombre',
         ];
@@ -34,6 +36,7 @@ class NewUnidad extends Component
 
     public function render()
     {
-        return view('livewire.workflow.unidad.new-unidad')->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('unidad.new');
+        return view('livewire.workflow.unidad.new-unidad', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Sistema\Usuario;
 
+use App\Models\Pagina;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
@@ -14,6 +15,7 @@ class NewUsuario extends Component
     public $type = 'success';
     public $message = 'Creado correctamente';
     public $listeners = ['store' => 'save'];
+    public $layout;
 
     public $roles = [];
     public $areas = [
@@ -25,6 +27,8 @@ class NewUsuario extends Component
 
     public function mount()
     {
+        Pagina::UpdateVisita('usuario.new');
+        $this->layout = auth()->user()->tema;
         $this->userArray = [
             'name' => '',
             'email' => '',
@@ -49,6 +53,7 @@ class NewUsuario extends Component
 
     public function render()
     {
-        return view('livewire.sistema.usuario.new-usuario')->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('usuario.new');
+        return view('livewire.sistema.usuario.new-usuario', compact('visitas'))->layout($this->layout);
     }
 }

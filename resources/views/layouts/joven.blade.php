@@ -221,7 +221,7 @@
         </div>
     </div>
     <div class="flex justify-end p-4 font-semibold text-sm">
-        Visitas: @stack('visitas')
+       Visitas: @stack('visitas')
     </div>
 
     @stack('modals')

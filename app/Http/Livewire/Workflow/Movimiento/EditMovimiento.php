@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Workflow\Movimiento;
 
 use App\Models\Documento;
 use App\Models\Movimiento;
+use App\Models\Pagina;
 use App\Models\Recepcion;
 use App\Models\Unidad;
 use Illuminate\Support\Facades\Request;
@@ -29,6 +30,7 @@ class EditMovimiento extends Component
 
     public function mount(Movimiento $movimiento)
     {
+        Pagina::UpdateVisita('movimiento.edit');
         $this->movimiento = $movimiento;
         $this->recepcion = Recepcion::GetRecepcion($movimiento->recepcion_id)[0];
         $this->unidades = Unidad::GetUnidades();
@@ -78,6 +80,7 @@ class EditMovimiento extends Component
 
     public function render()
     {
-        return view('livewire.workflow.movimiento.edit-movimiento');
+        $visitas = Pagina::GetPagina('movimiento.edit');
+        return view('livewire.workflow.movimiento.edit-movimiento', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

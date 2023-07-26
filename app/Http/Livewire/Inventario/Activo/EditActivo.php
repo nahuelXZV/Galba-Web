@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Inventario\Activo;
 
 use App\Models\Activo;
+use App\Models\Pagina;
 use Illuminate\Support\Facades\Request;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -27,6 +28,7 @@ class EditActivo extends Component
 
     public function mount(Activo $activo)
     {
+        Pagina::UpdateVisita('activo.edit');
         $this->activo = $activo;
         $this->activoArray = [
             'codigo' => $activo->codigo,
@@ -57,6 +59,7 @@ class EditActivo extends Component
 
     public function render()
     {
-        return view('livewire.inventario.activo.edit-activo');
+        $visitas = Pagina::GetPagina('activo.edit');
+        return view('livewire.inventario.activo.edit-activo', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

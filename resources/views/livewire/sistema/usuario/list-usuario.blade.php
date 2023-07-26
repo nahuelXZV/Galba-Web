@@ -71,10 +71,10 @@
                             {{ $user->getRoleNames()->implode(' ') ? $user->getRoleNames()->implode(' ') : 'Sin rol' }}
                         </td>
                         <td class="px-6 py-4 text-right">
-                            <button type="button"
+                            {{-- <button type="button"
                                 class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 <x-iconos.edit />
-                            </button>
+                            </button> --}}
                             <button type="button" wire:click="delete({{ $user->id }})"
                                 onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()"
                                 class="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
@@ -99,4 +99,7 @@
             }), interval);
         });
     </script>
+    @push('visitas')
+        {{ $visitas }}
+    @endpush
 </div>

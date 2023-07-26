@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Workflow\Recepcion;
 
+use App\Models\Pagina;
 use App\Models\Recepcion;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -13,6 +14,11 @@ class ListRecepcion extends Component
     public $notificacion = false;
     public $type = 'success';
     public $message = 'Creado correctamente';
+
+    public function mount()
+    {
+        Pagina::UpdateVisita('recepcion.list');
+    }
 
     public function toggleNotificacion()
     {
@@ -42,6 +48,7 @@ class ListRecepcion extends Component
     public function render()
     {
         $recepciones = Recepcion::GetAllSearch($this->search, 'DESC', 10);
-        return view('livewire.workflow.recepcion.list-recepcion', compact('recepciones'))->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('recepcion.list');
+        return view('livewire.workflow.recepcion.list-recepcion', compact('recepciones', 'visitas'))->layout(auth()->user()->tema);
     }
 }

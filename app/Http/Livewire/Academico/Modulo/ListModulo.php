@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Academico\Modulo;
 
 use App\Models\Modulo;
+use App\Models\Pagina;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -13,6 +14,11 @@ class ListModulo extends Component
     public $notificacion = false;
     public $type = 'success';
     public $message = 'Creado correctamente';
+
+    public function mount()
+    {
+        Pagina::UpdateVisita('modulo.list');
+    }
 
     public function toggleNotificacion()
     {
@@ -42,6 +48,7 @@ class ListModulo extends Component
     public function render()
     {
         $modulos = Modulo::GetAllSearch($this->search, 'DESC', 10);
-        return view('livewire.academico.modulo.list-modulo', compact('modulos'))->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('modulo.list');
+        return view('livewire.academico.modulo.list-modulo', compact('modulos', 'visitas'))->layout(auth()->user()->tema);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Sistema\Usuario;
 
+use App\Models\Pagina;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -13,6 +14,13 @@ class ListUsuario extends Component
     public $notificacion = false;
     public $type = 'success';
     public $message = 'Creado correctamente';
+    public $layout;
+
+    public function mount()
+    {
+        Pagina::UpdateVisita('usuario.list');
+        $this->layout = auth()->user()->tema;
+    }
 
     public function toggleNotificacion()
     {
@@ -41,6 +49,7 @@ class ListUsuario extends Component
     public function render()
     {
         $users = User::GetUsuarios($this->search, 'ASC', 20);
-        return view('livewire.sistema.usuario.list-usuario', compact('users'))->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('usuario.list');
+        return view('livewire.sistema.usuario.list-usuario', compact('users', 'visitas'))->layout($this->layout);
     }
 }

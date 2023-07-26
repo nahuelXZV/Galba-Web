@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Academico\Contrato;
 use App\Models\Contrato;
 use App\Models\Docente;
 use App\Models\Modulo;
+use App\Models\Pagina;
 use Livewire\Component;
 
 class NewContrato extends Component
@@ -18,8 +19,10 @@ class NewContrato extends Component
     // Data
     public $docente;
     public $modulos;
+
     public function mount(Docente $docente)
     {
+        Pagina::UpdateVisita('contrato.new');
         $this->docente = $docente;
         $this->modulos = Modulo::GetModulosSinContratoDelDocente($docente->id);
         $this->contratoArray = [
@@ -48,6 +51,7 @@ class NewContrato extends Component
 
     public function render()
     {
-        return view('livewire.academico.contrato.new-contrato');
+        $visitas = Pagina::GetPagina('contrato.new');
+        return view('livewire.academico.contrato.new-contrato', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

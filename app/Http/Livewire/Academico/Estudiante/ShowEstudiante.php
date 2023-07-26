@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Academico\Estudiante;
 
 use App\Models\Estudiante;
 use App\Models\EstudiantePrograma;
+use App\Models\Pagina;
 use Livewire\Component;
 
 class ShowEstudiante extends Component
@@ -15,6 +16,7 @@ class ShowEstudiante extends Component
 
     public function mount(Estudiante $estudiante)
     {
+        Pagina::UpdateVisita('estudiante.show');
         $this->estudiante = $estudiante;
         $this->programas = EstudiantePrograma::GetProgramasByEstudiante($estudiante->id);
         $this->dataEstudiante = [
@@ -75,6 +77,7 @@ class ShowEstudiante extends Component
 
     public function render()
     {
-        return view('livewire.academico.estudiante.show-estudiante')->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('estudiante.show');
+        return view('livewire.academico.estudiante.show-estudiante', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

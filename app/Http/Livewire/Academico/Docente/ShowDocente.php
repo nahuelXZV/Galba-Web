@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Academico\Docente;
 
 use App\Models\Contrato;
 use App\Models\Docente;
+use App\Models\Pagina;
 use Livewire\Component;
 
 class ShowDocente extends Component
@@ -15,6 +16,7 @@ class ShowDocente extends Component
 
     public function mount(Docente $docente)
     {
+        Pagina::UpdateVisita('docente.show');
         $this->docente = $docente;
         $this->contratos = Contrato::GetContratoByDocente($docente->id);
         $this->dataDocente = [
@@ -39,6 +41,7 @@ class ShowDocente extends Component
 
     public function render()
     {
-        return view('livewire.academico.docente.show-docente')->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('docente.show');
+        return view('livewire.academico.docente.show-docente', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

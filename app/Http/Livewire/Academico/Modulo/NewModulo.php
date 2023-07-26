@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Academico\Modulo;
 
 use App\Models\Docente;
 use App\Models\Modulo;
+use App\Models\Pagina;
 use App\Models\Programa;
 use Livewire\Component;
 
@@ -24,6 +25,7 @@ class NewModulo extends Component
 
     public function mount()
     {
+        Pagina::UpdateVisita('modulo.new');
         $this->programas = Programa::all();
         $this->docentes = Docente::all();
         $this->moduloArray = [
@@ -54,6 +56,7 @@ class NewModulo extends Component
 
     public function render()
     {
-        return view('livewire.academico.modulo.new-modulo')->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('modulo.new');
+        return view('livewire.academico.modulo.new-modulo', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Academico\Evento;
 
 use App\Models\Evento;
+use App\Models\Pagina;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -13,6 +14,11 @@ class ListEvento extends Component
     public $notificacion = false;
     public $type = 'success';
     public $message = 'Creado correctamente';
+
+    public function mount()
+    {
+        Pagina::UpdateVisita('evento.list');
+    }
 
     public function toggleNotificacion()
     {
@@ -42,6 +48,7 @@ class ListEvento extends Component
     public function render()
     {
         $eventos = Evento::GetAllSearch($this->search, 'DESC', 10);
-        return view('livewire.academico.evento.list-evento', compact('eventos'))->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('evento.list');
+        return view('livewire.academico.evento.list-evento', compact('eventos', 'visitas'))->layout(auth()->user()->tema);
     }
 }

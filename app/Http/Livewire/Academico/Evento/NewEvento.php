@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Academico\Evento;
 
 use App\Models\Evento;
+use App\Models\Pagina;
 use Livewire\Component;
 
 class NewEvento extends Component
@@ -19,6 +20,7 @@ class NewEvento extends Component
 
     public function mount()
     {
+        Pagina::UpdateVisita('evento.new');
         $this->eventoArray = [
             "title" => "",
             "start" => "",
@@ -46,6 +48,7 @@ class NewEvento extends Component
 
     public function render()
     {
-        return view('livewire.academico.evento.new-evento')->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('evento.new');
+        return view('livewire.academico.evento.new-evento', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

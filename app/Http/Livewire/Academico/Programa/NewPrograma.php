@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Academico\Programa;
 
+use App\Models\Pagina;
 use App\Models\Programa;
 use Livewire\Component;
 
@@ -19,6 +20,7 @@ class NewPrograma extends Component
 
     public function mount()
     {
+        Pagina::UpdateVisita('programa.new');
         $this->programaArray = [
             'codigo_programa' => '',
             'nombre' => '',
@@ -48,6 +50,7 @@ class NewPrograma extends Component
 
     public function render()
     {
-        return view('livewire.academico.programa.new-programa')->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('programa.new');
+        return view('livewire.academico.programa.new-programa', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

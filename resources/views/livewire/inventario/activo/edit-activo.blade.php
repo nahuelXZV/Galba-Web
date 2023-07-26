@@ -146,4 +146,7 @@
             }
         </script>
     @endpush
+    @push('visitas')
+        {{ $visitas }}
+    @endpush
 </div>

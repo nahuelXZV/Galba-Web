@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Academico\Evento;
 
 use App\Models\Evento;
+use App\Models\Pagina;
 use Illuminate\Support\Facades\Date;
 use Livewire\Component;
 
@@ -23,6 +24,7 @@ class EditEvento extends Component
 
     public function mount(Evento $evento)
     {
+        Pagina::UpdateVisita('evento.edit');
         $this->evento = $evento;
         $this->eventoArray = [
             "title" => $evento->title,
@@ -52,6 +54,7 @@ class EditEvento extends Component
 
     public function render()
     {
-        return view('livewire.academico.evento.edit-evento');
+        $visitas = Pagina::GetPagina('evento.edit');
+        return view('livewire.academico.evento.edit-evento', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

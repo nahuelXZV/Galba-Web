@@ -224,6 +224,22 @@ return new class extends Migration
             $table->foreign('recepcion_id')->references('id')->on('recepcion')->onDelete('cascade');
             $table->timestamps();
         });
+        Schema::create('inicio_sesiones', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->string('fecha');
+            $table->string('hora');
+            $table->string('ip');
+            $table->unsignedBigInteger('usuario_id')->nullable();
+            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
+        });
+        Schema::create('pagina', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->string('nombre');
+            $table->string('ruta');
+            $table->unsignedBigInteger('visitas')->default(0);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -248,6 +264,8 @@ return new class extends Migration
         Schema::dropIfExists('movimiento');
         Schema::dropIfExists('recepcion');
         Schema::dropIfExists('unidad');
+        Schema::dropIfExists('inicio_sesiones');
+        Schema::dropIfExists('pagina');
         // Schema::dropIfExists('usuario');
         // Schema::dropIfExists('rol');
     }

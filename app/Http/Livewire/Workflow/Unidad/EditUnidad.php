@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Workflow\Unidad;
 
+use App\Models\Pagina;
 use App\Models\Unidad;
 use Livewire\Component;
 
@@ -18,6 +19,7 @@ class EditUnidad extends Component
 
     public function mount(Unidad $unidad)
     {
+        Pagina::UpdateVisita('unidad.edit');
         $this->unidad = $unidad;
         $this->unidadArray = [
             'nombre' => $unidad->nombre,
@@ -38,6 +40,7 @@ class EditUnidad extends Component
 
     public function render()
     {
-        return view('livewire.workflow.unidad.edit-unidad')->layout('layouts.adulto');
+        $visitas = Pagina::GetPagina('unidad.edit');
+        return view('livewire.workflow.unidad.edit-unidad', compact('visitas'))->layout(auth()->user()->tema);
     }
 }
