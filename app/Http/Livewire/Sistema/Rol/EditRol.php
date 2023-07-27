@@ -42,7 +42,7 @@ class EditRol extends Component
         $this->rol->name = $this->name;
         $this->rol->syncPermissions($this->permisosSeleccionados);
         $this->rol->save();
-        return redirect()->route('roles.list');
+        return redirect()->route('rol.list');
     }
 
     public function render()

@@ -40,7 +40,7 @@ class NewActivo extends Component
     public function save()
     {
         $url = Request::getScheme() . '://' . Request::getHost();
-        $this->activoArray['dir'] =  $url . '/storage/' . $this->foto->store('public/activos', 'public');
+        $this->activoArray['dir'] =  $url . '/inf513/grupo06sa/Tecno-Web-EI/public/storage/' . $this->foto->store('public/activos', 'public');
         $new = Activo::CreateActivo($this->activoArray);
         if (!$new) {
             $this->message = 'Error al crear el activo';

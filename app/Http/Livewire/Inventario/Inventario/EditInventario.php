@@ -47,7 +47,7 @@ class EditInventario extends Component
     {
         if ($this->foto != null) {
             $url = Request::getScheme() . '://' . Request::getHost();
-            $this->inventarioArray['dir'] =  $url . '/storage/' . $this->foto->store('public/inventario', 'public');
+            $this->inventarioArray['dir'] =  $url . '/inf513/grupo06sa/Tecno-Web-EI/public/storage/' . $this->foto->store('public/inventario', 'public');
         }
         $new = Inventario::UpdateInventario($this->inventario, $this->inventarioArray);
         if (!$new) {

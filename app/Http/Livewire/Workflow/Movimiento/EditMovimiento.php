@@ -49,7 +49,7 @@ class EditMovimiento extends Component
         $new = Movimiento::UpdateMovimiento($this->movimiento, $this->movimientoArray);
         if ($this->doc) {
             $url = Request::getScheme() . '://' . Request::getHost();
-            $dir =  $url . '/storage/' . $this->doc->store('public/documentos', 'public');
+            $dir =  $url . '/inf513/grupo06sa/Tecno-Web-EI/public/storage/' . $this->doc->store('public/documentos', 'public');
             $documento = Documento::GetDocumentoByMovimiento($this->movimiento->id);
             if (count($documento) > 0) {
                 Documento::UpdateDocumento(

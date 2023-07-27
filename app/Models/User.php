@@ -48,13 +48,12 @@ class User extends Authenticatable
     // Funciones
     static public function CreateUsuario(array $data)
     {
-        $data['password'] = Hash::make($data['password']);
-        $new = new User();
-        $new->name = $data['name'];
-        $new->email = $data['email'];
-        $new->area = $data['area'];
-        $new->password = bcrypt($data['password']);
-        $new->save();
+        $new = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'area' => $data['area'],
+            'password' => bcrypt($data['password'])
+        ]);
         return $new;
     }
 

@@ -69,31 +69,31 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/', Dashboard::class)->name('dashboard');
-    Route::get('/dashboard', Dashboard::class);
+    Route::get('/', Dashboard::class);
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
     // MODULO SISTEMA
-    Route::group(['prefix' => 'usuario'], function () {
+    Route::group(['prefix' => 'usuario', 'middleware' => ['can:usuarios', 'auth']], function () {
         Route::get('/list', ListUsuario::class)->name('usuario.list');
         Route::get('/new', NewUsuario::class)->name('usuario.new');
         Route::get('/edit/{usuario}', EditUsuario::class)->name('usuario.edit');
     });
 
-    Route::group(['prefix' => 'rol'], function () {
+    Route::group(['prefix' => 'rol', 'middleware' => ['can:roles', 'auth']], function () {
         Route::get('/list', ListRol::class)->name('rol.list');
         Route::get('/new', NewRol::class)->name('rol.new');
         Route::get('/edit/{rol}', EditRol::class)->name('rol.edit');
     });
 
     // MODULO ACADEMICO
-    Route::group(['prefix' => 'estudiante'], function () {
+    Route::group(['prefix' => 'estudiante', 'middleware' => ['can:estudiantes', 'auth']], function () {
         Route::get('/list', ListEstudiante::class)->name('estudiante.list');
         Route::get('/new', NewEstudiante::class)->name('estudiante.new');
         Route::get('/edit/{estudiante}', EditEstudiante::class)->name('estudiante.edit');
         Route::get('/show/{estudiante}', ShowEstudiante::class)->name('estudiante.show');
     });
 
-    Route::group(['prefix' => 'programa'], function () {
+    Route::group(['prefix' => 'programa', 'middleware' => ['can:programas', 'auth']], function () {
         Route::get('/list', ListPrograma::class)->name('programa.list');
         Route::get('/new', NewPrograma::class)->name('programa.new');
         Route::get('/edit/{programa}', EditPrograma::class)->name('programa.edit');
@@ -101,14 +101,14 @@ Route::middleware([
         Route::get('/inscribir/{programa}', NewInscripcion::class)->name('programa.inscribir');
     });
 
-    Route::group(['prefix' => 'docente'], function () {
+    Route::group(['prefix' => 'docente', 'middleware' => ['can:docentes', 'auth']], function () {
         Route::get('/list', ListDocente::class)->name('docente.list');
         Route::get('/new', NewDocente::class)->name('docente.new');
         Route::get('/edit/{docente}', EditDocente::class)->name('docente.edit');
         Route::get('/show/{docente}', ShowDocente::class)->name('docente.show');
     });
 
-    Route::group(['prefix' => 'modulo'], function () {
+    Route::group(['prefix' => 'modulo', 'middleware' => ['can:modulos', 'auth']], function () {
         Route::get('/list', ListModulo::class)->name('modulo.list');
         Route::get('/new', NewModulo::class)->name('modulo.new');
         Route::get('/edit/{modulo}', EditModulo::class)->name('modulo.edit');
@@ -116,57 +116,57 @@ Route::middleware([
         Route::get('/notas/{modulo}', NewNota::class)->name('modulo.nota');
     });
 
-    Route::group(['prefix' => 'prospecto'], function () {
+    Route::group(['prefix' => 'prospecto', 'middleware' => ['can:prospectos', 'auth']], function () {
         Route::get('/list', ListProspecto::class)->name('prospecto.list');
         Route::get('/new', NewProspecto::class)->name('prospecto.new');
         Route::get('/edit/{prospecto}', EditProspecto::class)->name('prospecto.edit');
     });
 
-    Route::group(['prefix' => 'evento'], function () {
+    Route::group(['prefix' => 'evento', 'middleware' => ['can:eventos', 'auth']], function () {
         Route::get('/list', ListEvento::class)->name('evento.list');
         Route::get('/new', NewEvento::class)->name('evento.new');
         Route::get('/edit/{evento}', EditEvento::class)->name('evento.edit');
     });
 
-    Route::group(['prefix' => 'contrato'], function () {
+    Route::group(['prefix' => 'contrato', 'middleware' => ['can:contratos', 'auth']], function () {
         Route::get('/new/{docente}', NewContrato::class)->name('contrato.new');
         Route::get('/edit/{contrato}', EditContrato::class)->name('contrato.edit');
     });
 
-    Route::group(['prefix' => 'calendario'], function () {
+    Route::group(['prefix' => 'calendario', 'middleware' => ['can:calendario', 'auth']], function () {
         Route::get('/', AcademicoCalendario::class)->name('calendario.show');
         Route::get('/inicio', [Calendario::class, 'inicio'])->name('calendario.inicio');
         Route::get('/finalizado', [Calendario::class, 'finalizado'])->name('calendario.finalizado');
     });
 
     // MODULO INVENTARIO
-    Route::group(['prefix' => 'activo'], function () {
+    Route::group(['prefix' => 'activo', 'middleware' => ['can:activos', 'auth']], function () {
         Route::get('/list', ListActivo::class)->name('activo.list');
         Route::get('/new', NewActivo::class)->name('activo.new');
         Route::get('/edit/{activo}', EditActivo::class)->name('activo.edit');
     });
 
-    Route::group(['prefix' => 'inventario'], function () {
+    Route::group(['prefix' => 'inventario', 'middleware' => ['can:inventarios', 'auth']], function () {
         Route::get('/list', ListInventario::class)->name('inventario.list');
         Route::get('/new', NewInventario::class)->name('inventario.new');
         Route::get('/edit/{inventario}', EditInventario::class)->name('inventario.edit');
     });
 
     // MODULO WORFLOW
-    Route::group(['prefix' => 'unidad'], function () {
+    Route::group(['prefix' => 'unidad', 'middleware' => ['can:unidad', 'auth']], function () {
         Route::get('/list', ListUnidad::class)->name('unidad.list');
         Route::get('/new', NewUnidad::class)->name('unidad.new');
         Route::get('/edit/{unidad}', EditUnidad::class)->name('unidad.edit');
     });
 
-    Route::group(['prefix' => 'recepcion'], function () {
+    Route::group(['prefix' => 'recepcion', 'middleware' => ['can:recepcion', 'auth']], function () {
         Route::get('/list', ListRecepcion::class)->name('recepcion.list');
         Route::get('/new', NewRecepcion::class)->name('recepcion.new');
         Route::get('/edit/{recepcion}', EditRecepcion::class)->name('recepcion.edit');
         Route::get('/show/{recepcion}', ShowRecepcion::class)->name('recepcion.show');
     });
 
-    Route::group(['prefix' => 'movimiento'], function () {
+    Route::group(['prefix' => 'movimiento', 'middleware' => ['can:movimiento', 'auth']], function () {
         Route::get('/new/{recepcion}', NewMovimiento::class)->name('movimiento.new');
         Route::get('/edit/{movimiento}', EditMovimiento::class)->name('movimiento.edit');
     });

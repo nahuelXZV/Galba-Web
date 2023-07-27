@@ -48,7 +48,7 @@ class NewMovimiento extends Component
         $new = Movimiento::CreateMovimiento($this->movimientoArray);
         if ($this->doc) {
             $url = Request::getScheme() . '://' . Request::getHost();
-            $dir =  $url . '/storage/' . $this->doc->store('public/documentos', 'public');
+            $dir =  $url . '/inf513/grupo06sa/Tecno-Web-EI/public/storage/' . $this->doc->store('public/documentos', 'public');
             Documento::CreateDocumento([
                 'nombre' => $this->doc->getClientOriginalName(),
                 'tipo' => $this->doc->getClientOriginalExtension(),

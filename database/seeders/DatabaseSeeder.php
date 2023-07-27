@@ -16,28 +16,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-        // \App\Models\User::factory(10)->create();
         $admin = Role::create(['name' => 'Administrador']);
 
         //Permisos
-        // Permission::create(['name' => 'usuarios', 'description' => 'Gestionar Usuarios'])->syncRoles($admin);
-        // Permission::create(['name' => 'roles', 'description' => 'Gestionar Roles'])->syncRoles($admin);
-        // Permission::create(['name' => 'ingredientes', 'description' => 'Gestionar Ingredientes'])->syncRoles($admin);
-        // Permission::create(['name' => 'productos', 'description' => 'Gestionar Productos'])->syncRoles($admin);
-        // Permission::create(['name' => 'recetas', 'description' => 'Gestionar Recetas'])->syncRoles($admin);
-        // Permission::create(['name' => 'proveedores', 'description' => 'Gestionar Proveedores'])->syncRoles($admin);
-        // Permission::create(['name' => 'compras', 'description' => 'Gestionar Compras'])->syncRoles($admin);
-        // Permission::create(['name' => 'pedidos', 'description' => 'Gestionar Pedidos'])->syncRoles($admin);
-        // Permission::create(['name' => 'cocina', 'description' => 'Gestionar Estado En La Cocina'])->syncRoles($admin);
-        // Permission::create(['name' => 'eliminar', 'description' => 'Puede Eliminar Los Datos'])->syncRoles($admin);
-        // Permission::create(['name' => 'reportes', 'description' => 'Descargar Reportes'])->syncRoles($admin);
-        // Permission::create(['name' => 'pantalla', 'description' => 'Mostrar La Pantalla Del Cliente'])->syncRoles($admin);
+        Permission::create(['name' => 'usuarios', 'description' => 'Gestionar Usuarios'])->syncRoles($admin);
+        Permission::create(['name' => 'roles', 'description' => 'Gestionar Roles'])->syncRoles($admin);
+        Permission::create(['name' => 'estudiantes', 'description' => 'Gestionar Estudiantes'])->syncRoles($admin);
+        Permission::create(['name' => 'programas', 'description' => 'Gestionar Programas'])->syncRoles($admin);
+        Permission::create(['name' => 'docentes', 'description' => 'Gestionar Docentes'])->syncRoles($admin);
+        Permission::create(['name' => 'modulos', 'description' => 'Gestionar Modulos'])->syncRoles($admin);
+        Permission::create(['name' => 'prospectos', 'description' => 'Gestionar Prospectos'])->syncRoles($admin);
+        Permission::create(['name' => 'eventos', 'description' => 'Gestionar Eventos'])->syncRoles($admin);
+        Permission::create(['name' => 'contratos', 'description' => 'Gestionar Contratos'])->syncRoles($admin);
+        Permission::create(['name' => 'calendario', 'description' => 'Gestionar Calendario'])->syncRoles($admin);
+        Permission::create(['name' => 'activos', 'description' => 'Gestionar Activos'])->syncRoles($admin);
+        Permission::create(['name' => 'inventarios', 'description' => 'Gestionar Inventarios'])->syncRoles($admin);
+        Permission::create(['name' => 'unidad', 'description' => 'Gestionar Unidades'])->syncRoles($admin);
+        Permission::create(['name' => 'recepcion', 'description' => 'Gestionar Recepciones'])->syncRoles($admin);
+        Permission::create(['name' => 'movimiento', 'description' => 'Gestionar Movimientos'])->syncRoles($admin);
+
 
         User::create([
             'name' => 'Test User',

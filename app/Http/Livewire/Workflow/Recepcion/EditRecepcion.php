@@ -46,7 +46,7 @@ class EditRecepcion extends Component
         $docEdit = true;
         if ($this->doc) {
             $url = Request::getScheme() . '://' . Request::getHost();
-            $dir =  $url . '/storage/' . $this->doc->store('public/documentos', 'public');
+            $dir =  $url . '/inf513/grupo06sa/Tecno-Web-EI/public/storage/' . $this->doc->store('public/documentos', 'public');
             $documento = Documento::GetDocumentoByRecepcion($this->recepcion->id);
             if ($documento) {
                 $docEdit = Documento::UpdateDocumento($documento[0]->id, [

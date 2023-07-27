@@ -112,114 +112,146 @@
                         <span class="ml-3">Dashboard</span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('calendario.show') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <x-iconos.calendar />
-                        <span class="flex-1 ml-3 whitespace-nowrap">Calendario</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('evento.list') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <x-iconos.event />
-                        <span class="flex-1 ml-3 whitespace-nowrap">Eventos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('usuario.list') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <x-iconos.usuarios />
-                        <span class="flex-1 ml-3 whitespace-nowrap">Usuarios</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('rol.list') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <x-iconos.roles />
-                        <span class="flex-1 ml-3 whitespace-nowrap">Roles</span>
-                    </a>
-                </li>
-                <li>
-                    <button type="button"
-                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                        <x-iconos.academico />
-                        <span class="flex-1 ml-3 text-left whitespace-nowrap">Academico</span>
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 4 4 4-4" />
-                        </svg>
-                    </button>
-                    <ul id="dropdown-example" class="hidden py-2 space-y-2">
-                        <li>
-                            <a href="{{ route('estudiante.list') }}"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Estudiantes</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('docente.list') }}"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Docentes</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('modulo.list') }}"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Modulos</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('programa.list') }}"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Programas</a>
-                        </li>
-
-                    </ul>
-                </li>
-                <li>
-                    <a href="{{ route('prospecto.list') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <x-iconos.prospecto />
-                        <span class="flex-1 ml-3 whitespace-nowrap">Prospectos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('activo.list') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <x-iconos.activos />
-                        <span class="flex-1 ml-3 whitespace-nowrap">Activos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('inventario.list') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <x-iconos.inventario />
-                        <span class="flex-1 ml-3 whitespace-nowrap">Inventario</span>
-                    </a>
-                </li>
-                <li>
-                    <button type="button"
-                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                        aria-controls="dropdown-doc" data-collapse-toggle="dropdown-doc">
-                        <x-iconos.book />
-                        <span class="flex-1 ml-3 text-left whitespace-nowrap">Documentacion</span>
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m1 1 4 4 4-4" />
-                        </svg>
-                    </button>
-                    <ul id="dropdown-doc" class="hidden py-2 space-y-2">
-                        <li>
-                            <a href="{{ route('unidad.list') }}"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Unidades</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('recepcion.list') }}"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Recepciones</a>
-                        </li>
-                    </ul>
-                </li>
+                @can('calendario')
+                    <li>
+                        <a href="{{ route('calendario.show') }}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <x-iconos.calendar />
+                            <span class="flex-1 ml-3 whitespace-nowrap">Calendario</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('eventos')
+                    <li>
+                        <a href="{{ route('evento.list') }}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <x-iconos.event />
+                            <span class="flex-1 ml-3 whitespace-nowrap">Eventos</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('usuarios')
+                    <li>
+                        <a href="{{ route('usuario.list') }}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <x-iconos.usuarios />
+                            <span class="flex-1 ml-3 whitespace-nowrap">Usuarios</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('roles')
+                    <li>
+                        <a href="{{ route('rol.list') }}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <x-iconos.roles />
+                            <span class="flex-1 ml-3 whitespace-nowrap">Roles</span>
+                        </a>
+                    </li>
+                @endcan
+                @if (auth()->user()->can('estudiantes') ||
+                        auth()->user()->can('docentes') ||
+                        auth()->user()->can('modulos') ||
+                        auth()->user()->can('programas'))
+                    <li>
+                        <button type="button"
+                            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                            <x-iconos.academico />
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Academico</span>
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+                        <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                            @can('estudiantes')
+                                <li>
+                                    <a href="{{ route('estudiante.list') }}"
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Estudiantes</a>
+                                </li>
+                            @endcan
+                            @can('docentes')
+                                <li>
+                                    <a href="{{ route('docente.list') }}"
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Docentes</a>
+                                </li>
+                            @endcan
+                            @can('modulos')
+                                <li>
+                                    <a href="{{ route('modulo.list') }}"
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Modulos</a>
+                                </li>
+                            @endcan
+                            @can('programas')
+                                <li>
+                                    <a href="{{ route('programa.list') }}"
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Programas</a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endif
+                @can('prospectos')
+                    <li>
+                        <a href="{{ route('prospecto.list') }}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <x-iconos.prospecto />
+                            <span class="flex-1 ml-3 whitespace-nowrap">Prospectos</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('activos')
+                    <li>
+                        <a href="{{ route('activo.list') }}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <x-iconos.activos />
+                            <span class="flex-1 ml-3 whitespace-nowrap">Activos</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('inventarios')
+                    <li>
+                        <a href="{{ route('inventario.list') }}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <x-iconos.inventario />
+                            <span class="flex-1 ml-3 whitespace-nowrap">Inventario</span>
+                        </a>
+                    </li>
+                @endcan
+                @if (auth()->user()->can('unidad') ||
+                        auth()->user()->can('recepcion'))
+                    <li>
+                        <button type="button"
+                            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            aria-controls="dropdown-doc" data-collapse-toggle="dropdown-doc">
+                            <x-iconos.book />
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Documentacion</span>
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+                        <ul id="dropdown-doc" class="hidden py-2 space-y-2">
+                            @can('unidad')
+                                <li>
+                                    <a href="{{ route('unidad.list') }}"
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Unidades</a>
+                                </li>
+                            @endcan
+                            @can('recepcion')
+                                <li>
+                                    <a href="{{ route('recepcion.list') }}"
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Recepciones</a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endif
             </ul>
         </div>
     </aside>
-
     <div class="p-4 sm:ml-64 ">
         <div class="p-4 mt-14 ">
             {{ $slot }}
@@ -227,7 +259,7 @@
     </div>
     <div class="flex justify-end p-4 font-semibold text-sm">
         Visitas: @stack('visitas')
-     </div>
+    </div>
 
     @stack('modals')
     @stack('scripts')

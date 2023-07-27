@@ -45,7 +45,7 @@ class EditActivo extends Component
     {
         if ($this->foto != null) {
             $url = Request::getScheme() . '://' . Request::getHost();
-            $this->activoArray['dir'] =  $url . '/storage/' . $this->foto->store('public/activos', 'public');
+            $this->activoArray['dir'] =  $url . '/inf513/grupo06sa/Tecno-Web-EI/public/storage/' . $this->foto->store('public/activos', 'public');
         }
         $new = Activo::UpdateActivo($this->activo, $this->activoArray);
         if (!$new) {

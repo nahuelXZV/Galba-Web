@@ -41,7 +41,7 @@ class NewUsuario extends Component
 
     public function save()
     {
-        $new = User::create($this->userArray);
+        $new = User::CreateUsuario($this->userArray);
         $new->assignRole($this->userArray['rol']);
         if (!$new) {
             $this->message = 'Error al crear el usuario';

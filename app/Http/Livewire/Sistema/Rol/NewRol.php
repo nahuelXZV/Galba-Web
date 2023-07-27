@@ -37,7 +37,7 @@ class NewRol extends Component
             'guard_name' => 'web'
         ]);
         $rol->syncPermissions($this->permisosSeleccionados);
-        return redirect()->route('roles.list');
+        return redirect()->route('rol.list');
     }
 
     public function render()

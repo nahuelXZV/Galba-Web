@@ -43,7 +43,7 @@ class NewRecepcion extends Component
     {
 
         $url = Request::getScheme() . '://' . Request::getHost();
-        $dir =  $url . '/storage/' . $this->doc->store('public/documentos', 'public');
+        $dir =  $url . '/inf513/grupo06sa/Tecno-Web-EI/public/storage/' . $this->doc->store('public/documentos', 'public');
         $new = Recepcion::CreateRecepcion($this->recepcionArray);
         $documento = Documento::CreateDocumento([
             'nombre' => $this->doc->getClientOriginalName(),
