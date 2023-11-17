@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Pagina;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
@@ -21,21 +22,19 @@ class DatabaseSeeder extends Seeder
         //Permisos
         Permission::create(['name' => 'usuarios', 'description' => 'Gestionar Usuarios'])->syncRoles($admin);
         Permission::create(['name' => 'roles', 'description' => 'Gestionar Roles'])->syncRoles($admin);
-        Permission::create(['name' => 'estudiantes', 'description' => 'Gestionar Estudiantes'])->syncRoles($admin);
-        Permission::create(['name' => 'programas', 'description' => 'Gestionar Programas'])->syncRoles($admin);
-        Permission::create(['name' => 'docentes', 'description' => 'Gestionar Docentes'])->syncRoles($admin);
-        Permission::create(['name' => 'modulos', 'description' => 'Gestionar Modulos'])->syncRoles($admin);
-        Permission::create(['name' => 'prospectos', 'description' => 'Gestionar Prospectos'])->syncRoles($admin);
-        Permission::create(['name' => 'eventos', 'description' => 'Gestionar Eventos'])->syncRoles($admin);
-        Permission::create(['name' => 'contratos', 'description' => 'Gestionar Contratos'])->syncRoles($admin);
-        Permission::create(['name' => 'calendario', 'description' => 'Gestionar Calendario'])->syncRoles($admin);
-        Permission::create(['name' => 'activos', 'description' => 'Gestionar Activos'])->syncRoles($admin);
-        Permission::create(['name' => 'inventarios', 'description' => 'Gestionar Inventarios'])->syncRoles($admin);
-        Permission::create(['name' => 'unidad', 'description' => 'Gestionar Unidades'])->syncRoles($admin);
-        Permission::create(['name' => 'recepcion', 'description' => 'Gestionar Recepciones'])->syncRoles($admin);
-        Permission::create(['name' => 'movimiento', 'description' => 'Gestionar Movimientos'])->syncRoles($admin);
+
+        //Paginas
+        Pagina::create(['nombre' => 'Inicio', 'ruta' => 'inicio', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Dashboard', 'ruta' => 'dashboard', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Usuarios', 'ruta' => 'usuario.list', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Nuevo Usuario', 'ruta' => 'usuario.new', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Editar Usuario', 'ruta' => 'usuario.edit', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Roles', 'ruta' => 'rol.list', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Nuevo Rol', 'ruta' => 'rol.new', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Editar Rol', 'ruta' => 'rol.edit', 'visitas' => 0]);
 
 
+        //Usuarios
         User::create([
             'name' => 'Test User',
             'email' => 'example@live.com',

@@ -7,9 +7,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Ferreteria Galba</title>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
+    <!-- Scripts -->
     <script>
         const now = new Date();
         const currentHour = now.getHours();
@@ -26,11 +29,41 @@
     <!-- Styles -->
     @livewireStyles
     @livewireScripts
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f5f5f5;
+        }
 
-<body>
-    <div class="font-sans text-gray-900 antialiased">
-        {{ $slot }}
+        aside {
+            background-color: #333;
+            color: #fff;
+        }
+
+        body,
+        div,
+        table,
+        nav,
+        aside,
+        form,
+        #formulario {
+            font-size: 1.0rem;
+        }
+    </style>
+</head>
+
+<body class="font-montserrat antialiased">
+    <div class="p-4 sm:ml-64 ">
+        <div class="p-4 mt-14 ">
+            {{ $slot }}
+        </div>
     </div>
+    <div class="flex justify-end p-4 font-semibold text-sm">
+        Visitas: @stack('visitas')
+    </div>
+
+    @stack('modals')
+    @stack('scripts')
 </body>
 
 </html>

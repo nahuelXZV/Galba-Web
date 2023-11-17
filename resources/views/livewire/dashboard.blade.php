@@ -13,8 +13,8 @@
 
                         </div>
                         <div class="flex flex-col justify-center">
-                            <div class="text-lg">{{ $modulos }}</div>
-                            <div class="text-sm text-gray-400">Modulos</div>
+                            <div class="text-lg">{{ $productos }}</div>
+                            <div class="text-sm text-gray-400">Productos</div>
                         </div>
                     </div>
                 </div>
@@ -32,8 +32,8 @@
 
                         </div>
                         <div class="flex flex-col justify-center">
-                            <div class="text-lg">{{ $programas }}</div>
-                            <div class="text-sm text-gray-400">Programas</div>
+                            <div class="text-lg">{{ $ventas }}</div>
+                            <div class="text-sm text-gray-400">Ventas</div>
                         </div>
                     </div>
                 </div>
@@ -51,8 +51,8 @@
 
                         </div>
                         <div class="flex flex-col justify-center">
-                            <div class="text-lg">{{ $eventos }}</div>
-                            <div class="text-sm text-gray-400">Eventos</div>
+                            <div class="text-lg">{{ $compras }}</div>
+                            <div class="text-sm text-gray-400">Compras</div>
                         </div>
                     </div>
                 </div>
@@ -70,8 +70,8 @@
 
                         </div>
                         <div class="flex flex-col justify-center">
-                            <div class="text-lg">{{ $estudiantes }} </div>
-                            <div class="text-sm text-gray-400 ">Estudiantes</div>
+                            <div class="text-lg">{{ $clientes }} </div>
+                            <div class="text-sm text-gray-400 ">Clientes</div>
                         </div>
                     </div>
                 </div>

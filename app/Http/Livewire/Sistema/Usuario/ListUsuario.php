@@ -49,7 +49,7 @@ class ListUsuario extends Component
     public function render()
     {
         $users = User::GetUsuarios($this->search, 'ASC', 20);
-        $visitas = Pagina::GetPagina('usuario.list');
+        $visitas = Pagina::GetPagina('usuario.list') ?? 0;
         return view('livewire.sistema.usuario.list-usuario', compact('users', 'visitas'))->layout($this->layout);
     }
 }

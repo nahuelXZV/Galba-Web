@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Ferreteria Galba</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
 
     <!-- Scripts -->
     <script>
@@ -50,8 +49,6 @@
         #formulario {
             font-size: 1.0rem;
         }
-
-        /* Personalizar otros estilos según las preferencias de diseño para adolescentes */
     </style>
 </head>
 
@@ -76,8 +73,7 @@
                         <a href="{{ route('dashboard') }}" class="flex ml-2 md:mr-24">
                             {{-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="FlowBite Logo" /> --}}
                             <span
-                                class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Escuela
-                                Ingeniera</span>
+                                class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Ferreteria GALBA</span>
                         </a>
                     </div>
                     @livewire('search')

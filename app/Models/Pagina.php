@@ -28,7 +28,7 @@ class Pagina extends Model
 
     static public function GetPagina(string $ruta)
     {
-        return Pagina::where('ruta', $ruta)->First()->visitas;
+        return Pagina::where('ruta', $ruta)->First()->visitas ?? 0;
     }
 
     static public function GetMoreVisited()
