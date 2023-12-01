@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PagoFacilController;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Public\Inicio;
 use App\Http\Livewire\Sistema\Rol\EditRol;
@@ -41,5 +42,12 @@ Route::middleware([
         Route::get('/list', ListRol::class)->name('rol.list');
         Route::get('/new', NewRol::class)->name('rol.new');
         Route::get('/edit/{rol}', EditRol::class)->name('rol.edit');
+    });
+
+    // MODULO PAGO
+    Route::group(['prefix' => 'pago_facil', 'middleware' => ['can:pagos', 'auth']], function () {
+        Route::post('/pagar/{usuario}/{pedido}/{nit}', [PagoFacilController::class, 'PagoFacilController@RecolectarDatos'])->name('pago_facil.pagar');
+        Route::post('/estado/{pedido}', [PagoFacilController::class, 'PagoFacilController@ConsultarEstado'])->name('pago_facil.estado');
+        Route::get('/callback/{pedido}', [PagoFacilController::class, 'PagoFacilController@urlCallback'])->name('pago_facil.callback');
     });
 });
