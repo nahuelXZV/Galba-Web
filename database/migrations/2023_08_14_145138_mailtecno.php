@@ -25,9 +25,9 @@ return new class extends Migration
             $table->string('direccion')->nullable();
             $table->string('telefono')->nullable();
             $table->string('cargo')->nullable();
-            $table->boolean('isCliente');
-            $table->boolean('isEmpleado');
-            $table->boolean('isAdministrador');
+            $table->boolean('es_cliente')->nullable();
+            $table->boolean('es_personal')->nullable();
+            $table->boolean('es_administrador')->nullable();
             $table->timestamps();
         });
         Schema::create('inicio_sesiones', function (Blueprint $table) {

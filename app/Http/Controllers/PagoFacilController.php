@@ -7,6 +7,7 @@ use App\Models\PedidoDetalle;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Js;
 
 class PagoFacilController extends Controller
 {
@@ -18,7 +19,7 @@ class PagoFacilController extends Controller
             foreach ($detalle as $item) {
                 $taPedidoDetalle[] = [
                     "tnCantidad" => $item->cantidad,
-                    "tcDescripcion" => $item->producto->nombre,
+                    "tcDescripcion" => "Producto",
                     "tnPrecioUnitario" => $item->precio,
                     "tnSubTotal" => $item->precio * $item->cantidad
                 ];
@@ -31,9 +32,9 @@ class PagoFacilController extends Controller
             $lcNroPago             = "grupo06sc-" . rand(100000, 999999);
             $lnMontoClienteEmpresa = $pedido->monto_total;
             $lcCorreo              = $usuario->correo;
-            $lcUrlCallBack         = "http://localhost:8000/pago_facil/callback/" . $pedido->id;
-            $lcUrlReturn           = "http://localhost:8000/pago_facil/callback/" . $pedido->id;
-            $laPedidoDetalle       = $taPedidoDetalle;
+            $lcUrlCallBack         = "https://tecno-web-254210f85ec2.herokuapp.com/pago_facil/callback/" . $pedido->id;
+            $lcUrlReturn           = "https://tecno-web-254210f85ec2.herokuapp.com/pago_facil/callback/" . $pedido->id;
+            $laPedidoDetalle       = Json_encode($taPedidoDetalle);
             $lcUrl                 = "";
 
             $loClient = new Client();
@@ -42,7 +43,6 @@ class PagoFacilController extends Controller
             $laHeader = [
                 'Accept' => 'application/json'
             ];
-
             $laBody   = [
                 "tcCommerceID"          => $lcComerceID,
                 "tnMoneda"              => $lnMoneda,
@@ -56,19 +56,15 @@ class PagoFacilController extends Controller
                 "tcUrlReturn"           => $lcUrlReturn,
                 'taPedidoDetalle'       => $laPedidoDetalle
             ];
-
             $loResponse = $loClient->post($lcUrl, [
                 'headers' => $laHeader,
                 'json' => $laBody
             ]);
-
             $laResult = json_decode($loResponse->getBody()->getContents());
             $laValues = explode(";", $laResult->values)[1];
-            $laQrImage = "data:image/png;base64," . json_decode($laValues)->qrImage;
-            $laQrImage = base64_encode($laQrImage);
-            $laQrImage = '<img src="data:image/png;base64,' . $laQrImage . '" class="img-fluid" alt="QR Code" />';
-            $laQrImage = '<div class="text-center">' . $laQrImage . '</div>';
-            return response()->json($laQrImage);
+            $base64_string = json_decode($laValues)->qrImage;
+            $image = base64_decode($base64_string);
+            return response($image, 200, ['Content-Type' => 'image/png']);
         } catch (\Throwable $th) {
             return $th->getMessage() . " - " . $th->getLine();
         }

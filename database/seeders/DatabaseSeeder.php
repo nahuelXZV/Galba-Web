@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Pagina;
 use App\Models\User;
+use App\Models\Usuario;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -41,5 +42,16 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345678'),
             'area' => 'Sistemas',
         ])->assignRole('Administrador');
+        Usuario::create([
+            'nombre' => 'nahuel zalazar',
+            'correo' => 'daniela.carrasco@nahuelxzv.pro',
+            'contraseña' => bcrypt('12345678'),
+            'direccion' => 'calle falsa 123',
+            'telefono' => '123456789',
+            'cargo' => 'Administrador',
+            'isCliente' => true,
+            'isPersonal' => true,
+            'isAdministrador' => true,
+        ]);
     }
 }

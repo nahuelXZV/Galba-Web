@@ -24,6 +24,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Inicio::class);
 
+Route::group(['prefix' => 'pago_facil'], function () {
+    Route::get('/pagar/{usuario}/{pedido}/{nit}', [PagoFacilController::class, 'RecolectarDatos'])->name('pago_facil.pagar');
+    Route::post('/estado/{pedido}', [PagoFacilController::class, 'ConsultarEstado'])->name('pago_facil.estado');
+    Route::get('/callback/{pedido}', [PagoFacilController::class, 'urlCallback'])->name('pago_facil.callback');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -45,9 +51,5 @@ Route::middleware([
     });
 
     // MODULO PAGO
-    Route::group(['prefix' => 'pago_facil', 'middleware' => ['can:pagos', 'auth']], function () {
-        Route::post('/pagar/{usuario}/{pedido}/{nit}', [PagoFacilController::class, 'PagoFacilController@RecolectarDatos'])->name('pago_facil.pagar');
-        Route::post('/estado/{pedido}', [PagoFacilController::class, 'PagoFacilController@ConsultarEstado'])->name('pago_facil.estado');
-        Route::get('/callback/{pedido}', [PagoFacilController::class, 'PagoFacilController@urlCallback'])->name('pago_facil.callback');
-    });
+
 });
