@@ -49,9 +49,9 @@ class DatabaseSeeder extends Seeder
             'direccion' => 'calle falsa 123',
             'telefono' => '123456789',
             'cargo' => 'Administrador',
-            'isCliente' => true,
-            'isPersonal' => true,
-            'isAdministrador' => true,
+            'es_cliente' => true,
+            'es_personal' => true,
+            'es_administrador' => true,
         ]);
     }
 }

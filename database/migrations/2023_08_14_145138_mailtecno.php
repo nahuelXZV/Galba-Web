@@ -133,7 +133,7 @@ return new class extends Migration
             $table->float('monto_total');
             $table->string('estado');
             $table->unsignedBigInteger('usuario_id');
-            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('usuario_id')->references('id')->on('usuario')->onDelete('cascade');
             $table->timestamps();
         });
 
