@@ -154,7 +154,7 @@ return new class extends Migration
             $table->string('fecha');
             $table->string('hora');
             $table->unsignedBigInteger('usuario_id');
-            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('usuario_id')->references('id')->on('usuario')->onDelete('cascade');
             $table->timestamps();
         });
 
