@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', Inicio::class);
+Route::get('/inicio', Inicio::class)->name('inicio');
 
 Route::group(['prefix' => 'pago_facil'], function () {
     Route::get('/pagar/{usuario}/{pedido}/{nit}', [PagoFacilController::class, 'RecolectarDatos'])->name('pago_facil.pagar');
