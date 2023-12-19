@@ -19,6 +19,12 @@ return new class extends Migration
             $table->string('password');
             $table->string('area')->default('Sistemas');
             $table->string('tema')->default('layouts.adulto');
+            $table->string('direccion')->nullable();
+            $table->string('telefono')->nullable();
+            $table->string('cargo')->nullable();
+            $table->boolean('es_cliente')->nullable();
+            $table->boolean('es_personal')->nullable();
+            $table->boolean('es_administrador')->nullable();
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();

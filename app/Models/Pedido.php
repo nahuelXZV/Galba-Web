@@ -20,14 +20,56 @@ class Pedido extends Model
     // Asociaciones
 
     // Funciones
-    static public function GetPedidos()
+    static public function CreatePedido(array $data)
     {
-        return Pedido::all();
+        $new = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'area' => $data['area'],
+            'password' => bcrypt($data['password'])
+        ]);
+        return $new;
     }
 
-    static public function GetPedido(int $id)
+    static public function UpdatePedido($id, array $data)
     {
-        return Pedido::where('id', $id)->First();
+        $user = User::find($id);
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->area = $data['area'];
+        $user->password = bcrypt($data['password']);
+        $user->save();
+        return $user;
+    }
+
+    static public function DeletePedido($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return $user;
+    }
+
+    static public function GetPedidos($attribute, $order = "desc", $paginate)
+    {
+        $users = Pedido::join('users', 'users.id', '=', 'pedido.usuario_id')
+            ->select('pedido.*', 'users.name as usuario')
+            ->orWhere('users.name', 'ILIKE', '%' . strtolower($attribute) . '%')
+            ->orWhere('pedido.estado', 'ILIKE', '%' . strtolower($attribute) . '%')
+            ->orderBy('pedido.id', $order)
+            ->paginate($paginate);
+        return $users;
+    }
+
+    static public function GetAllPedidos()
+    {
+        $users = User::all();
+        return $users;
+    }
+
+    static public function GetPedido($id)
+    {
+        $user = User::find($id);
+        return $user;
     }
 
     static public function GetPedidosByUsuario(int $id)

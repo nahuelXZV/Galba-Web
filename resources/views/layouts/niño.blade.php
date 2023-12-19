@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link rel="icon" type="image/png" href="{{ asset('ico.png') }}">
     <title>Ferreteria Galba</title>
 
     <!-- Fonts -->
@@ -23,7 +23,7 @@
         }
     </script>
     <script src="{{ asset('js/validaciones.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->
@@ -112,24 +112,6 @@
                         <span class="ml-3">Dashboard</span>
                     </a>
                 </li>
-                @can('calendario')
-                    <li>
-                        <a href="{{ route('calendario.show') }}"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <x-iconos.calendar />
-                            <span class="flex-1 ml-3 whitespace-nowrap">Calendario</span>
-                        </a>
-                    </li>
-                @endcan
-                @can('eventos')
-                    <li>
-                        <a href="{{ route('evento.list') }}"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <x-iconos.event />
-                            <span class="flex-1 ml-3 whitespace-nowrap">Eventos</span>
-                        </a>
-                    </li>
-                @endcan
                 @can('usuarios')
                     <li>
                         <a href="{{ route('usuario.list') }}"
@@ -148,107 +130,13 @@
                         </a>
                     </li>
                 @endcan
-                @if (auth()->user()->can('estudiantes') ||
-                        auth()->user()->can('docentes') ||
-                        auth()->user()->can('modulos') ||
-                        auth()->user()->can('programas'))
-                    <li>
-                        <button type="button"
-                            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                            aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                            <x-iconos.academico />
-                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Academico</span>
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m1 1 4 4 4-4" />
-                            </svg>
-                        </button>
-                        <ul id="dropdown-example" class="hidden py-2 space-y-2">
-                            @can('estudiantes')
-                                <li>
-                                    <a href="{{ route('estudiante.list') }}"
-                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Estudiantes</a>
-                                </li>
-                            @endcan
-                            @can('docentes')
-                                <li>
-                                    <a href="{{ route('docente.list') }}"
-                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Docentes</a>
-                                </li>
-                            @endcan
-                            @can('modulos')
-                                <li>
-                                    <a href="{{ route('modulo.list') }}"
-                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Modulos</a>
-                                </li>
-                            @endcan
-                            @can('programas')
-                                <li>
-                                    <a href="{{ route('programa.list') }}"
-                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Programas</a>
-                                </li>
-                            @endcan
-                        </ul>
-                    </li>
-                @endif
-                @can('prospectos')
-                    <li>
-                        <a href="{{ route('prospecto.list') }}"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <x-iconos.prospecto />
-                            <span class="flex-1 ml-3 whitespace-nowrap">Prospectos</span>
-                        </a>
-                    </li>
-                @endcan
-                @can('activos')
-                    <li>
-                        <a href="{{ route('activo.list') }}"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <x-iconos.activos />
-                            <span class="flex-1 ml-3 whitespace-nowrap">Activos</span>
-                        </a>
-                    </li>
-                @endcan
-                @can('inventarios')
-                    <li>
-                        <a href="{{ route('inventario.list') }}"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <x-iconos.inventario />
-                            <span class="flex-1 ml-3 whitespace-nowrap">Inventario</span>
-                        </a>
-                    </li>
-                @endcan
-                @if (auth()->user()->can('unidad') ||
-                        auth()->user()->can('recepcion'))
-                    <li>
-                        <button type="button"
-                            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                            aria-controls="dropdown-doc" data-collapse-toggle="dropdown-doc">
-                            <x-iconos.book />
-                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Documentacion</span>
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m1 1 4 4 4-4" />
-                            </svg>
-                        </button>
-                        <ul id="dropdown-doc" class="hidden py-2 space-y-2">
-                            @can('unidad')
-                                <li>
-                                    <a href="{{ route('unidad.list') }}"
-                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Unidades</a>
-                                </li>
-                            @endcan
-                            @can('recepcion')
-                                <li>
-                                    <a href="{{ route('recepcion.list') }}"
-                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Recepciones</a>
-                                </li>
-                            @endcan
-                        </ul>
-                    </li>
-                @endif
+                <li>
+                    <a href="{{ route('pedido.list') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <x-iconos.pedido />
+                        <span class="flex-1 ml-3 whitespace-nowrap">Pedidos</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </aside>

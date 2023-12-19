@@ -17,19 +17,19 @@ return new class extends Migration
         //     $table->text('descripcion');
         //     $table->timestamps();
         // });
-        Schema::create('usuario', function (Blueprint $table) {
-            $table->id()->autoIncrement();
-            $table->string('nombre');
-            $table->string('correo')->unique();
-            $table->string('contraseña');
-            $table->string('direccion')->nullable();
-            $table->string('telefono')->nullable();
-            $table->string('cargo')->nullable();
-            $table->boolean('es_cliente')->nullable();
-            $table->boolean('es_personal')->nullable();
-            $table->boolean('es_administrador')->nullable();
-            $table->timestamps();
-        });
+        // Schema::create('usuario', function (Blueprint $table) {
+        //     $table->id()->autoIncrement();
+        //     $table->string('nombre');
+        //     $table->string('correo')->unique();
+        //     $table->string('contraseña');
+        //     $table->string('direccion')->nullable();
+        //     $table->string('telefono')->nullable();
+        //     $table->string('cargo')->nullable();
+        //     $table->boolean('es_cliente')->nullable();
+        //     $table->boolean('es_personal')->nullable();
+        //     $table->boolean('es_administrador')->nullable();
+        //     $table->timestamps();
+        // });
         Schema::create('inicio_sesiones', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('fecha');
@@ -133,7 +133,7 @@ return new class extends Migration
             $table->float('monto_total');
             $table->string('estado');
             $table->unsignedBigInteger('usuario_id');
-            $table->foreign('usuario_id')->references('id')->on('usuario')->onDelete('cascade');
+            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
 
@@ -154,7 +154,7 @@ return new class extends Migration
             $table->string('fecha');
             $table->string('hora');
             $table->unsignedBigInteger('usuario_id');
-            $table->foreign('usuario_id')->references('id')->on('usuario')->onDelete('cascade');
+            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
 

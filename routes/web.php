@@ -2,7 +2,16 @@
 
 use App\Http\Controllers\PagoFacilController;
 use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\Pedido\Pedidos\ListPedido;
+use App\Http\Livewire\Pedido\Pedidos\NewPedido;
+use App\Http\Livewire\Pedido\Pedidos\ShowPedido;
+use App\Http\Livewire\Public\AcercaDe;
+use App\Http\Livewire\Public\Contacto;
 use App\Http\Livewire\Public\Inicio;
+use App\Http\Livewire\Public\Pedido\ConfirmPedido;
+use App\Http\Livewire\Public\Pedido\ShowCarrito;
+use App\Http\Livewire\Public\Producto\ListProduct;
+use App\Http\Livewire\Public\Producto\ShowProduct;
 use App\Http\Livewire\Sistema\Rol\EditRol;
 use App\Http\Livewire\Sistema\Rol\ListRol;
 use App\Http\Livewire\Sistema\Rol\NewRol;
@@ -24,6 +33,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Inicio::class);
 Route::get('/inicio', Inicio::class)->name('inicio');
+Route::get('/inicio/producto', ListProduct::class)->name('public.producto.list');
+Route::get('/inicio/producto/{id}', ShowProduct::class)->name('public.producto.show');
+Route::get('/inicio/carrito', ShowCarrito::class)->name('public.carrito');
+Route::get('/inicio/pedido/confirm', ConfirmPedido::class)->name('public.confirm_pedido');
+Route::get('/inicio/acerca-de', AcercaDe::class)->name('public.acerca_de');
+Route::get('/inicio/contacto', Contacto::class)->name('public.contacto');
 
 Route::group(['prefix' => 'pago_facil'], function () {
     Route::get('/pagar/{usuario}/{pedido}/{nit}', [PagoFacilController::class, 'RecolectarDatos'])->name('pago_facil.pagar');
@@ -51,6 +66,10 @@ Route::middleware([
         Route::get('/edit/{rol}', EditRol::class)->name('rol.edit');
     });
 
-    // MODULO PAGO
-
+    // MODULO PEDIDO
+    Route::group(['prefix' => 'pedido', 'middleware' => [/* 'can:roles', */'auth']], function () {
+        Route::get('/list', ListPedido::class)->name('pedido.list');
+        Route::get('/new', NewPedido::class)->name('pedido.new');
+        Route::get('/show/{pedido}', ShowPedido::class)->name('pedido.show');
+    });
 });
