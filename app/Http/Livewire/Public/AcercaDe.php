@@ -8,6 +8,6 @@ class AcercaDe extends Component
 {
     public function render()
     {
-        return view('livewire.public.acerca-de');
+        return view('livewire.public.acerca-de')->layout('layouts.public', ['fondo' => false]);
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Livewire\Pedido\Pedidos\ListPedido;
 use App\Http\Livewire\Pedido\Pedidos\NewPedido;
 use App\Http\Livewire\Pedido\Pedidos\ShowPedido;
 use App\Http\Livewire\Public\AcercaDe;
+use App\Http\Livewire\Public\Auth\Profile;
 use App\Http\Livewire\Public\Contacto;
 use App\Http\Livewire\Public\Inicio;
 use App\Http\Livewire\Public\Pedido\ConfirmPedido;
@@ -39,8 +40,10 @@ Route::get('/inicio/carrito', ShowCarrito::class)->name('public.carrito');
 Route::get('/inicio/pedido/confirm', ConfirmPedido::class)->name('public.confirm_pedido');
 Route::get('/inicio/acerca-de', AcercaDe::class)->name('public.acerca_de');
 Route::get('/inicio/contacto', Contacto::class)->name('public.contacto');
+Route::get('/inicio/perfil', Profile::class)->name('public.perfil');
 
 Route::group(['prefix' => 'pago_facil'], function () {
+    Route::get('/qr/{pedido}', [PagoFacilController::class, 'GenerarQR'])->name('pago_facil.pagar.qr');
     Route::get('/pagar/{usuario}/{pedido}/{nit}', [PagoFacilController::class, 'RecolectarDatos'])->name('pago_facil.pagar');
     Route::post('/estado/{pedido}', [PagoFacilController::class, 'ConsultarEstado'])->name('pago_facil.estado');
     Route::get('/callback/{pedido}', [PagoFacilController::class, 'urlCallback'])->name('pago_facil.callback');

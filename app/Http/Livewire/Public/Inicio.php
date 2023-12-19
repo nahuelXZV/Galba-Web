@@ -8,6 +8,6 @@ class Inicio extends Component
 {
     public function render()
     {
-        return view('livewire.public.inicio')->layout('layouts.public');
+        return view('livewire.public.inicio')->layout('layouts.public', ['fondo' => true]);
     }
 }
