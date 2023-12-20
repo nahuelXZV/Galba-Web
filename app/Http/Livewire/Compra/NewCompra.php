@@ -41,7 +41,7 @@ class NewCompra extends Component
 
     public function render()
     {
-        $visitas = Pagina::GetPagina('pedido.new');
+        $visitas = Pagina::GetPagina('compra.new');
         return view('livewire.compra.new-compra',compact('visitas'))->layout($this->layout);
     }
 }

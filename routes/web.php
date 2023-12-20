@@ -6,6 +6,14 @@ use App\Http\Livewire\Compra\ListCompra;
 use App\Http\Livewire\Compra\ShowCompra;
 use App\Http\Livewire\Compra\NewCompra;
 use App\Http\Livewire\CompraDetalle\NewCompraDetalle;
+use App\Http\Livewire\Ingreso\ListIngreso;
+use App\Http\Livewire\Ingreso\ShowIngreso;
+use App\Http\Livewire\Ingreso\NewIngreso;
+use App\Http\Livewire\IngresoDetalle\NewIngresoDetalle;
+use App\Http\Livewire\Salida\ListSalida;
+use App\Http\Livewire\Salida\ShowSalida;
+use App\Http\Livewire\Salida\NewSalida;
+use App\Http\Livewire\SalidaDetalle\NewSalidaDetalle;
 use App\Http\Livewire\Producto\ListProducto;
 use App\Http\Livewire\Producto\NewProducto;
 use App\Http\Livewire\Producto\EditProducto;
@@ -101,5 +109,19 @@ Route::middleware([
         Route::get('/new', NewCompra::class)->name('compra.new');
         Route::get('/show/{id}', ShowCompra::class)->name('compra.show');
         Route::get('/detalle/{id}', NewCompraDetalle::class)->name('compra-detalle.new');
+    });
+    // MODULO INVENTARIO - INGRESO
+    Route::group(['prefix' => 'ingreso', 'middleware' => [/* 'can:roles', */'auth']], function () {
+        Route::get('/list', ListIngreso::class)->name('ingreso.list');
+        Route::get('/new', NewIngreso::class)->name('ingreso.new');
+        Route::get('/show/{id}', ShowIngreso::class)->name('ingreso.show');
+        Route::get('/detalle/{id}', NewIngresoDetalle::class)->name('ingreso-detalle.new');
+    });
+    // MODULO INVENTARIO - SALIDA
+    Route::group(['prefix' => 'salida', 'middleware' => [/* 'can:roles', */'auth']], function () {
+        Route::get('/list', ListSalida::class)->name('salida.list');
+        Route::get('/new', NewSalida::class)->name('salida.new');
+        Route::get('/show/{id}', ShowSalida::class)->name('salida.show');
+        Route::get('/detalle/{id}', NewSalidaDetalle::class)->name('salida-detalle.new');
     });
 });

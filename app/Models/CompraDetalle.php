@@ -27,6 +27,7 @@ class CompraDetalle extends Model
             'producto_id' => $data['producto_id']
         ]);
         $monto = $new->cantidad * $new->precio;
+        $producto = Producto::updateStock($new->producto_id, + $new->cantidad);
         $compra = Compra::find($new->compra_id);
         $compra->monto_total = $compra->monto_total + $monto;
         $compra->save();
@@ -37,7 +38,7 @@ class CompraDetalle extends Model
     {
         $compraDetalle = CompraDetalle::find($id);
         $monto = $compraDetalle->cantidad * $compraDetalle->precio;
-        $compra = Compra::find($compraDetalle->compra-id);
+        $compra = Compra::find($compraDetalle->compra_id);
         $compraDetalle->delete();
         $compra->monto_total = $compra->monto_total - $monto;
         $compra->save();
@@ -52,7 +53,7 @@ class CompraDetalle extends Model
 
     static public function GetDetalleByCompra(int $id)
     {
-        $compraDetalles = CompraDetalle::join('compra', 'compra.id', '=', 'compra_detalle.producto_id')
+        $compraDetalles = CompraDetalle::join('producto', 'producto.id', '=', 'compra_detalle.producto_id')
             ->select('compra_detalle.*', 'producto.nombre as producto', 'producto.imagen as imagen')
             ->where('compra_detalle.compra_id', '=', $id)
             ->orderBy('compra_detalle.id', 'desc')

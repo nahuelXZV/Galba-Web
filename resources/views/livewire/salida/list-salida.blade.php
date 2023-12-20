@@ -11,7 +11,7 @@
             <li aria-current="page">
                 <div class="flex items-center">
                     <x-iconos.flecha />
-                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-500">Compras</span>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-500">Salidas</span>
                 </div>
             </li>
         </ol>
@@ -28,7 +28,7 @@
                     class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search for items" wire:model.lazy='search'>
             </div>
-            <a href="{{ route('compra.new') }}"
+            <a href="{{ route('salida.new') }}"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 <x-iconos.plus />
                 Nuevo
@@ -44,10 +44,7 @@
                         Hora
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Monto Total
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Proveedor
+                        Motivo
                     </th>
                     <th scope="col" class="px-6 py-3">
 
@@ -55,27 +52,24 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($compras as $compra)
+                @foreach ($salidas as $salida)
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
-                            {{ $compra->fecha }}
+                            {{ $salida->fecha }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $compra->hora }}
+                            {{ $salida->hora }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $compra->monto_total }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $compra->nombre }}
+                            {{ $salida->motivo }}
                         </td>
                         <td class="px-2 py-4 text-right">
-                            <button type="button"  wire:click="edit({{ $compra->id }})"
+                            <button type="button"  wire:click="edit({{ $salida->id }})"
                                 class="mb-1 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 <x-iconos.view />
                             </button>
-                            <button type="button" wire:click="delete({{ $compra->id }})"
+                            <button type="button" wire:click="delete({{ $salida->id }})"
                                 onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()"
                                 class="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                                 <x-iconos.delete />

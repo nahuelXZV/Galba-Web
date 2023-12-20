@@ -11,14 +11,14 @@
             <li>
                 <div class="flex items-center">
                     <x-iconos.flecha />
-                    <a href="{{ route('compra.list') }}"
-                        class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Compras</a>
+                    <a href="{{ route('salida.list') }}"
+                        class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Salidas</a>
                 </div>
             </li>
             <li>
                 <div class="flex items-center">
                     <x-iconos.flecha />
-                    <a href="{{ route('compra.show', $compra_id) }}"
+                    <a href="{{ route('salida.show', $salida_id) }}"
                         class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Detalle</a>
                 </div>
             </li>
@@ -45,12 +45,6 @@
                 required>
         </div>
         <div class="mb-6">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio</label>
-            <input type="number" wire:model.defer="detalleArray.precio" id="precio" name="precio"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required>
-        </div>
-        <div class="mb-6">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona el producto</label>
             <select wire:model.defer="detalleArray.producto_id" id="producto_id" name="producto_id" required
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -66,13 +60,9 @@
         <script>
             function validarFormulario() {
                 var cantidad = document.forms["formulario"]["cantidad"];
-                var precio = document.forms["formulario"]["precio"];
                 var producto_id = document.forms["formulario"]["producto_id"];
 
                 if (!validarCampo(cantidad, "number", 0)) {
-                    return false;
-                }
-                if (!validarCampo(precio, "number", 0)) {
                     return false;
                 }
                 if (!validarCampo(producto_id, "string", 0)) {

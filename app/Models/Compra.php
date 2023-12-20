@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Producto;
+use App\Models\CompraDetalle;
 
 class Compra extends Model
 {
@@ -41,8 +42,8 @@ class Compra extends Model
     {
         $compra = Compra::find($id);
 
-        $detallesCompra = DetalleCompra::where('compra_id', $id)->get();
-        foreach ($detallesCompra as $detalle) {           d;
+        $detallesCompra = CompraDetalle::where('compra_id', $id)->get();
+        foreach ($detallesCompra as $detalle) {
             $cantidad = $detalle->cantidad;
             //actualizar datos en el producto
             $producto = Producto::updateStock($detalle->producto_id, -$detalle->cantidad);
@@ -64,7 +65,10 @@ class Compra extends Model
 
     static public function GetAllCompras()
     {
-        $compra = Compra::all();
+        $compra = Compra::join('proveedor', 'proveedor.id', '=', 'compra.proveedor_id')
+        ->select('compra.*', 'proveedor.nombre as nombre')
+        ->orderBy('compra.id', 'desc')
+        ->get();
         return $compra;
     }
 

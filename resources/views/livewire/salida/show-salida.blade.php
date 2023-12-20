@@ -11,8 +11,8 @@
             <li>
                 <div class="flex items-center">
                     <x-iconos.flecha />
-                    <a href="{{ route('compra.list') }}"
-                        class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Compras</a>
+                    <a href="{{ route('salida.list') }}"
+                        class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Salidas</a>
                 </div>
             </li>
             <li aria-current="page">
@@ -23,7 +23,7 @@
             </li>
         </ol>
         <div>
-            <button type="button" wire:click="detalle({{ $compra->id }})"
+            <button type="button" wire:click="detalle({{ $salida->id }})"
                 class="inline-flex items-center justify-center h-9 px-4 ml-5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50">
                 Añadir Detalle
             </button>
@@ -32,24 +32,18 @@
     <div class="grid grid-cols-5 gap-3">
         <div class="mb-1">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha</label>
-            <input type="date" value="{{ $compra->fecha }}"readonly
+            <input type="date" value="{{ $salida->fecha }}"readonly
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         </div>
         <div class="mb-1">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora</label>
-            <input type="time" value="{{ $compra->hora }}" readonly
+            <input type="time" value="{{ $salida->hora }}" readonly
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         </div>
         <div class="mb-1">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gasto Total</label>
-            <input type="number" value="{{ $compra->monto_total }}"
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Motivo</label>
+            <input type="number" value="{{ $salida->motivo }}"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                readonly>
-        </div>
-        <div class="mb-1">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Proveedor</label>
-            <input type="text" value="{{ $proveedor->nombre }}"
-                class="bg-gray-50 border uppercase border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 readonly>
         </div>
     </div>
@@ -67,8 +61,6 @@
                             <th class="px-2 py-2">Foto</th>
                             <th class="px-2 py-2">Nombre</th>
                             <th class="px-2 py-2">Cantidad</th>
-                            <th class="px-2 py-2">Precio</th>
-                            <th class="px-2 py-2">Total</th>
                             <th scope="col" class="px-2 py-2"></th>
                         </tr>
                     </thead>
@@ -81,8 +73,6 @@
                                 </td>
                                 <td class="px-2 py-2"> {{ $detalle->producto }} </td>
                                 <td class="px-2 py-2"> {{ $detalle->cantidad }} </td>
-                                <td class="px-2 py-2"> {{ $detalle->precio }} </td>
-                                <td class="px-2 py-2"> {{ $detalle->precio * $detalle->cantidad }} </td>
                                 <td class="px-2 py-2">
                                     <button type="button" wire:click="delete({{ $detalle->id }})"
                                         onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()"

@@ -1,25 +1,22 @@
 <?php
 
-namespace App\Http\Livewire\Compra;
+namespace App\Http\Livewire\Salida;
 
 use Livewire\Component;
-use App\Models\Compra;
-use App\Models\Proveedor;
-use App\Models\CompraDetalle;
+use App\Models\Salida;
+use App\Models\SalidaDetalle;
 use Livewire\WithPagination;
 
-class ShowCompra extends Component
+class ShowSalida extends Component
 {
-    public $compra;
-    public $proveedor;
+    public $salida;
     public $notificacion = false;
     public $type = 'success';
     public $message = 'Creado correctamente';
 
     public function mount($id)
     {
-        $this->compra = Compra::GetCompra($id);
-        $this->proveedor = Proveedor::GetProveedor($this->compra->proveedor_id);
+        $this->salida = Salida::GetSalida($id);
     }
 
     public function toggleNotificacion()
@@ -36,7 +33,7 @@ class ShowCompra extends Component
 
     public function delete($id)
     {
-        if (CompraDetalle::DeleteCompraDetalle($id)) {
+        if (SalidaDetalle::DeleteSalidaDetalle($id)) {
             $this->message = 'Eliminado correctamente';
             $this->type = 'success';
         } else {
@@ -47,12 +44,12 @@ class ShowCompra extends Component
     }
 
     public function detalle($id){
-        return redirect()->route('compra-detalle.new', $id);
+        return redirect()->route('salida-detalle.new', $id);
     }
 
     public function render()
     {
-        $detalles = CompraDetalle::GetDetalleByCompra($this->compra->id);
-        return view('livewire.compra.show-compra',compact('detalles'));
+        $detalles = SalidaDetalle::GetDetalleBySalida($this->salida->id);
+        return view('livewire.salida.show-salida');
     }
 }
