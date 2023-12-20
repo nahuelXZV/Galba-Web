@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\PagoFacilController;
 use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\Compra\ListCompra;
+use App\Http\Livewire\Compra\ShowCompra;
+use App\Http\Livewire\Compra\NewCompra;
 use App\Http\Livewire\Producto\ListProducto;
 use App\Http\Livewire\Producto\NewProducto;
 use App\Http\Livewire\Producto\EditProducto;
