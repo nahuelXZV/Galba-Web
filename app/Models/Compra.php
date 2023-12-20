@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Producto;
-use App\Models\DetalleCompra;
 
 class Compra extends Model
 {
@@ -20,7 +19,7 @@ class Compra extends Model
     // Funciones
     static public function CreateCompra(array $data)
     {
-        $new = Producto::create([
+        $new = Compra::create([
             'fecha' => $data['fecha'],
             'hora' => $data['hora'],
             'monto_total' => 0,
@@ -48,7 +47,7 @@ class Compra extends Model
             //actualizar datos en el producto
             $producto = Producto::updateStock($detalle->producto_id, -$detalle->cantidad);
             //eliminar detalle
-            $detalle->delete();
+            CompraDetalle::DeleteCompraDetalle($detalle->id);
         }
 
         $compra->delete();
@@ -69,7 +68,7 @@ class Compra extends Model
         return $compra;
     }
 
-    static public function GetProducto($id)
+    static public function GetCompra($id)
     {
         $compra = Compra::find($id);
         return $compra;

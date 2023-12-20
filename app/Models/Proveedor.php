@@ -59,7 +59,7 @@ class Proveedor extends Model
         return $proveedor;
     }
 
-    static public function GetAllProveedor()
+    static public function GetAllProveedores()
     {
         $proveedor = Proveedor::all();
         return $proveedor;

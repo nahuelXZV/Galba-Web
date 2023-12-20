@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Compra;
 use Livewire\Component;
 use App\Models\User;
 use App\Models\Compra;
+use App\Models\Pagina;
+use App\Models\Proveedor;
 use Illuminate\Support\Facades\Date;
 
 class NewCompra extends Component
@@ -16,21 +18,12 @@ class NewCompra extends Component
     public $listeners = ['store' => 'save'];
     public $layout;
 
-    public $productos = [];
     public $proveedores = [];
 
     public function mount()
     {
         Pagina::UpdateVisita('compra.new');
         $this->layout = auth()->user()->tema;
-        $this->pedidoArray = [
-            'fecha' => new Date("Y-m-d"),
-            'hora' => new Date("H:i:s"),
-            'monto_total' => 0,
-            'producto_id' => '',
-            'proveedor_id' => '',
-        ];
-        $this->productos = Producto::GetAllProductos();
         $this->proveedores = Proveedor::GetAllProveedores();
         // $this->productos = Producto::all();
     }
