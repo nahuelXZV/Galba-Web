@@ -1,12 +1,11 @@
-<button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification"
-    class="relative inline-flex items-center text-base font-medium text-center text-gray-500 hover:text-gray-900 focus:outline-none dark:hover:text-white dark:text-gray-400"
-    type="button">
+<a {{-- id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification"  type="button" --}} href="{{ route('public.confirm_pedido') }}"
+    class="relative inline-flex items-center text-base font-medium text-center text-gray-500 hover:text-gray-900 focus:outline-none dark:hover:text-white dark:text-gray-400">
     <x-iconos.cart />
     <span
         class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
         {{ $cantProducts }}
     </span>
-</button>
+</a>
 <div id="dropdownNotification" wire:click="refresh2"
     class="z-20 hidden w-full max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-800 dark:divide-gray-700"
     aria-labelledby="dropdownNotificationButton">
