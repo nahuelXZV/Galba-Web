@@ -32,7 +32,7 @@ class Compra extends Model
     static public function UpdateCompra($id, array $data)
     {
         $compra = Compra::find($id);
-        $compra->monto_total = $data['monto_total'];
+        $compra->monto_total = $data['monto_total'] ?? $producto->monto_total;
 
         $compra->save();
         return $producto;
@@ -43,14 +43,10 @@ class Compra extends Model
         $compra = Compra::find($id);
 
         $detallesCompra = DetalleCompra::where('compra_id', $id)->get();
-        foreach ($detallesCompra as $detalle) {
-            //recuperar datos del producto
-            $producto_id = $detalle->producto_id;
+        foreach ($detallesCompra as $detalle) {           d;
             $cantidad = $detalle->cantidad;
             //actualizar datos en el producto
-            $producto = Producto::find($producto_id);
-            $producto->cantidad = $producto->cantidad - $cantidad;
-            $producto->save();
+            $producto = Producto::updateStock($detalle->producto_id, -$detalle->cantidad);
             //eliminar detalle
             $detalle->delete();
         }

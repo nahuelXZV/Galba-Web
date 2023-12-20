@@ -33,11 +33,11 @@ class Proveedor extends Model
     static public function UpdateProveedor($id, array $data)
     {
         $proveedor = Proveedor::find($id);
-        $proveedor->nombre = $data['nombre'];
-        $proveedor->correo = $data['correo'];
-        $proveedor->telefono = $data['telefono'];
-        $proveedor->direccion = $data['direccion'];
-        $proveedor->nit = $data['nit'];
+        $proveedor->nombre = $data['nombre'] ?? $proveedor->nombre;
+        $proveedor->correo = $data['correo'] ?? $proveedor->correo;
+        $proveedor->telefono = $data['telefono'] ?? $proveedor->telefono;
+        $proveedor->direccion = $data['direccion'] ?? $proveedor->direccion;
+        $proveedor->nit = $data['nit'] ?? $proveedor->nit;
 
         $proveedor->save();
         return $proveedor;

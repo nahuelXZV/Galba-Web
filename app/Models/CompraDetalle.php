@@ -28,16 +28,6 @@ class CompraDetalle extends Model
         return $new;
     }
 
-    static public function UpdateCompraDetalle($id, array $data)
-    {
-        $compraDetalle = Proveedor::find($id);
-        $compraDetalle->cantidad = $data['cantidad'];
-        $compraDetalle->precio = $data['precio']
-
-        $compraDetalle->save();
-        return $compraDetalle;
-    }
-
     static public function DeleteCompraDetalle($id)
     {
         $compraDetalle = CompraDetalle::find($id);

@@ -26,7 +26,7 @@ class Producto extends Model
             'imagen' => $data['imagen'],
             'tamaño' => $data['tamaño'],
             'precio' => $data['precio'],
-            'cantidad' => $data['cantidad'],
+            'cantidad' => 0,
             'descripcion' => $data['descripcion'],
             'categoria' => $data['categoria']
         ]);
@@ -40,7 +40,6 @@ class Producto extends Model
         $producto->imagen = $data['imagen'] ?? $producto->imagen;
         $producto->tamaño = $data['tamaño'] ?? $producto->tamaño;
         $producto->precio = $data['precio'] ?? $producto->precio;
-        $producto->cantidad = $data['cantidad'] ?? $producto->cantidad;
         $producto->descripcion = $data['descripcion'] ?? $producto->descripcion;
         $producto->save();
         return $producto;

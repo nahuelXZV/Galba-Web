@@ -65,10 +65,10 @@
                     @livewire('menu-user')
                 @else
                     <a href="{{ route('login') }}"
-                        class="ml-4 block py-2 px-3 text-white bg-black rounded md:bg-transparent md:text-white md:p-0 md:dark:text-white hover:underline"
+                        class="ml-4 block py-2 px-3 text-black bg-black rounded md:bg-transparent md:p-0 hover:underline"
                         aria-current="page">Ingresar</a>
-                    <a href="{{ route('login') }}"
-                        class="ml-4 block py-2 px-3 text-white bg-black rounded md:bg-transparent md:text-white md:p-0 md:dark:text-white hover:underline"
+                    <a href="{{ route('register') }}"
+                        class="ml-4 block py-2 px-3 text-black bg-black rounded md:bg-transparent md:p-0 hover:underline"
                         aria-current="page">Registrarse</a>
                 @endauth
 

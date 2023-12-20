@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\PagoFacilController;
 use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\Producto\ListProducto;
+use App\Http\Livewire\Producto\NewProducto;
+use App\Http\Livewire\Producto\EditProducto;
+use App\Http\Livewire\Producto\Producto;
 use App\Http\Livewire\Pedido\Pedidos\ListPedido;
 use App\Http\Livewire\Pedido\Pedidos\NewPedido;
 use App\Http\Livewire\Pedido\Pedidos\ShowPedido;
@@ -74,5 +78,12 @@ Route::middleware([
         Route::get('/list', ListPedido::class)->name('pedido.list');
         Route::get('/new', NewPedido::class)->name('pedido.new');
         Route::get('/show/{pedido}', ShowPedido::class)->name('pedido.show');
+    });
+
+    // MODULO PRODUCTO
+    Route::group(['prefix' => 'producto', 'middleware' => [/* 'can:roles', */'auth']], function () {
+        Route::get('/list', ListProducto::class)->name('producto.list');
+        Route::get('/new', NewProducto::class)->name('producto.new');
+        Route::get('/edit/{producto}', EditProducto::class)->name('producto.edit');
     });
 });
