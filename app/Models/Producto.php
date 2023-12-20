@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
 {
-    use HasFactory;
     protected $fillable = [
         "nombre",
         "imagen",
@@ -58,7 +57,7 @@ class Producto extends Model
     static public function GetProductos($attribute, $order = "desc", $paginate)
     {
         $producto = Producto::where('nombre', 'ILIKE', '%' . strtolower($attribute) . '%')
-            ->orderBy('nombre', $order)
+            ->orderBy('id', $order)
             ->paginate($paginate);
         return $producto;
     }
