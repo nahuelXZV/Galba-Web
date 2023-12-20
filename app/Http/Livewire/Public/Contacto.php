@@ -8,6 +8,6 @@ class Contacto extends Component
 {
     public function render()
     {
-        return view('livewire.public.contacto');
+        return view('livewire.public.contacto')->layout('layouts.public', ['fondo' => false]);
     }
 }

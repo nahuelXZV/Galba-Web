@@ -69,7 +69,66 @@ class PagoFacilController extends Controller
             return $th->getMessage() . " - " . $th->getLine();
         }
     }
+    public function GenerarQR(Request $request, Pedido $pedido)
+    {
+        try {
+            $usuario = auth()->user();
+            $nit = $usuario->id + 10000;
+            $detalle = PedidoDetalle::where('pedido_id', $pedido->id)->get();
+            $taPedidoDetalle = [];
+            foreach ($detalle as $item) {
+                $taPedidoDetalle[] = [
+                    "tnCantidad" => $item->cantidad,
+                    "tcDescripcion" => "Producto",
+                    "tnPrecioUnitario" => $item->precio,
+                    "tnSubTotal" => $item->precio * $item->cantidad
+                ];
+            }
+            $lcComerceID           = "d029fa3a95e174a19934857f535eb9427d967218a36ea014b70ad704bc6c8d1c";
+            $lnMoneda              = 2;
+            $lnTelefono            = $usuario->telefono;
+            $lcNombreUsuario       = $usuario->name;
+            $lnCiNit               = $nit;
+            $lcNroPago             = "grupo06sc-" . rand(100000, 999999);
+            $lnMontoClienteEmpresa = $pedido->monto_total;
+            $lcCorreo              = $usuario->email;
+            $lcUrlCallBack         = env('APP_URL') . "/pago_facil/callback/" . $pedido->id;
+            $lcUrlReturn           = env('APP_URL') . "/pago_facil/callback/" . $pedido->id;
+            $laPedidoDetalle       = Json_encode($taPedidoDetalle);
+            $lcUrl                 = "";
 
+            $loClient = new Client();
+            $lcUrl = "https://serviciostigomoney.pagofacil.com.bo/api/servicio/generarqrv2";
+
+            $laHeader = [
+                'Accept' => 'application/json'
+            ];
+            $laBody   = [
+                "tcCommerceID"          => $lcComerceID,
+                "tnMoneda"              => $lnMoneda,
+                "tnTelefono"            => $lnTelefono,
+                'tcNombreUsuario'       => $lcNombreUsuario,
+                'tnCiNit'               => $lnCiNit,
+                'tcNroPago'             => $lcNroPago,
+                "tnMontoClienteEmpresa" => $lnMontoClienteEmpresa,
+                "tcCorreo"              => $lcCorreo,
+                'tcUrlCallBack'         => $lcUrlCallBack,
+                "tcUrlReturn"           => $lcUrlReturn,
+                'taPedidoDetalle'       => $laPedidoDetalle
+            ];
+            $loResponse = $loClient->post($lcUrl, [
+                'headers' => $laHeader,
+                'json' => $laBody
+            ]);
+            $laResult = json_decode($loResponse->getBody()->getContents());
+            $laValues = explode(";", $laResult->values)[1];
+            $base64_string = json_decode($laValues)->qrImage;
+            $image = base64_decode($base64_string);
+            return response($image, 200, ['Content-Type' => 'image/png']);
+        } catch (\Throwable $th) {
+            return $th->getMessage() . " - " . $th->getLine();
+        }
+    }
     public function ConsultarEstado(Request $request)
     {
         $lnTransaccion = $request->tnTransaccion;

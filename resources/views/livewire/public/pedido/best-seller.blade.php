@@ -1,10 +1,14 @@
 <div class="bg-white dark:bg-gray-800 p-4 rounded-md">
     <div class="flex items-center justify-between">
         <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
-            Todos nuestros productos
+            Más vendidos
         </h2>
+        <a href="{{ route('public.producto.list') }}"
+            class="text-base font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500">Ver
+            todos<span aria-hidden="true"> &rarr;</span></a>
     </div>
     <br>
+
     <div class="grid grid-cols-4">
         @foreach ($productos as $producto)
             <div

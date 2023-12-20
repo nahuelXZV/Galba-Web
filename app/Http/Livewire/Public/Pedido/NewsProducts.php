@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Livewire\Public\Producto;
+namespace App\Http\Livewire\Public\Pedido;
 
 use App\Models\Producto;
 use Livewire\Component;
 
-class ListProduct extends Component
+class NewsProducts extends Component
 {
     public $productos;
 
     public function mount()
     {
-        $this->productos = Producto::GetAllProductos();
+        $this->productos = Producto::GetProductosOrder('desc', 8);
     }
 
     function addCart($id)
@@ -21,6 +21,6 @@ class ListProduct extends Component
 
     public function render()
     {
-        return view('livewire.public.producto.list-product')->layout('layouts.public', ['fondo' => false]);
+        return view('livewire.public.pedido.news-products');
     }
 }

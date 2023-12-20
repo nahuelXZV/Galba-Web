@@ -1,4 +1,4 @@
-<div class="flex items-center">
+<div class="flex items-center ml-2">
     <div class="flex items-center ml-3">
         <div>
             <button type="button"
@@ -21,47 +21,52 @@
                 </p>
             </div>
             <ul class="py-1" role="none">
+                @if (!Auth::user()->es_cliente)
+                    <li>
+                        <a href="{{ route('dashboard') }}"
+                            class="block px-4 py-2  text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                            role="menuitem">Dashboard</a>
+                    </li>
+                @endif
                 <li>
-                    <a href="{{ route('dashboard') }}"
-                        class="block px-4 py-2  text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                        role="menuitem">Dashboard</a>
-                </li>
-                <li>
-                    <a href="{{ route('profile.show') }}"
+                    <a @if (Auth::user()->es_cliente) href="{{ route('public.perfil') }}" @else href="{{ route('profile.show') }}" @endif
                         class="block px-4 py-2  text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                         role="menuitem">Perfil</a>
                 </li>
-                <li>
-                    <button id="doubleDropdownButton" data-dropdown-toggle="doubleDropdown"
-                        data-dropdown-placement="right-start" type="button"
-                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Temas
-                        <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 9 4-4-4-4" />
-                        </svg>
-                    </button>
-                    <div id="doubleDropdown"
-                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                        <ul class="py-2  text-gray-700 dark:text-gray-200" aria-labelledby="doubleDropdownButton">
-                            @foreach ($temas as $tema)
-                                <li>
-                                    <button wire:click="cambiarTema('{{ $tema['value'] }}')"
-                                        class="px-4 py-2 w-full text-start flex">
-                                        @if ($temaActual == $tema['value'])
-                                            <svg class="w-4 h-4 mr-2" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        @endif
-                                        {{ $tema['label'] }}
-                                    </button>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </li>
+                @if (!Auth::user()->es_cliente)
+                    <li>
+                        <button id="doubleDropdownButton" data-dropdown-toggle="doubleDropdown"
+                            data-dropdown-placement="right-start" type="button"
+                            class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Temas
+                            <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg>
+                        </button>
+                        <div id="doubleDropdown"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                            <ul class="py-2  text-gray-700 dark:text-gray-200" aria-labelledby="doubleDropdownButton">
+                                @foreach ($temas as $tema)
+                                    <li>
+                                        <button wire:click="cambiarTema('{{ $tema['value'] }}')"
+                                            class="px-4 py-2 w-full text-start flex">
+                                            @if ($temaActual == $tema['value'])
+                                                <svg class="w-4 h-4 mr-2" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            @endif
+                                            {{ $tema['label'] }}
+                                        </button>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </li>
+                @endif
                 <li>
                     <form method="POST" action="{{ route('logout') }}" x-data>
                         @csrf

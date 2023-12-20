@@ -17,7 +17,7 @@ class Producto extends Model
         "categoria"
     ];
     protected $table = 'producto';
-    use HasFactory;
+
     // Funciones
     static public function CreateProducto(array $data)
     {
@@ -36,13 +36,12 @@ class Producto extends Model
     static public function UpdateProducto($id, array $data)
     {
         $producto = Producto::find($id);
-        $producto->nombre = $data['nombre'];
-        $producto->imagen = $data['imagen'];
-        $producto->tamaño = $data['tamaño'];
-        $producto->precio = $data['precio'];
-        $producto->cantidad = $data['cantidad'];
-        $producto->descripcion = $data['descripcion'];
-
+        $producto->nombre = $data['nombre'] ?? $producto->nombre;
+        $producto->imagen = $data['imagen'] ?? $producto->imagen;
+        $producto->tamaño = $data['tamaño'] ?? $producto->tamaño;
+        $producto->precio = $data['precio'] ?? $producto->precio;
+        $producto->cantidad = $data['cantidad'] ?? $producto->cantidad;
+        $producto->descripcion = $data['descripcion'] ?? $producto->descripcion;
         $producto->save();
         return $producto;
     }
@@ -51,7 +50,7 @@ class Producto extends Model
     {
         $producto = Producto::find($id);
         $producto->delete();
-        return $user;
+        return $producto;
     }
 
     static public function GetProductos($attribute, $order = "desc", $paginate)
@@ -68,9 +67,24 @@ class Producto extends Model
         return $producto;
     }
 
+    static public function GetProductosOrder($order, $limit)
+    {
+        $producto = Producto::orderBy('id', $order)->limit($limit)->get();
+        return $producto;
+    }
+
     static public function GetProducto($id)
     {
         $producto = Producto::find($id);
+        return $producto;
+    }
+
+
+    static public function updateStock($id, $cantidad)
+    {
+        $producto = Producto::find($id);
+        $producto->cantidad = $producto->cantidad + $cantidad;
+        $producto->save();
         return $producto;
     }
 }

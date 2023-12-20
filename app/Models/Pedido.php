@@ -20,14 +20,18 @@ class Pedido extends Model
     // Asociaciones
 
     // Funciones
-    static public function CreatePedido(array $data)
+    static public function CreatePedido()
     {
-        $new = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'area' => $data['area'],
-            'password' => bcrypt($data['password'])
+        $carrito = Carrito::GetCarrito();
+        $new = Pedido::create([
+            'fecha' => date('Y-m-d'),
+            'hora' => date('H:i:s'),
+            'monto_total' => $carrito->monto_total,
+            'estado' => 'pendiente',
+            'usuario_id' => auth()->user()->id,
         ]);
+        PedidoDetalle::crearPedidoDetalle($new->id);
+        Carrito::DeleteCarrito($carrito->id);
         return $new;
     }
 
@@ -68,8 +72,7 @@ class Pedido extends Model
 
     static public function GetPedido($id)
     {
-        $user = User::find($id);
-        return $user;
+        return Pedido::find($id);
     }
 
     static public function GetPedidosByUsuario(int $id)
