@@ -23,7 +23,7 @@ class Compra extends Model
         $new = Producto::create([
             'fecha' => $data['fecha'],
             'hora' => $data['hora'],
-            'monto_total' => $data['monto_total'],
+            'monto_total' => 0,
             'proveedor_id' => $data['proveedor_id']
         ]);
         return $new;

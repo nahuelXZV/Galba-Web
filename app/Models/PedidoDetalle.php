@@ -42,4 +42,14 @@ class PedidoDetalle extends Model
             Producto::updateStock($detalle->producto_id, -$detalle->cantidad);
         }
     }
+
+    static public function GetDetalleByPedido(int $id)
+    {
+        $pedidoDetalles = PedidoDetalle::join('producto', 'producto.id', '=', 'pedido_detalle.producto_id')
+            ->select('pedido_detalle.*', 'producto.nombre as producto', 'producto.imagen as imagen')
+            ->where('pedido_detalle.pedido_id', '=', $id)
+            ->orderBy('pedido_detalle.id', 'desc')
+            ->get();
+        return $pedidoDetalles;
+    }
 }
