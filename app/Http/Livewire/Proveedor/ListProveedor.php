@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Livewire\Salida;
+namespace App\Http\Livewire\Proveedor;
 
-use Livewire\Component;
-use App\Models\Proveedor;
 use App\Models\Pagina;
+use App\Models\Proveedor;
+use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Salida;
 
-class ListSalida extends Component
+class ListProveedor extends Component
 {
     use WithPagination;
+    public $search = '';
     public $notificacion = false;
     public $type = 'success';
     public $message = 'Creado correctamente';
@@ -18,8 +18,7 @@ class ListSalida extends Component
 
     public function mount()
     {
-        Pagina::UpdateVisita('salida.list');
-        $this->layout = auth()->user()->tema;
+        Pagina::UpdateVisita('proveedor.list');
     }
 
     public function toggleNotificacion()
@@ -35,12 +34,12 @@ class ListSalida extends Component
 
     public function edit($id)
     {
-        return redirect()->route('salida.show', $id);
+        return redirect()->route('proveedor.edit', $id);
     }
 
     public function delete($id)
     {
-        if (Salida::DeleteSalida($id)) {
+        if (Proveedor::DeleteProveedor($id)) {
             $this->message = 'Eliminado correctamente';
             $this->type = 'success';
         } else {
@@ -52,8 +51,8 @@ class ListSalida extends Component
 
     public function render()
     {
-        $salidas = Salida::GetAllSalidas();
-        $visitas = Pagina::GetPagina('salida.list') ?? 0;
-        return view('livewire.salida.list-salida', compact('salidas', 'visitas'))->layout($this->layout);
+        $proveedores = Proveedor::GetProveedores($this->search, 'ASC', 20);
+        $visitas = Pagina::GetPagina('producto.list') ?? 0;
+        return view('livewire.proveedor.list-proveedor', compact('proveedores', 'visitas'))->layout(auth()->user()->tema);
     }
 }

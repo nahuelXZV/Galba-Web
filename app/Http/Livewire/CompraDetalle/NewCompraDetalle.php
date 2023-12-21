@@ -3,8 +3,8 @@
 namespace App\Http\Livewire\CompraDetalle;
 
 use Livewire\Component;
-use App\Models\Compra;
 use App\Models\CompraDetalle;
+use App\Models\Pagina;
 use App\Models\Producto;
 
 class NewCompraDetalle extends Component
@@ -25,6 +25,7 @@ class NewCompraDetalle extends Component
         $this->productos = Producto::GetAllProductos();
         $this->compra_id = $id;
         $this->detalleArray = ['compra_id' => $id];
+        Pagina::UpdateVisita('compra-detalle.new');
     }
 
     public function save()
@@ -40,6 +41,7 @@ class NewCompraDetalle extends Component
 
     public function render()
     {
-        return view('livewire.compra-detalle.new-compra-detalle')->layout(auth()->user()->tema);
+        $visitas = Pagina::GetPagina('compra-detalle.new') ?? 0;
+        return view('livewire.compra-detalle.new-compra-detalle', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

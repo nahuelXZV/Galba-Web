@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Producto;
 
+use App\Models\Pagina;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Producto;
@@ -14,6 +15,11 @@ class ListProducto extends Component
     public $type = 'success';
     public $message = 'Creado correctamente';
     public $layout;
+
+    public function mount()
+    {
+        Pagina::UpdateVisita('producto.list');
+    }
 
     public function toggleNotificacion()
     {
@@ -46,6 +52,7 @@ class ListProducto extends Component
     public function render()
     {
         $productos = Producto::GetProductos($this->search, 'ASC', 20);
-        return view('livewire.producto.list-producto', compact('productos'))->layout(auth()->user()->tema);
+        $visitas = Pagina::GetPagina('producto.list') ?? 0;
+        return view('livewire.producto.list-producto', compact('productos', 'visitas'))->layout(auth()->user()->tema);
     }
 }

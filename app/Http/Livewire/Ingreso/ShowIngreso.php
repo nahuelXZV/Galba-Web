@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Ingreso;
 use Livewire\Component;
 use App\Models\Ingreso;
 use App\Models\IngresoDetalle;
+use App\Models\Pagina;
 use Livewire\WithPagination;
 
 class ShowIngreso extends Component
@@ -18,6 +19,7 @@ class ShowIngreso extends Component
     public function mount($id)
     {
         $this->ingreso = Ingreso::GetIngreso($id);
+        Pagina::UpdateVisita('ingreso.show');
     }
 
     public function toggleNotificacion()
@@ -52,6 +54,7 @@ class ShowIngreso extends Component
     public function render()
     {
         $detalles = IngresoDetalle::GetDetalleByIngreso($this->ingreso->id);
-        return view('livewire.ingreso.show-ingreso', compact('detalles'))->layout(auth()->user()->tema);
+        $visitas = Pagina::GetPagina('ingreso.show') ?? 0;
+        return view('livewire.ingreso.show-ingreso', compact('detalles', 'visitas'))->layout(auth()->user()->tema);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Salida;
 
+use App\Models\Pagina;
 use Livewire\Component;
 use App\Models\Salida;
 use App\Models\SalidaDetalle;
@@ -17,6 +18,7 @@ class ShowSalida extends Component
     public function mount($id)
     {
         $this->salida = Salida::GetSalida($id);
+        Pagina::UpdateVisita('salida.show');
     }
 
     public function toggleNotificacion()
@@ -51,6 +53,7 @@ class ShowSalida extends Component
     public function render()
     {
         $detalles = SalidaDetalle::GetDetalleBySalida($this->salida->id);
-        return view('livewire.salida.show-salida', compact('detalles'))->layout(auth()->user()->tema);
+        $visitas = Pagina::GetPagina('salida.show') ?? 0;
+        return view('livewire.salida.show-salida', compact('detalles', 'visitas'))->layout(auth()->user()->tema);
     }
 }

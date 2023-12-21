@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Compra;
 use App\Models\InicioSesiones;
 use App\Models\Pagina;
 use App\Models\Pedido;
@@ -21,11 +22,12 @@ class Dashboard extends Component
 
     public function mount()
     {
+        Pagina::UpdateVisita('dashboard');
         $this->paginas = Pagina::GetMoreVisited();
         $this->ingresos = InicioSesiones::GetLastSesiones();
         $this->productos = count(Producto::all());
         $this->ventas = Pedido::GetValueVentas();
-        $this->compras = 0;
+        $this->compras = Compra::GetValueCompras();
         $this->clientes = User::GetClientes();
         $this->colores = [
             '#FFCE56',
@@ -37,6 +39,7 @@ class Dashboard extends Component
 
     public function render()
     {
-        return view('livewire.dashboard')->layout(auth()->user()->tema);
+        $visitas = Pagina::GetPagina('dashboard') ?? 0;
+        return view('livewire.dashboard', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

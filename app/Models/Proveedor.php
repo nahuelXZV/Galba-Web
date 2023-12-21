@@ -53,7 +53,7 @@ class Proveedor extends Model
     static public function GetProveedores($attribute, $order = "desc", $paginate)
     {
         $proveedor = Proveedor::where('nombre', 'ILIKE', '%' . strtolower($attribute) . '%')
-            ->orWhere('email', 'ILIKE', '%' . strtolower($attribute) . '%')
+            ->orWhere('correo', 'ILIKE', '%' . strtolower($attribute) . '%')
             ->orderBy('id', $order)
             ->paginate($paginate);
         return $proveedor;

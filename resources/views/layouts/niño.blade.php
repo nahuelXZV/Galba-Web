@@ -130,41 +130,60 @@
                         </a>
                     </li>
                 @endcan
-                <li>
-                    <a href="{{ route('pedido.list') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <x-iconos.pedido />
-                        <span class="flex-1 ml-3 whitespace-nowrap">Pedidos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('producto.list') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <x-iconos.pantalla />
-                        <span class="flex-1 ml-3 whitespace-nowrap">Productos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('compra.list') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <x-iconos.compra />
-                        <span class="flex-1 ml-3 whitespace-nowrap">Compras</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('ingreso.list') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <x-iconos.book />
-                        <span class="flex-1 ml-3 whitespace-nowrap">Ingresos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('salida.list') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <x-iconos.book />
-                        <span class="flex-1 ml-3 whitespace-nowrap">Salidas</span>
-                    </a>
-                </li>
+                @can('pedidos')
+                    <li>
+                        <a href="{{ route('pedido.list') }}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <x-iconos.pedido />
+                            <span class="flex-1 ml-3 whitespace-nowrap">Pedidos</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('productos')
+                    <li>
+                        <a href="{{ route('producto.list') }}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <x-iconos.pantalla />
+                            <span class="flex-1 ml-3 whitespace-nowrap">Productos</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('proveedores')
+                    <li>
+                        <a href="{{ route('proveedor.list') }}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <x-iconos.usuarios />
+                            <span class="flex-1 ml-3 whitespace-nowrap">Proveedores</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('compras')
+                    <li>
+                        <a href="{{ route('compra.list') }}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <x-iconos.compra />
+                            <span class="flex-1 ml-3 whitespace-nowrap">Compras</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('ingresos')
+                    <li>
+                        <a href="{{ route('ingreso.list') }}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <x-iconos.book />
+                            <span class="flex-1 ml-3 whitespace-nowrap">Ingresos</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('salidas')
+                    <li>
+                        <a href="{{ route('salida.list') }}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <x-iconos.book />
+                            <span class="flex-1 ml-3 whitespace-nowrap">Salidas</span>
+                        </a>
+                    </li>
+                @endcan
             </ul>
         </div>
     </aside>

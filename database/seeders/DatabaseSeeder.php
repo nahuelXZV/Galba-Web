@@ -18,17 +18,21 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $admin = Role::create(['name' => 'Administrador']);
+        $vendendor = Role::create(['name' => 'Vendedor']);
+        $almacenista = Role::create(['name' => 'Almacenista']);
         $public = Role::create(['name' => 'Publico']);
 
         //Permisos
+        Permission::create(['name' => 'dashboard', 'description' => 'Ver Dashboard'])->syncRoles($admin, $vendendor, $almacenista);
         Permission::create(['name' => 'usuarios', 'description' => 'Gestionar Usuarios'])->syncRoles($admin);
         Permission::create(['name' => 'roles', 'description' => 'Gestionar Roles'])->syncRoles($admin);
-        Permission::create(['name' => 'pedidos', 'description' => 'Gestionar Pedidos'])->syncRoles($admin);
-        Permission::create(['name' => 'compras', 'description' => 'Gestionar Compras'])->syncRoles($admin);
+        Permission::create(['name' => 'pedidos', 'description' => 'Gestionar Pedidos'])->syncRoles($admin, $vendendor);
+        Permission::create(['name' => 'compras', 'description' => 'Gestionar Compras'])->syncRoles($admin, $almacenista);
         Permission::create(['name' => 'proveedores', 'description' => 'Gestionar Proveedores'])->syncRoles($admin);
-        Permission::create(['name' => 'ingresos', 'description' => 'Gestionar Ingresos'])->syncRoles($admin);
-        Permission::create(['name' => 'salidas', 'description' => 'Gestionar Salidas'])->syncRoles($admin);
-        Permission::create(['name' => 'productos', 'description' => 'Gestionar Productos'])->syncRoles($admin);
+        Permission::create(['name' => 'ingresos', 'description' => 'Gestionar Ingresos'])->syncRoles($admin, $almacenista);
+        Permission::create(['name' => 'salidas', 'description' => 'Gestionar Salidas'])->syncRoles($admin, $almacenista);
+        Permission::create(['name' => 'productos', 'description' => 'Gestionar Productos'])->syncRoles($admin, $almacenista, $vendendor);
+        Permission::create(['name' => 'reportes', 'description' => 'Gestionar Reportes'])->syncRoles($admin);
 
         //Paginas
         Pagina::create(['nombre' => 'Dashboard', 'ruta' => 'dashboard', 'visitas' => 0]);
@@ -41,6 +45,33 @@ class DatabaseSeeder extends Seeder
         Pagina::create(['nombre' => 'Pedidos', 'ruta' => 'pedido.list', 'visitas' => 0]);
         Pagina::create(['nombre' => 'Nuevo Pedido', 'ruta' => 'pedido.new', 'visitas' => 0]);
         Pagina::create(['nombre' => 'Ver Pedido', 'ruta' => 'pedido.show', 'visitas' => 0]);
+
+        Pagina::create(['nombre' => 'Listar Producto', 'ruta' => 'producto.list', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Ver Producto', 'ruta' => 'producto.show', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Nuevo Producto', 'ruta' => 'producto.new', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Editar Producto', 'ruta' => 'producto.edit', 'visitas' => 0]);
+
+        Pagina::create(['nombre' => 'Listar Proveedores', 'ruta' => 'proveedor.list', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Ver Proveedor', 'ruta' => 'proveedor.show', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Nuevo Proveedor', 'ruta' => 'proveedor.new', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Editar Proveedor', 'ruta' => 'proveedor.edit', 'visitas' => 0]);
+
+        Pagina::create(['nombre' => 'Listar Compras', 'ruta' => 'compra.list', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Ver Compra', 'ruta' => 'compra.show', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Nueva Compra', 'ruta' => 'compra.new', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Detalle de Compra', 'ruta' => 'compra-detalle.new', 'visitas' => 0]);
+
+        Pagina::create(['nombre' => 'Listar Ingresos', 'ruta' => 'ingreso.list', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Ver Ingreso', 'ruta' => 'ingreso.show', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Nuevo Ingreso', 'ruta' => 'ingreso.new', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Detalle de Ingreso', 'ruta' => 'ingreso-detalle.new', 'visitas' => 0]);
+
+        Pagina::create(['nombre' => 'Listar Salidas', 'ruta' => 'salida.list', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Ver Salida', 'ruta' => 'salida.show', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Nueva Salida', 'ruta' => 'salida.new', 'visitas' => 0]);
+        Pagina::create(['nombre' => 'Detalle de Salida', 'ruta' => 'salida-detalle.new', 'visitas' => 0]);
+
+
 
         // Paginas publicas
         Pagina::create(['nombre' => 'Inicio', 'ruta' => 'inicio', 'visitas' => 0]);

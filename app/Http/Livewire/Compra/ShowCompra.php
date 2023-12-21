@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Compra;
 use App\Models\Proveedor;
 use App\Models\CompraDetalle;
+use App\Models\Pagina;
 use Livewire\WithPagination;
 
 class ShowCompra extends Component
@@ -20,6 +21,7 @@ class ShowCompra extends Component
     {
         $this->compra = Compra::GetCompra($id);
         $this->proveedor = Proveedor::GetProveedor($this->compra->proveedor_id);
+        Pagina::UpdateVisita('compra.show');
     }
 
     public function toggleNotificacion()
@@ -54,6 +56,7 @@ class ShowCompra extends Component
     public function render()
     {
         $detalles = CompraDetalle::GetDetalleByCompra($this->compra->id);
-        return view('livewire.compra.show-compra', compact('detalles'))->layout(auth()->user()->tema);
+        $visitas = Pagina::GetPagina('compra.show') ?? 0;
+        return view('livewire.compra.show-compra', compact('detalles', 'visitas'))->layout(auth()->user()->tema);
     }
 }

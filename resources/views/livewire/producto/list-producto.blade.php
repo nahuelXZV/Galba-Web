@@ -71,7 +71,8 @@
                             {{ $producto->nombre }}
                         </td>
                         <td class="px-6 py-4">
-                            <img class="p-1 rounded-t-lg w-20 h-auto" src="{{ $producto->imagen }}" alt="product image" />
+                            <img class="p-1 rounded-t-lg w-20 h-auto" src="{{ $producto->imagen }}"
+                                alt="product image" />
                         </td>
                         <td class="px-6 py-4">
                             {{ $producto->tamaño }}
@@ -89,7 +90,11 @@
                             {{ $producto->categoria }}
                         </td>
                         <td class="px-2 py-4 text-right">
-                            <button type="button"  wire:click="edit({{ $producto->id }})"
+                            <a href="{{ route('producto.show', $producto->id) }}"
+                                class="mb-1 text-white bg-green-400 hover:bg-green-500 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-400 dark:focus:ring-green-500">
+                                <x-iconos.view />
+                            </a>
+                            <button type="button" wire:click="edit({{ $producto->id }})"
                                 class="mb-1 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 <x-iconos.edit />
                             </button>
@@ -117,4 +122,7 @@
             }), interval);
         });
     </script>
+    @push('visitas')
+        {{ $visitas }}
+    @endpush
 </div>
