@@ -6,7 +6,6 @@ namespace Database\Seeders;
 
 use App\Models\Pagina;
 use App\Models\User;
-use App\Models\Usuario;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -42,8 +41,6 @@ class DatabaseSeeder extends Seeder
         Pagina::create(['nombre' => 'Pedidos', 'ruta' => 'pedido.list', 'visitas' => 0]);
         Pagina::create(['nombre' => 'Nuevo Pedido', 'ruta' => 'pedido.new', 'visitas' => 0]);
         Pagina::create(['nombre' => 'Ver Pedido', 'ruta' => 'pedido.show', 'visitas' => 0]);
-
-
 
         // Paginas publicas
         Pagina::create(['nombre' => 'Inicio', 'ruta' => 'inicio', 'visitas' => 0]);
