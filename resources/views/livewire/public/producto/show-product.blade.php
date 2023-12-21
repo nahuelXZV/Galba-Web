@@ -91,3 +91,6 @@
         document.getElementById("viewerButton").classList.remove("hidden");
     }
 </script>
+@push('visitas')
+    {{ $visitas }}
+@endpush

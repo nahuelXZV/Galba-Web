@@ -28,6 +28,7 @@ use App\Http\Livewire\Public\Contacto;
 use App\Http\Livewire\Public\Inicio;
 use App\Http\Livewire\Public\Pedido\ConfirmPedido;
 use App\Http\Livewire\Public\Pedido\ListPedido as PedidoListPedido;
+use App\Http\Livewire\Public\Pedido\PagarQR;
 use App\Http\Livewire\Public\Pedido\ShowCarrito;
 use App\Http\Livewire\Public\Pedido\ShowPedido as PedidoShowPedido;
 use App\Http\Livewire\Public\Producto\ListProduct;
@@ -62,6 +63,7 @@ Route::get('/inicio/contacto', Contacto::class)->name('public.contacto');
 Route::get('/inicio/perfil', Profile::class)->name('public.perfil');
 Route::get('/inicio/pedidos', PedidoListPedido::class)->name('public.pedido');
 Route::get('/inicio/pedidos/{id}', PedidoShowPedido::class)->name('public.pedido.show');
+Route::get('/inicio/qr/{id}', PagarQR::class)->name('public.pedido.qr');
 
 Route::group(['prefix' => 'pago_facil'], function () {
     Route::get('/qr/{pedido}', [PagoFacilController::class, 'GenerarQR'])->name('pago_facil.pagar.qr');

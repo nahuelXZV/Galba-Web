@@ -27,7 +27,7 @@
                             </div>
                             <div class="flex flex-col gap-1">
                                 <p class="text-lg text-gray-800 font-semibold">{{ $detalle->producto }}</p>
-                                <p class="text-xs text-gray-600 font-semibold">Descripcion:
+                                <p class="text-xs text-gray-600 font-semibold">Des:
                                     <span class="font-normal">{{ $detalle->descripcion }}</span>
                                 </p>
 
@@ -120,3 +120,6 @@
         </div>
     </div>
 </div>
+@push('visitas')
+    {{ $visitas }}
+@endpush

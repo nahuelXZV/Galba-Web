@@ -84,16 +84,17 @@ class PagoFacilController extends Controller
                     "tnSubTotal" => $item->precio * $item->cantidad
                 ];
             }
+            $url = env("APP_ENV") ?? 'https://tecnoweb.org.bo/inf513/grupo06sc/galba/public';
             $lcComerceID           = "d029fa3a95e174a19934857f535eb9427d967218a36ea014b70ad704bc6c8d1c";
             $lnMoneda              = 2;
-            $lnTelefono            = $usuario->telefono;
+            $lnTelefono            = $usuario->telefono ?? 65947484;
             $lcNombreUsuario       = $usuario->name;
             $lnCiNit               = $nit;
             $lcNroPago             = "grupo06sc-" . rand(100000, 999999);
             $lnMontoClienteEmpresa = $pedido->monto_total;
             $lcCorreo              = $usuario->email;
-            $lcUrlCallBack         = env('APP_URL') . "/pago_facil/callback/" . $pedido->id;
-            $lcUrlReturn           = env('APP_URL') . "/pago_facil/callback/" . $pedido->id;
+            $lcUrlCallBack         = $url . "/pago_facil/callback/" . $pedido->id;
+            $lcUrlReturn           = $url . "/pago_facil/callback/" . $pedido->id;
             $laPedidoDetalle       = Json_encode($taPedidoDetalle);
             $lcUrl                 = "";
 

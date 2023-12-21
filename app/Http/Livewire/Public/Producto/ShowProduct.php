@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Public\Producto;
 
+use App\Models\Pagina;
 use App\Models\Producto;
 use Livewire\Component;
 
@@ -12,6 +13,7 @@ class ShowProduct extends Component
     public function mount($id)
     {
         $this->producto = Producto::GetProducto($id);
+        Pagina::UpdateVisita('public.producto.show');
     }
 
     function addCart($id)
@@ -21,6 +23,7 @@ class ShowProduct extends Component
 
     public function render()
     {
-        return view('livewire.public.producto.show-product')->layout('layouts.public', ['fondo' => false]);
+        $visitas = Pagina::GetPagina('public.producto.show') ?? 0;
+        return view('livewire.public.producto.show-product', compact('visitas'))->layout('layouts.public', ['fondo' => false]);
     }
 }

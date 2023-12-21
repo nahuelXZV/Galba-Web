@@ -67,7 +67,7 @@ class CarritoDetalle extends Model
     {
         $carrito = Carrito::GetCarrito();
         $carritoDetalles = CarritoDetalle::join('producto', 'producto.id', '=', 'carrito_detalle.producto_id')
-            ->select('carrito_detalle.*', 'producto.nombre as producto', 'producto.imagen as imagen')
+            ->select('carrito_detalle.*', 'producto.nombre as producto', 'producto.imagen as imagen', 'producto.descripcion as descripcion')
             ->where('carrito_detalle.carrito_id', '=', $carrito->id)
             ->orderBy('carrito_detalle.id', 'desc')
             ->get();

@@ -2,12 +2,11 @@
 
 namespace App\Http\Livewire\Public\Pedido;
 
-use App\Models\Pagina;
 use App\Models\Pedido;
 use App\Models\PedidoDetalle;
 use Livewire\Component;
 
-class ShowPedido extends Component
+class PagarQR extends Component
 {
     public $pedido;
     public $detalles;
@@ -16,12 +15,10 @@ class ShowPedido extends Component
     {
         $this->pedido = Pedido::GetPedido($id);
         $this->detalles = PedidoDetalle::GetDetalleByPedido($id);
-        Pagina::UpdateVisita('public.pedido.show');
     }
 
     public function render()
     {
-        $visitas = Pagina::GetPagina('public.pedido.show') ?? 0;
-        return view('livewire.public.pedido.show-pedido', compact('visitas'))->layout('layouts.public', ['fondo' => false]);
+        return view('livewire.public.pedido.pagar-q-r')->layout('layouts.public', ['fondo' => false]);
     }
 }

@@ -32,3 +32,6 @@
         </div>
     </div>
 </div>
+@push('visitas')
+{{ $visitas }}
+@endpush

@@ -85,7 +85,7 @@
             </tbody>
         </table>
     </div>
-    @push('visitas')
-        {{ $visitas }}
-    @endpush
 </div>
+@push('visitas')
+    {{ $visitas }}
+@endpush
