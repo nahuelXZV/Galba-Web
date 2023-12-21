@@ -71,12 +71,12 @@ class DatabaseSeeder extends Seeder
             'es_administrador' => true,
         ])->assignRole('Administrador');
         User::create([
-            'name' => 'nahuel zalazar',
+            'name' => 'daniela carrasco',
             'email' => 'daniela.carrasco@nahuelxzv.pro',
             'password' => bcrypt('12345678'),
             'direccion' => 'calle falsa 123',
             'telefono' => '123456789',
-            'cargo' => 'Administrador',
+            'cargo' => '',
             'es_cliente' => true,
             'es_personal' => false,
             'es_administrador' => false,
