@@ -35,7 +35,7 @@ class Compra extends Model
         $compra->monto_total = $data['monto_total'] ?? $producto->monto_total;
 
         $compra->save();
-        return $producto;
+        return $compra;
     }
 
     static public function DeleteCompra($id)
