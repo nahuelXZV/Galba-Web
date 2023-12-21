@@ -17,11 +17,11 @@
     <script>
         const now = new Date();
         const currentHour = now.getHours();
-        // if (currentHour < 6 || currentHour >= 18) {
-        //     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        //         document.documentElement.classList.add('dark');
-        //     }
-        // }
+        if (currentHour < 6 || currentHour >= 18) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+            }
+        }
     </script>
     <script src="{{ asset('js/validaciones.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
