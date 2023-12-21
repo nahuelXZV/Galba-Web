@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class PedidoDetalle extends Model
 {
@@ -51,5 +52,14 @@ class PedidoDetalle extends Model
             ->orderBy('pedido_detalle.id', 'desc')
             ->get();
         return $pedidoDetalles;
+    }
+
+    static public function GetSumaCantidadProductosPedidos(){
+        $totalCantidadProductos = PedidoDetalle::join('producto', 'producto.id', '=', 'pedido_detalle.producto_id')
+        ->select('producto_id', DB::raw('SUM(pedido_detalle.cantidad) as total_cantidad'))
+        ->groupBy('producto_id')
+        ->orderBy('total_cantidad', 'DESC')
+        ->get();
+        return $totalCantidadProductos;
     }
 }

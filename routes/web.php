@@ -147,6 +147,7 @@ Route::middleware([
     });
 
     Route::group(['prefix' => 'reporte', 'middleware' => ['can:reportes', 'auth']], function () {
-        Route::get('/generar-pdf', [PDFController::class, 'generarPDF'])->name('reporte.ventas');
+        Route::get('/generar-pdf', [PDFController::class, 'generarPDF'])->name('reporte.productos');
+        Route::get('/generar-pdf', [PDFController::class, 'generarPDF2'])->name('reporte.ventas');
     });
 });
