@@ -14,6 +14,7 @@ class ConfirmPedido extends Component
 {
     public $carrito;
     public $detalles;
+    public $detalleRespaldo;
     public $pedido;
     public $total;
     public $cantidades;
@@ -23,6 +24,7 @@ class ConfirmPedido extends Component
 
     public function mount()
     {
+        if ($this->mostrarQR) return;
         $this->carrito = Carrito::GetCarrito();
         $this->detalles = CarritoDetalle::GetCarritoDetalles();
         $this->total = $this->carrito->monto_total;
@@ -35,6 +37,7 @@ class ConfirmPedido extends Component
 
     public function addCart($id, $cantidad)
     {
+        if ($this->mostrarQR) return;
         $producto = Producto::GetProducto($id);
         $detalle = CarritoDetalle::CreateCarritoDetalle([
             'cantidad' => $cantidad,
@@ -52,6 +55,7 @@ class ConfirmPedido extends Component
 
     public function removeCart($id)
     {
+        if ($this->mostrarQR) return;
         $detalle = CarritoDetalle::DeleteCarritoDetalle($id);
         $this->carrito = Carrito::UpdateMontoTotal($this->carrito->monto_total - ($detalle->cantidad * $detalle->precio));
         $this->refresh();
@@ -60,6 +64,7 @@ class ConfirmPedido extends Component
 
     public function updateCart($id, $value)
     {
+        if ($this->mostrarQR) return;
         $this->cantidades[$id] = $this->cantidades[$id] + $value;
         $detalle = CarritoDetalle::UpdateCarritoDetalle($id, [
             'cantidad' => $this->cantidades[$id],
@@ -73,18 +78,21 @@ class ConfirmPedido extends Component
 
     public function refresh()
     {
+        if ($this->mostrarQR) return;
         $this->reset('detalles', 'total');
         $this->detalles = CarritoDetalle::GetCarritoDetalles();
         $this->total = $this->carrito->monto_total;
     }
 
+
+
     public function confirmPedido()
     {
         $stockValid = CarritoDetalle::ValidStock();
         if ($stockValid) {
+            $this->detalleRespaldo = $this->detalles;
             $this->pedido = Pedido::CreatePedido();
-            $this->detalles = PedidoDetalle::GetPedidoDetalleByPedido($this->pedido->id);
-            $this->mostrarQR = true;
+            redirect()->route('public.pedido.qr', $this->pedido->id);
         } else {
             $this->error = true;
         }
