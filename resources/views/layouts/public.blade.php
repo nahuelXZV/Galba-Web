@@ -15,7 +15,10 @@
     <!-- Scripts -->
     <script></script>
     <script src="{{ asset('js/validaciones.js') }}"></script>
+    <script src="{{ asset('livewire/livewire.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    {{-- scrip livewire --}}
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script>
         const now = new Date();
