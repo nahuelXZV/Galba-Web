@@ -32,36 +32,48 @@
 
     <form class="grid grid-cols-2 gap-3" name="formulario">
         <div class="mb-6">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre Completo</label>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Nombre Completo</label>
             <input type="text" wire:model.defer="userArray.name" id="nombre" name="nombre"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Escriba su nombre" required>
         </div>
         <div class="mb-6">
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo</label>
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Correo</label>
             <input type="email" wire:model.defer="userArray.email" id="email" name="email"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Escriba su correo" required>
         </div>
         <div class="mb-6">
             <label for="password"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Contraseña</label>
             <input type="password" placeholder="Escriba su contraseña" id="password" name="password"
                 wire:model.defer="userArray.password" required
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         </div>
         <div class="mb-6">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona el area</label>
-            <select wire:model.defer="userArray.area" id="area" name="area" required
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Telefono</label>
+            <input type="text" wire:model.defer="userArray.telefono" id="telefono" name="telefono"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Escriba su telefono" required>
+        </div>
+        <div class="mb-6">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Direccion</label>
+            <input type="text" wire:model.defer="userArray.direccion" id="direccion" name="direccion"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Escriba su direccion" required>
+        </div>
+        <div class="mb-6">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Selecciona el cargo</label>
+            <select wire:model.defer="userArray.cargo" id="cargo" name="cargo" required
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option selected>Selecciona un rol</option>
+                <option selected>Selecciona un cargo</option>
                 @foreach ($areas as $area)
                     <option value="{{ $area }}">{{ $area }}</option>
                 @endforeach
             </select>
         </div>
         <div class="mb-6">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona un rol</label>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Selecciona un rol</label>
             <select wire:model.defer="userArray.rol" id="rol" name="rol"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option selected>Selecciona un rol</option>
@@ -78,7 +90,7 @@
                 var nombre = document.forms["formulario"]["nombre"];
                 var email = document.forms["formulario"]["email"];
                 var password = document.forms["formulario"]["password"];
-                var area = document.forms["formulario"]["area"];
+                var area = document.forms["formulario"]["cargo"];
                 var rol = document.forms["formulario"]["rol"];
 
                 if (!validarCampo(nombre, "string", 0)) {
@@ -96,6 +108,7 @@
                 if (!validarCampo(rol, "number", 0)) {
                     return false;
                 }
+                console.log('validado');
                 return true;
             }
         </script>

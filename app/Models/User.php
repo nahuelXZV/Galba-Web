@@ -26,7 +26,12 @@ class User extends Authenticatable
         'email',
         'password',
         'tema',
-        'area',
+        "direccion",
+        "telefono",
+        "cargo",
+        "isCliente",
+        "isEmpleado",
+        "isAdministrador",
     ];
 
     protected $hidden = [
@@ -51,8 +56,13 @@ class User extends Authenticatable
         $new = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'area' => $data['area'],
-            'password' => bcrypt($data['password'])
+            'password' => bcrypt($data['password']),
+            'direccion' => $data['direccion'] ?? '',
+            'telefono' => $data['telefono'] ?? '',
+            'cargo' => $data['cargo'] ?? '',
+            'es_cliente' => $data['es_cliente'] ?? false,
+            'es_empleado' => $data['es_empleado'] ?? false,
+            'es_administrador' => $data['es_administrador'] ?? false,
         ]);
         return $new;
     }
@@ -64,6 +74,12 @@ class User extends Authenticatable
         $user->email = $data['email'];
         $user->area = $data['area'];
         $user->password = bcrypt($data['password']);
+        $user->direccion = $data['direccion'] ?? '';
+        $user->telefono = $data['telefono'] ?? '';
+        $user->cargo = $data['cargo'] ?? '';
+        $user->es_cliente = $data['es_cliente'] ?? false;
+        $user->es_empleado = $data['es_empleado'] ?? false;
+        $user->es_administrador = $data['es_administrador'] ?? false;
         $user->save();
         return $user;
     }

@@ -19,8 +19,8 @@ class NewUsuario extends Component
 
     public $roles = [];
     public $areas = [
-        "Sistemas",
-        "Contable",
+        "Almacenista",
+        "Vendedor",
         "Administracion",
         "Gerencia",
     ];
@@ -33,14 +33,20 @@ class NewUsuario extends Component
             'name' => '',
             'email' => '',
             'password' => '',
-            'area' => '',
-            'rol' => ''
+            'cargo' => '',
+            'rol' => '',
+            'es_cliente' => false,
+            'es_empleado' => true,
+            'es_administrador' => false,
+            'telefono' => '',
+            'direccion' => '',
         ];
         $this->roles = Role::all();
     }
 
     public function save()
     {
+        if ($this->userArray['rol'] == 1) $this->userArray['es_administrador'] = true;
         $new = User::CreateUsuario($this->userArray);
         $new->assignRole($this->userArray['rol']);
         if (!$new) {
