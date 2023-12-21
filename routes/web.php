@@ -85,8 +85,7 @@ Route::group(['prefix' => 'reporte', 'middleware' => ['can:reportes', 'auth']], 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified',
-    'can:dashboard',
+    'verified'
 ])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     // MODULO SISTEMA
