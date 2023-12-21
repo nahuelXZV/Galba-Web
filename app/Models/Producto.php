@@ -86,4 +86,11 @@ class Producto extends Model
         $producto->save();
         return $producto;
     }
+    static public function UpdatePrecio($id, $precio)
+    {
+        $producto = Producto::find($id);
+        $producto->precio = $precio;
+        $producto->save();
+        return $producto;
+    }
 }

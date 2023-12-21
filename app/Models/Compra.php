@@ -77,4 +77,10 @@ class Compra extends Model
         $compra = Compra::find($id);
         return $compra;
     }
+
+    static public function GetValueCompras()
+    {
+        $compra = Compra::sum('monto_total');
+        return $compra;
+    }
 }

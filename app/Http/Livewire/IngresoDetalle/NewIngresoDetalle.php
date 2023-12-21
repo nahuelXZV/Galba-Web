@@ -5,6 +5,7 @@ namespace App\Http\Livewire\IngresoDetalle;
 use Livewire\Component;
 use App\Models\Ingreso;
 use App\Models\IngresoDetalle;
+use App\Models\Pagina;
 use App\Models\Producto;
 
 class NewIngresoDetalle extends Component
@@ -25,6 +26,7 @@ class NewIngresoDetalle extends Component
         $this->productos = Producto::GetAllProductos();
         $this->ingreso_id = $id;
         $this->detalleArray = ['ingreso_id' => $id];
+        Pagina::UpdateVisita('ingreso-detalle.new');
     }
 
     public function save()
@@ -40,6 +42,7 @@ class NewIngresoDetalle extends Component
 
     public function render()
     {
-        return view('livewire.ingreso-detalle.new-ingreso-detalle');
+        $visitas = Pagina::GetPagina('ingreso-detalle.new') ?? 0;
+        return view('livewire.ingreso-detalle.new-ingreso-detalle', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

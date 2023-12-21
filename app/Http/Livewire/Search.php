@@ -14,7 +14,7 @@ class Search extends Component
         $resultados = [];
         if ($this->search != '')
             $resultados = DB::table('users')
-                ->select('id', 'name', DB::raw("'' as apellido"), DB::raw("'usuario' as tabla"))
+                ->select('id', 'name as nombre', DB::raw("'' as apellido"), DB::raw("'usuario' as tabla"))
                 ->orWhere('name', 'ILIKE', '%' . strtolower($this->search)  . '%')
                 ->orWhere('email', 'ILIKE', '%' . strtolower($this->search) . '%')
                 ->union(
@@ -29,12 +29,6 @@ class Search extends Component
                         ->orWhere('nombre', 'ILIKE', '%' . strtolower($this->search)  . '%')
                         ->orWhere('categoria', 'ILIKE', '%' . strtolower($this->search) . '%')
                 )
-                /*  ->union(
-                    DB::table('modulo')
-                        ->select('id', 'nombre', DB::raw("'' as apellido"), DB::raw("'modulo' as tabla"))
-                        ->orWhere('nombre', 'ILIKE', '%' . strtolower($this->search)  . '%')
-                        ->orWhere('sigla', 'ILIKE', '%' . strtolower($this->search) . '%')
-                ) */
                 ->get();
         // dd($resultados);
         return view('livewire.search', compact('resultados'));

@@ -65,7 +65,7 @@
                             {{ $ingreso->motivo }}
                         </td>
                         <td class="px-2 py-4 text-right">
-                            <button type="button"  wire:click="edit({{ $ingreso->id }})"
+                            <button type="button" wire:click="edit({{ $ingreso->id }})"
                                 class="mb-1 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 <x-iconos.view />
                             </button>
@@ -92,4 +92,7 @@
             }), interval);
         });
     </script>
+    @push('visitas')
+        {{ $visitas }}
+    @endpush
 </div>

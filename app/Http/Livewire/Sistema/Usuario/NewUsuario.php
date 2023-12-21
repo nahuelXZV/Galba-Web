@@ -22,7 +22,6 @@ class NewUsuario extends Component
         "Almacenista",
         "Vendedor",
         "Administracion",
-        "Gerencia",
     ];
 
     public function mount()
@@ -36,7 +35,7 @@ class NewUsuario extends Component
             'cargo' => '',
             'rol' => '',
             'es_cliente' => false,
-            'es_empleado' => true,
+            'es_personal' => true,
             'es_administrador' => false,
             'telefono' => '',
             'direccion' => '',
@@ -47,6 +46,10 @@ class NewUsuario extends Component
     public function save()
     {
         if ($this->userArray['rol'] == 1) $this->userArray['es_administrador'] = true;
+        if ($this->userArray['rol'] == 4) {
+            $this->userArray['es_cliente'] = true;
+            $this->userArray['es_personal'] = false;
+        }
         $new = User::CreateUsuario($this->userArray);
         $new->assignRole($this->userArray['rol']);
         if (!$new) {

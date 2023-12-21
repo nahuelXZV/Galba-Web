@@ -25,7 +25,8 @@
             <li aria-current="page">
                 <div class="flex items-center">
                     <x-iconos.flecha />
-                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-500">Añadir Detalle</span>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-500">Añadir
+                        Detalle</span>
                 </div>
             </li>
         </ol>
@@ -71,5 +72,8 @@
                 return true;
             }
         </script>
+    @endpush
+    @push('visitas')
+        {{ $visitas }}
     @endpush
 </div>

@@ -29,9 +29,9 @@ class User extends Authenticatable
         "direccion",
         "telefono",
         "cargo",
-        "isCliente",
-        "isEmpleado",
-        "isAdministrador",
+        "es_cliente",
+        "es_personal",
+        "es_administrador",
     ];
 
     protected $hidden = [
@@ -61,7 +61,7 @@ class User extends Authenticatable
             'telefono' => $data['telefono'] ?? '',
             'cargo' => $data['cargo'] ?? '',
             'es_cliente' => $data['es_cliente'] ?? false,
-            'es_empleado' => $data['es_empleado'] ?? false,
+            'es_personal' => $data['es_personal'] ?? false,
             'es_administrador' => $data['es_administrador'] ?? false,
         ]);
         return $new;
@@ -78,7 +78,7 @@ class User extends Authenticatable
         $user->telefono = $data['telefono'] ?? '';
         $user->cargo = $data['cargo'] ?? '';
         $user->es_cliente = $data['es_cliente'] ?? false;
-        $user->es_empleado = $data['es_empleado'] ?? false;
+        $user->es_personal = $data['es_personal'] ?? false;
         $user->es_administrador = $data['es_administrador'] ?? false;
         $user->save();
         return $user;

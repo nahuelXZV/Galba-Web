@@ -82,11 +82,11 @@ class Pedido extends Model
 
     static public function GetValueVentas()
     {
-        $pedidos = Pedido::where('estado', 'finalizado')->get();
-        $total = 0;
+        $pedidos = Pedido::where('estado', 'Completado')->get();
+        $monto = 0;
         foreach ($pedidos as $pedido) {
-            $total += $pedido->monto_total;
+            $monto = $monto + $pedido->monto_total;
         }
-        return $total;
+        return $monto;
     }
 }

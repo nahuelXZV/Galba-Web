@@ -25,7 +25,7 @@
         </div>
         <div class="divide-y divide-gray-100 dark:divide-gray-700 h-72 overflow-y-auto">
             @foreach ($resultados as $resultado)
-                <a href="{{ route($resultado->tabla . '.show', $resultado->id) }}"
+                <a @if ($resultado->tabla != 'usuario') href="{{ route($resultado->tabla . '.show', $resultado->id) }}" @endif
                     class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
                     <div class="w-full pl-3">
                         <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">

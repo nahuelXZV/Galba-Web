@@ -27,7 +27,8 @@ class CompraDetalle extends Model
             'producto_id' => $data['producto_id']
         ]);
         $monto = $new->cantidad * $new->precio;
-        $producto = Producto::updateStock($new->producto_id, + $new->cantidad);
+        $producto = Producto::updateStock($new->producto_id, +$new->cantidad);
+        Producto::UpdatePrecio($new->producto_id, $new->precio);
         $compra = Compra::find($new->compra_id);
         $compra->monto_total = $compra->monto_total + $monto;
         $compra->save();

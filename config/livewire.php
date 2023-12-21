@@ -54,7 +54,8 @@ return [
     |
     */
 
-    'asset_url' => null,
+    // 'asset_url' => "https://tecnoweb.org.bo/inf513/grupo06sc/galba/public",
+    'asset_url' => env('APP_URL'),
 
     /*
     |--------------------------------------------------------------------------

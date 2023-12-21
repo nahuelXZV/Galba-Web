@@ -1,4 +1,4 @@
-<div>
+<div class="my-2">
     <nav class="flex justify-between py-3 mb-5">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
@@ -25,7 +25,8 @@
             <li aria-current="page">
                 <div class="flex items-center">
                     <x-iconos.flecha />
-                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-500">Añadir Detalle</span>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-500">Añadir
+                        Detalle</span>
                 </div>
             </li>
         </ol>
@@ -61,7 +62,6 @@
             </select>
         </div>
     </form>
-
     @push('scripts')
         <script>
             function validarFormulario() {
@@ -81,5 +81,8 @@
                 return true;
             }
         </script>
+    @endpush
+    @push('visitas')
+        {{ $visitas }}
     @endpush
 </div>

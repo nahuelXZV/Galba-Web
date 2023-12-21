@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Producto;
 
+use App\Models\Pagina;
 use Livewire\Component;
 use App\Models\Producto;
 
@@ -12,6 +13,12 @@ class NewProducto extends Component
     public $message = 'Creado correctamente';
     public $listeners = ['store' => 'save'];
     public $layout;
+    public $notificacion = false;
+
+    public function mount()
+    {
+        Pagina::UpdateVisita('producto.new');
+    }
 
     public function save()
     {
@@ -26,6 +33,7 @@ class NewProducto extends Component
 
     public function render()
     {
-        return view('livewire.producto.new-producto');
+        $visitas = Pagina::GetPagina('producto.new') ?? 0;
+        return view('livewire.producto.new-producto', compact('visitas'))->layout(auth()->user()->tema);
     }
 }

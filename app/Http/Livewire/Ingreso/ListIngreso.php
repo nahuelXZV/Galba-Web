@@ -32,8 +32,9 @@ class ListIngreso extends Component
         $this->resetPage();
     }
 
-    public function edit($id){
-        return redirect()->route('ingreso.show',$id);
+    public function edit($id)
+    {
+        return redirect()->route('ingreso.show', $id);
     }
 
     public function delete($id)
@@ -51,7 +52,7 @@ class ListIngreso extends Component
     public function render()
     {
         $ingresos = Ingreso::GetAllIngresos();
-        $visitas = Pagina::GetPagina('pedido.list') ?? 0;
-        return view('livewire.ingreso.list-ingreso', compact('ingresos','visitas'))->layout($this->layout);
+        $visitas = Pagina::GetPagina('ingreso.list') ?? 0;
+        return view('livewire.ingreso.list-ingreso', compact('ingresos', 'visitas'))->layout($this->layout);
     }
 }

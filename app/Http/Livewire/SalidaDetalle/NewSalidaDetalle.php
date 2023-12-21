@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\SalidaDetalle;
 
+use App\Models\Pagina;
 use Livewire\Component;
 use App\Models\Salida;
 use App\Models\SalidaDetalle;
@@ -26,6 +27,7 @@ class NewSalidaDetalle extends Component
         $this->productos = Producto::GetAllProductos();
         $this->salida_id = $id;
         $this->detalleArray = ['salida_id' => $id];
+        Pagina::UpdateVisita('salida-detalle.new');
     }
 
     public function save()
@@ -41,6 +43,7 @@ class NewSalidaDetalle extends Component
 
     public function render()
     {
-        return view('livewire.salida-detalle.new-salida-detalle');
+        $visitas = Pagina::GetPagina('salida-detalle.new') ?? 0;
+        return view('livewire.salida-detalle.new-salida-detalle', compact('visitas'))->layout(auth()->user()->tema);
     }
 }
