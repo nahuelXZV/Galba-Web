@@ -21,7 +21,7 @@
                 </p>
             </div>
             <ul class="py-1" role="none">
-                @if (!Auth::user()->es_cliente)
+                @if (Auth::user()->es_administrador || Auth::user()->es_personal)
                     <li>
                         <a href="{{ route('dashboard') }}"
                             class="block px-4 py-2  text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
@@ -38,7 +38,7 @@
                         class="block px-4 py-2  text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                         role="menuitem">Pedidos</a>
                 </li>
-                @if (!Auth::user()->es_cliente)
+                @if (Auth::user()->es_administrador || Auth::user()->es_personal)
                     <li>
                         <button id="doubleDropdownButton" data-dropdown-toggle="doubleDropdown"
                             data-dropdown-placement="right-start" type="button"

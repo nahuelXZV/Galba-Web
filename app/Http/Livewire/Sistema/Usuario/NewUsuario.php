@@ -22,7 +22,6 @@ class NewUsuario extends Component
         "Almacenista",
         "Vendedor",
         "Administracion",
-        "Gerencia",
     ];
 
     public function mount()
