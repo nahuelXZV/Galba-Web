@@ -78,7 +78,10 @@ Route::group(['prefix' => 'pago_facil'], function () {
     Route::post('/estado/{pedido}', [PagoFacilController::class, 'ConsultarEstado'])->name('pago_facil.estado');
     Route::get('/callback/{pedido}', [PagoFacilController::class, 'urlCallback'])->name('pago_facil.callback');
 });
-
+Route::group(['prefix' => 'reporte', 'middleware' => ['can:reportes', 'auth']], function () {
+    Route::get('/generar-pdf/productos', [PDFController::class, 'generarPDF'])->name('reporte.productos');
+    Route::get('/generar-pdf/ventas', [PDFController::class, 'generarPDF2'])->name('reporte.ventas');
+});
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -144,10 +147,5 @@ Route::middleware([
         Route::get('/new', NewSalida::class)->name('salida.new');
         Route::get('/show/{id}', ShowSalida::class)->name('salida.show');
         Route::get('/detalle/{id}', NewSalidaDetalle::class)->name('salida-detalle.new');
-    });
-
-    Route::group(['prefix' => 'reporte', 'middleware' => ['can:reportes', 'auth']], function () {
-        Route::get('/generar-pdf', [PDFController::class, 'generarPDF'])->name('reporte.productos');
-        Route::get('/generar-pdf', [PDFController::class, 'generarPDF2'])->name('reporte.ventas');
     });
 });
