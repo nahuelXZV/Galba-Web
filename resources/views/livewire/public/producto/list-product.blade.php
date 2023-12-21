@@ -35,3 +35,7 @@
         @endforeach
     </div>
 </div>
+
+@push('visitas')
+    {{ $visitas }}
+@endpush

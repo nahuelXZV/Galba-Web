@@ -4,6 +4,9 @@ namespace App\Http\Livewire;
 
 use App\Models\InicioSesiones;
 use App\Models\Pagina;
+use App\Models\Pedido;
+use App\Models\Producto;
+use App\Models\User;
 use Livewire\Component;
 
 class Dashboard extends Component
@@ -20,10 +23,16 @@ class Dashboard extends Component
     {
         $this->paginas = Pagina::GetMoreVisited();
         $this->ingresos = InicioSesiones::GetLastSesiones();
-        $this->productos = 0;
-        $this->ventas = 0;
+        $this->productos = count(Producto::all());
+        $this->ventas = Pedido::GetValueVentas();
         $this->compras = 0;
-        $this->clientes = 0;
+        $this->clientes = User::GetClientes();
+        $this->colores = [
+            '#FFCE56',
+            '#FF6384',
+            '#36A2EB',
+            '#FFCD56',
+        ];
     }
 
     public function render()

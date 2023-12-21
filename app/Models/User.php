@@ -103,4 +103,10 @@ class User extends Authenticatable
         $user->save();
         return $user;
     }
+
+    static public function GetClientes()
+    {
+        $users = User::where('es_cliente', true)->get();
+        return count($users);
+    }
 }

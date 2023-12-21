@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Public\Pedido;
 
 use App\Models\Carrito;
 use App\Models\CarritoDetalle;
+use App\Models\Pagina;
 use App\Models\Pedido;
 use App\Models\PedidoDetalle;
 use App\Models\Producto;
@@ -29,6 +30,7 @@ class ConfirmPedido extends Component
         foreach ($this->detalles as $detalle) {
             $this->cantidades[$detalle->id] = $detalle->cantidad;
         }
+        Pagina::UpdateVisita('public.confirm_pedido');
     }
 
     public function addCart($id, $cantidad)
@@ -90,6 +92,7 @@ class ConfirmPedido extends Component
 
     public function render()
     {
-        return view('livewire.public.pedido.confirm-pedido')->layout('layouts.public', ['fondo' => false]);
+        $visitas = Pagina::GetPagina('public.confirm_pedido') ?? 0;
+        return view('livewire.public.pedido.confirm-pedido', compact('visitas'))->layout('layouts.public', ['fondo' => false]);
     }
 }
