@@ -18,7 +18,7 @@ class EditProducto extends Component
     public function mount($producto)
     {
         $this->producto = Producto::GetProducto($producto);
-        $this->productoArray = ['nombre',$this->producto->nombre];
+        $this->productoArray = ['nombre', $this->producto->nombre];
     }
 
     public function save()
@@ -34,6 +34,6 @@ class EditProducto extends Component
 
     public function render()
     {
-        return view('livewire.producto.edit-producto');
+        return view('livewire.producto.edit-producto')->layout(auth()->user()->tema);
     }
 }

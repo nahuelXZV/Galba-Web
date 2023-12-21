@@ -36,27 +36,27 @@
         }
 
         div * {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
         }
 
         table * {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
         }
 
         nav * {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
         }
 
         aside * {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
         }
 
         form * {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
         }
 
         #formulario * {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
         }
     </style>
 </head>

@@ -26,8 +26,9 @@ class ListProducto extends Component
         $this->resetPage();
     }
 
-    public function edit($id){
-        return redirect()->route('producto.edit',$id);
+    public function edit($id)
+    {
+        return redirect()->route('producto.edit', $id);
     }
 
     public function delete($id)
@@ -45,6 +46,6 @@ class ListProducto extends Component
     public function render()
     {
         $productos = Producto::GetProductos($this->search, 'ASC', 20);
-        return view('livewire.producto.list-producto', compact('productos'));
+        return view('livewire.producto.list-producto', compact('productos'))->layout(auth()->user()->tema);
     }
 }

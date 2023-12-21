@@ -46,13 +46,14 @@ class ShowCompra extends Component
         $this->notificacion = true;
     }
 
-    public function detalle($id){
+    public function detalle($id)
+    {
         return redirect()->route('compra-detalle.new', $id);
     }
 
     public function render()
     {
         $detalles = CompraDetalle::GetDetalleByCompra($this->compra->id);
-        return view('livewire.compra.show-compra',compact('detalles'));
+        return view('livewire.compra.show-compra', compact('detalles'))->layout(auth()->user()->tema);
     }
 }

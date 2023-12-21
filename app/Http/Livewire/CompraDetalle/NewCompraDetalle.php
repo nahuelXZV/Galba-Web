@@ -40,6 +40,6 @@ class NewCompraDetalle extends Component
 
     public function render()
     {
-        return view('livewire.compra-detalle.new-compra-detalle');
+        return view('livewire.compra-detalle.new-compra-detalle')->layout(auth()->user()->tema);
     }
 }

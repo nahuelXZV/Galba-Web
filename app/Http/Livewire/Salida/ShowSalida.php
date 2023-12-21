@@ -43,13 +43,14 @@ class ShowSalida extends Component
         $this->notificacion = true;
     }
 
-    public function detalle($id){
+    public function detalle($id)
+    {
         return redirect()->route('salida-detalle.new', $id);
     }
 
     public function render()
     {
         $detalles = SalidaDetalle::GetDetalleBySalida($this->salida->id);
-        return view('livewire.salida.show-salida');
+        return view('livewire.salida.show-salida', compact('detalles'))->layout(auth()->user()->tema);
     }
 }

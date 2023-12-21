@@ -41,6 +41,6 @@ class NewSalidaDetalle extends Component
 
     public function render()
     {
-        return view('livewire.salida-detalle.new-salida-detalle');
+        return view('livewire.salida-detalle.new-salida-detalle')->layout(auth()->user()->tema);
     }
 }

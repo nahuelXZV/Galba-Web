@@ -58,27 +58,28 @@ class DatabaseSeeder extends Seeder
         Pagina::create(['nombre' => 'Detalle de Pedido', 'ruta' => 'public.pedido.show', 'visitas' => 0]);
 
 
-
         //Usuarios
         User::create([
             'name' => 'Test User',
             'email' => 'example@live.com',
             'password' => bcrypt('12345678'),
-            'area' => 'Sistemas',
+            'direccion' => 'calle falsa 123',
+            'telefono' => '123456789',
+            'cargo' => 'Administrador',
             'es_cliente' => true,
             'es_personal' => true,
             'es_administrador' => true,
         ])->assignRole('Administrador');
-        // Usuario::create([
-        //     'nombre' => 'nahuel zalazar',
-        //     'correo' => 'daniela.carrasco@nahuelxzv.pro',
-        //     'contraseña' => bcrypt('12345678'),
-        //     'direccion' => 'calle falsa 123',
-        //     'telefono' => '123456789',
-        //     'cargo' => 'Administrador',
-        //     'es_cliente' => true,
-        //     'es_personal' => true,
-        //     'es_administrador' => true,
-        // ]);
+        User::create([
+            'nombre' => 'nahuel zalazar',
+            'correo' => 'daniela.carrasco@nahuelxzv.pro',
+            'contraseña' => bcrypt('12345678'),
+            'direccion' => 'calle falsa 123',
+            'telefono' => '123456789',
+            'cargo' => 'Administrador',
+            'es_cliente' => true,
+            'es_personal' => false,
+            'es_administrador' => false,
+        ]);
     }
 }

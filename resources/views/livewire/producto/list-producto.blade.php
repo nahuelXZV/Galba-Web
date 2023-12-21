@@ -71,7 +71,7 @@
                             {{ $producto->nombre }}
                         </td>
                         <td class="px-6 py-4">
-                            <img class="p-1 rounded-t-lg" src="{{ $producto->imagen }}" alt="product image" />
+                            <img class="p-1 rounded-t-lg w-20 h-auto" src="{{ $producto->imagen }}" alt="product image" />
                         </td>
                         <td class="px-6 py-4">
                             {{ $producto->tamaño }}

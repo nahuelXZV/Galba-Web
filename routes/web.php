@@ -113,6 +113,7 @@ Route::middleware([
         Route::get('/show/{id}', ShowCompra::class)->name('compra.show');
         Route::get('/detalle/{id}', NewCompraDetalle::class)->name('compra-detalle.new');
     });
+
     // MODULO INVENTARIO - INGRESO
     Route::group(['prefix' => 'ingreso', 'middleware' => [/* 'can:roles', */'auth']], function () {
         Route::get('/list', ListIngreso::class)->name('ingreso.list');
@@ -131,5 +132,4 @@ Route::middleware([
     Route::group(['prefix' => 'reporte', 'middleware' => [/* 'can:roles', */'auth']], function () {
         Route::get('/generar-pdf', [PDFController::class, 'generarPDF'])->name('reporte.ventas');
     });
-
 });

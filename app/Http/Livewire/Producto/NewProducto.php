@@ -26,6 +26,6 @@ class NewProducto extends Component
 
     public function render()
     {
-        return view('livewire.producto.new-producto');
+        return view('livewire.producto.new-producto')->layout(auth()->user()->tema);
     }
 }

@@ -37,7 +37,7 @@ class NewIngreso extends Component
 
     public function render()
     {
-        $visitas = Pagina::GetPagina('ingreso.new');
-        return view('livewire.ingreso.new-ingreso')->layout($this->layout);
+        $visitas = Pagina::GetPagina('ingreso.new') ?? 0;
+        return view('livewire.ingreso.new-ingreso', compact('visitas'))->layout($this->layout);
     }
 }

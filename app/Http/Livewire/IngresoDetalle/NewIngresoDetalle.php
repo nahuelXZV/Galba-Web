@@ -40,6 +40,6 @@ class NewIngresoDetalle extends Component
 
     public function render()
     {
-        return view('livewire.ingreso-detalle.new-ingreso-detalle');
+        return view('livewire.ingreso-detalle.new-ingreso-detalle')->layout(auth()->user()->tema);
     }
 }

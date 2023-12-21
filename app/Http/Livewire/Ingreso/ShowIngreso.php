@@ -44,13 +44,14 @@ class ShowIngreso extends Component
         $this->notificacion = true;
     }
 
-    public function detalle($id){
+    public function detalle($id)
+    {
         return redirect()->route('ingreso-detalle.new', $id);
     }
 
     public function render()
     {
         $detalles = IngresoDetalle::GetDetalleByIngreso($this->ingreso->id);
-        return view('livewire.ingreso.show-ingreso', compact('detalles'));
+        return view('livewire.ingreso.show-ingreso', compact('detalles'))->layout(auth()->user()->tema);
     }
 }
