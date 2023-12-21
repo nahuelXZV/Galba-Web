@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Compra;
 
 use Livewire\Component;
+use App\Models\Pagina;
 use App\Models\Proveedor;
 use Livewire\WithPagination;
 use App\Models\Compra;
@@ -15,6 +16,12 @@ class ListCompra extends Component
     public $type = 'success';
     public $message = 'Creado correctamente';
     public $layout;
+
+    public function mount()
+    {
+        Pagina::UpdateVisita('compra.list');
+        $this->layout = auth()->user()->tema;
+    }
 
     public function toggleNotificacion()
     {
@@ -46,6 +53,7 @@ class ListCompra extends Component
     public function render()
     {
         $compras = Compra::GetAllCompras();
-        return view('livewire.compra.list-compra', compact('compras'));
+        $visitas = Pagina::GetPagina('pedido.list') ?? 0;
+        return view('livewire.compra.list-compra', compact('compras','visitas'))->layout($this->layout);
     }
 }

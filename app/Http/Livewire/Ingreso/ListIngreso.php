@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Ingreso;
 
 use Livewire\Component;
+use App\Models\Pagina;
 use Livewire\WithPagination;
 use App\Models\Ingreso;
 
@@ -13,6 +14,12 @@ class ListIngreso extends Component
     public $type = 'success';
     public $message = 'Creado correctamente';
     public $layout;
+
+    public function mount()
+    {
+        Pagina::UpdateVisita('ingreso.list');
+        $this->layout = auth()->user()->tema;
+    }
 
     public function toggleNotificacion()
     {
@@ -43,6 +50,8 @@ class ListIngreso extends Component
 
     public function render()
     {
-        return view('livewire.ingreso.list-ingreso');
+        $ingresos = Ingreso::GetAllIngresos();
+        $visitas = Pagina::GetPagina('pedido.list') ?? 0;
+        return view('livewire.ingreso.list-ingreso', compact('ingresos','visitas'))->layout($this->layout);
     }
 }

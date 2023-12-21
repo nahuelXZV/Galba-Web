@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PagoFacilController;
+use App\Http\Controllers\PDFController;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Compra\ListCompra;
 use App\Http\Livewire\Compra\ShowCompra;
@@ -124,4 +125,9 @@ Route::middleware([
         Route::get('/show/{id}', ShowSalida::class)->name('salida.show');
         Route::get('/detalle/{id}', NewSalidaDetalle::class)->name('salida-detalle.new');
     });
+
+    Route::group(['prefix' => 'reporte', 'middleware' => [/* 'can:roles', */'auth']], function () {
+        Route::get('/generar-pdf', [PDFController::class, 'generarPDF'])->name('reporte.ventas');
+    });
+
 });

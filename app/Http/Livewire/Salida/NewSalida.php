@@ -37,6 +37,6 @@ class NewSalida extends Component
     public function render()
     {
         $visitas = Pagina::GetPagina('salida.new');
-        return view('livewire.salida.new-salida');
+        return view('livewire.salida.new-salida', compact('visitas'))->layout($this->layout);
     }
 }

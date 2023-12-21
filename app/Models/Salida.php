@@ -58,7 +58,7 @@ class Salida extends Model
         return $salida;
     }
 
-    static public function GetAllISalida()
+    static public function GetAllSalidas()
     {
         $salida = Salida::all();
         return $salida;

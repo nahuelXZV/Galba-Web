@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Salida;
 
 use Livewire\Component;
 use App\Models\Proveedor;
+use App\Models\Pagina;
 use Livewire\WithPagination;
 use App\Models\Salida;
 
@@ -14,6 +15,12 @@ class ListSalida extends Component
     public $type = 'success';
     public $message = 'Creado correctamente';
     public $layout;
+
+    public function mount()
+    {
+        Pagina::UpdateVisita('compra.list');
+        $this->layout = auth()->user()->tema;
+    }
 
     public function toggleNotificacion()
     {
@@ -44,6 +51,8 @@ class ListSalida extends Component
 
     public function render()
     {
-        return view('livewire.salida.list-salida');
+        $salidas = Salida::GetAllSalidas();
+        $visitas = Pagina::GetPagina('pedido.list') ?? 0;
+        return view('livewire.salida.list-salida', compact('salidas','visitas'))->layout($this->layout);
     }
 }
