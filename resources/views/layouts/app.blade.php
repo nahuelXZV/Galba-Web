@@ -23,6 +23,7 @@
         }
     </script>
     <script src="{{ asset('js/validaciones.js') }}"></script>
+    <script src="{{ asset('livewire/livewire.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
